@@ -38,12 +38,12 @@ const Sidebar = () => {
             <div>
               {data.allMarkdownRemark.edges.map( ({node}) => (
                 <Card key={node.id} >
-                   <Link to={node.frontmatter.path}>
+                   <Link to={node.fields.slug}>
                      <Img className="card-img-top" fluid={node.frontmatter.image.childImageSharp.fluid} />   
                    </Link>
                    <CardBody>
                      <CardTitle>
-                       <Link to={node.frontmatter.path}>
+                       <Link to={node.fields.slug}>
                          {node.frontmatter.title}
                        </Link>
                      </CardTitle>
@@ -64,12 +64,11 @@ const sidebarQuery = graphql`
    { edges {
       node {
         id
+        fields {
+          slug
+        }
         frontmatter {
-          path
           title
-          date
-          author
-          tags
           image {
             childImageSharp {
               fluid(maxWidth: 300) {
@@ -78,7 +77,6 @@ const sidebarQuery = graphql`
             }
           }
         }
-        excerpt
       }
     }
   }
