@@ -25,9 +25,9 @@ class Header extends React.Component {
     });
   }
   render() {
-    return (
-      <div>
+    return (    
         <Navbar fixed="top" light expand="sm">
+          <div className="container">
           <NavbarBrand href="/">{this.props.siteTitle}</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -43,8 +43,8 @@ class Header extends React.Component {
               </NavItem>
             </Nav>
           </Collapse>
+          </div>
         </Navbar>
-      </div>
     );
   }
 }
