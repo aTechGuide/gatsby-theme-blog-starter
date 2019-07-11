@@ -5,11 +5,15 @@ import SEO from "../components/seo"
 import { graphql, StaticQuery } from "gatsby";
 import Post from "../components/Post";
 
+import {Row, Col} from 'reactstrap';
+
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <h1>This is my Arabic Blog</h1>
-    <StaticQuery query={indexQuery} render={data => {
+    <Row>
+      <Col md="8">
+      <StaticQuery query={indexQuery} render={data => {
       return (
         <div>
           {data.allMarkdownRemark.edges.map(({node}) => (
@@ -17,27 +21,40 @@ const IndexPage = () => (
               author={node.frontmatter.author}
               path={node.frontmatter.path}
               date={node.frontmatter.date}
-              body={node.excerpt} />
+              body={node.excerpt}
+              fluid={node.frontmatter.image.childImageSharp.fluid} />
           ))}
         </div>
       )
-    }}>
+    }} />
+      </Col>
+      <Col md="4">
+        <div style={{width: "100%", height: "100%", backgroundColor: "rgba(0,0,0,0.4)"}}>
 
-    </StaticQuery>
+        </div>
+      </Col>
+    </Row>
   </Layout>
 )
 
 const indexQuery = graphql`
-  query {
-    allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+  {
+    allMarkdownRemark {
       edges {
         node {
           id
           frontmatter {
-            author
             path
             title
-            date(formatString: "MMM Do YYYY")
+            date
+            author
+            image {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           excerpt
         }
