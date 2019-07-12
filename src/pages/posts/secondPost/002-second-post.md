@@ -1,7 +1,7 @@
 ---
 title: 'Second Post'
 date: '2018-12-02'
-author: 'Daud Ali'
+author: 'Ali'
 image: ./docker.png
 tags: 
 - code

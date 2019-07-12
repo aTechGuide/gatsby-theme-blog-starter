@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import {Badge, Card, CardTitle, CardText, CardSubtitle, CardBody} from 'reactstrap';
 
-import {slugify} from '../../util/UtilityFunctions';
+import {slugify} from '../util/UtilityFunctions';
 
 const Post = ({title, author, slug, date, body, fluid, tags}) => {
   return (
