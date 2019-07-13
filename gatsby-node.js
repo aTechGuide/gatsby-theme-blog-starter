@@ -29,7 +29,8 @@ exports.createPages = ({actions, graphql}) => {
 
   const templates = {
     singlePost: path.resolve('src/templates/single-post.js'),
-    tagsPage: path.resolve('src/templates/tags-page.js')
+    tagsPage: path.resolve('src/templates/tags-page.js'),
+    tagPosts: path.resolve('src/templates/tag-posts.js'),
   }
 
   return graphql(`
@@ -52,6 +53,7 @@ exports.createPages = ({actions, graphql}) => {
   `).then(res => {
       if(res.errors) return Promise.reject(res.errors)
 
+      // Create Posts Page
       const posts = res.data.allMarkdownRemark.edges
 
       posts.forEach(({node}) => {
@@ -65,6 +67,7 @@ exports.createPages = ({actions, graphql}) => {
         })
       })
 
+      // Create Tags Page
       let tags = []
       _.each(posts, edge => {
         if(_.get(edge, 'node.frontmatter.tags')) {
@@ -81,7 +84,6 @@ exports.createPages = ({actions, graphql}) => {
       tags = _.uniq(tags);
 
       console.log(tags);
-      
 
       createPage({
         path: '/tags',
@@ -91,6 +93,18 @@ exports.createPages = ({actions, graphql}) => {
           tagPostCounts
         }
       })
+
+      // Create Tag Posts Pages
+      tags.forEach(tag => {
+        createPage({
+          path: `/tag/${slugify(tag)}`,
+          component: templates.tagPosts,
+          context: {
+            tag
+          }
+        })
+      })
+
 
   })
 }
