@@ -1,15 +1,19 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "arabic-blog",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Arabic Notes blog",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Kamran Ali <kamranalinitb@gmail.com>",
   "dependencies": {
+    "@material-ui/core": "^4.2.0",
+    "@material-ui/styles": "^4.2.0",
     "bootstrap": "^4.3.1",
     "gatsby": "^2.13.12",
+    "gatsby-cli": "^2.7.15",
     "gatsby-image": "^2.2.4",
     "gatsby-plugin-catch-links": "^2.1.0",
     "gatsby-plugin-manifest": "^2.2.1",
+    "gatsby-plugin-material-ui": "^2.1.4",
     "gatsby-plugin-offline": "^2.2.1",
     "gatsby-plugin-react-helmet": "^3.1.0",
     "gatsby-plugin-sass": "^2.1.0",
@@ -23,7 +27,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "reactstrap": "^8.0.0"
+    "reactstrap": "^8.0.0",
+    "typeface-roboto": "0.0.54"
   },
   "devDependencies": {
     "prettier": "^1.18.2"
