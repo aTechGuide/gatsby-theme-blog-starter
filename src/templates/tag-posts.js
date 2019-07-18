@@ -3,6 +3,8 @@ import {graphql} from 'gatsby';
 import Layout from '../components/layout';
 import Post from '../components/Post';
 
+import { Grid} from '@material-ui/core';
+
 const tagPosts = ({data, pageContext}) => {
 
   const {tag} = pageContext;
@@ -12,17 +14,20 @@ const tagPosts = ({data, pageContext}) => {
 
   return (
     <Layout pageTitle={pageHeader}>
-      {data.allMarkdownRemark.edges.map(({node}) => (
-        <Post key={node.id} 
-          slug={node.frontmatter.title}
-          author={node.frontmatter.author}
-          date={node.frontmatter.date}
-          body={node.excerpt}
-          tags={node.frontmatter.tags}
-          fluid={node.frontmatter.image.childImageSharp.fluid}
-          />
-
-      ))}
+      <Grid container spacing={1} justify='center' >
+        {data.allMarkdownRemark.edges.map(({node}) => (
+          <Grid key={node.id} item>
+            <Post key={node.id} 
+              slug={node.frontmatter.title}
+              author={node.frontmatter.author}
+              date={node.frontmatter.date}
+              body={node.excerpt}
+              tags={node.frontmatter.tags}
+              fluid={node.frontmatter.image.childImageSharp.fluid}
+              />
+          </Grid>
+        ))}
+      </Grid>
     </Layout>
   );
 }

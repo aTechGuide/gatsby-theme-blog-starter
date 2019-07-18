@@ -20,8 +20,7 @@ const IndexPage = () => {
         numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
       return (
       <React.Fragment>
-        <Grid container spacing={1}
-          justify='center' >
+        <Grid container spacing={1} justify='center' >
           {data.allMarkdownRemark.edges.map(({node}) => (
 
             <Grid key={node.id} item>
