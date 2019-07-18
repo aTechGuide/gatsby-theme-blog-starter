@@ -6,6 +6,7 @@
   "author": "Kamran Ali <kamranalinitb@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.2.0",
+    "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.2.0",
     "bootstrap": "^4.3.1",
     "gatsby": "^2.13.12",

@@ -5,6 +5,7 @@ import SEO from "../components/seo"
 import { graphql, StaticQuery } from "gatsby";
 import Post from "../components/Post";
 import PaginationLinks from '../components/PaginationLinks';
+import { Grid} from '@material-ui/core';
 import 'typeface-roboto';
 
 const IndexPage = () => {
@@ -18,20 +19,32 @@ const IndexPage = () => {
       <StaticQuery query={indexQuery} render={data => {
         numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
       return (
-        <div>
+      <React.Fragment>
+        <Grid container spacing={1}
+          justify='center' >
           {data.allMarkdownRemark.edges.map(({node}) => (
-            <Post 
-              key={node.id}
-              title={node.frontmatter.title} 
-              author={node.frontmatter.author}
-              slug={node.fields.slug}
-              date={node.frontmatter.date}
-              body={node.excerpt}
-              fluid={node.frontmatter.image.childImageSharp.fluid}
-              tags={node.frontmatter.tags} />
+
+            <Grid key={node.id} item>
+              <Post 
+                key={node.id}
+                title={node.frontmatter.title} 
+                author={node.frontmatter.author}
+                slug={node.fields.slug}
+                date={node.frontmatter.date}
+                body={node.excerpt}
+                fluid={node.frontmatter.image.childImageSharp.fluid}
+                tags={node.frontmatter.tags} />
+              </Grid>
           ))}
+          
+        </Grid>
+        <Grid container spacing={1} 
+          justify='center' >
+          <Grid item>
           <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
-        </div>
+          </Grid>
+        </Grid>
+      </React.Fragment>  
       )
     }} />
     </Layout>

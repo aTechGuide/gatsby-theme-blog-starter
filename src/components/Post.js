@@ -1,38 +1,60 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
-import {Badge, Card, CardTitle, CardText, CardSubtitle, CardBody} from 'reactstrap';
 
 import {slugify} from '../util/UtilityFunctions';
 
+import { makeStyles } from '@material-ui/core/styles';
+import {Avatar, Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+  chiprow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: theme.spacing(1),
+  },
+  card: {
+    maxWidth: 345
+  }
+}));
+
 const Post = ({title, author, slug, date, body, fluid, tags}) => {
+  
+  const classes = useStyles();
   return (
-    <Card>
-      <Link to={slug}>
+    <Card className={classes.card}>
+      <CardActionArea>
         <Img className="card-image-top" fluid={fluid}/>
-      </Link>
-      <CardBody>
-        <CardTitle>
-          <Link to={slug}>
-            {title}
-          </Link>
-        </CardTitle>
-        <CardSubtitle>
-          <span className="text-info">{date}</span> by {' '}
-          <span className="text-info">{author}</span>
-        </CardSubtitle>
-        <CardText>{body}</CardText>
-        <ul className="post-tags">
+        <CardHeader
+        avatar={
+          <Avatar aria-label="Recipe" className={classes.avatar}>
+            AB
+          </Avatar>
+        }
+        title={title}
+        subheader={date}
+      />
+        <CardContent>    
+          <Typography variant="body2" color="textSecondary" component="p">
+            {body}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions className={classes.chiprow}>
+        <div >
           {tags.map(tag => (
-            <li key={tag}>
-              <Link to={`/tag/${slugify(tag)}`}>
-                <Badge color="primary" className="text-uppercase"> {tag} </Badge>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Link to={slug} className="btn btn-outline-primary float-right"> Read More</Link>
-      </CardBody>
+            <Link key={tag} to={`/tag/${slugify(tag)}`}>
+              <Chip size='small' color='primary' label={tag} className={classes.chip} />
+            </Link>
+            ))}
+        </div>
+        <Button href={slug} size="small" color="primary" variant='outlined'>
+          Read More
+        </Button>
+      </CardActions>
     </Card>
   );
 }
