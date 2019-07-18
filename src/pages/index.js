@@ -16,36 +16,37 @@ const IndexPage = () => {
   return(
     <Layout pageTitle="Arabic Blog">
       <SEO title="Home" />
-      <StaticQuery query={indexQuery} render={data => {
-        numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
-      return (
-      <React.Fragment>
-        <Grid container spacing={1} justify='center' >
-          {data.allMarkdownRemark.edges.map(({node}) => (
+      <StaticQuery 
+        query={indexQuery} 
+        render={data => {
+          numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
+          return (
+            <React.Fragment>
+              <Grid container spacing={1} justify='center' >
+                {data.allMarkdownRemark.edges.map(({node}) => (
 
-            <Grid key={node.id} item>
-              <Post 
-                key={node.id}
-                title={node.frontmatter.title} 
-                author={node.frontmatter.author}
-                slug={node.fields.slug}
-                date={node.frontmatter.date}
-                body={node.excerpt}
-                fluid={node.frontmatter.image.childImageSharp.fluid}
-                tags={node.frontmatter.tags} />
+                  <Grid key={node.id} item>
+                    <Post 
+                      key={node.id}
+                      title={node.frontmatter.title} 
+                      author={node.frontmatter.author}
+                      slug={node.fields.slug}
+                      date={node.frontmatter.date}
+                      body={node.excerpt}
+                      fluid={node.frontmatter.image.childImageSharp.fluid}
+                      tags={node.frontmatter.tags} />
+                    </Grid>
+                ))}
+                
               </Grid>
-          ))}
-          
-        </Grid>
-        <Grid container spacing={1} 
-          justify='center' >
-          <Grid item>
-          <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
-          </Grid>
-        </Grid>
-      </React.Fragment>  
-      )
-    }} />
+              <Grid container spacing={1} justify='center' >
+                <Grid item>
+                <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
+                </Grid>
+              </Grid>
+            </React.Fragment>  
+          )
+        }}/>
     </Layout>
   )
 }
