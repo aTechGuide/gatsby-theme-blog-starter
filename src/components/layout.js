@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => {
   // const classes = useStyles();
+  // authorImageFluid and postAuthor used to be passed in Sidebar component
   
 
   const data = useStaticQuery(graphql`

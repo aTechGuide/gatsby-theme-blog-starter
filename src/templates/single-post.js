@@ -2,12 +2,29 @@ import React from 'react';
 import Layout from '../components/layout';
 import { graphql, Link } from 'gatsby';
 import SEO from '../components/seo';
-import {Badge, Card, CardBody, CardSubtitle} from 'reactstrap';
+import {Avatar, Typography, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Img from 'gatsby-image';
 import authors from '../util/authors';
 import {slugify} from '../util/UtilityFunctions';
 
+const useStyles = makeStyles(theme => ({
+  chiprow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: theme.spacing(1),
+  },
+  card: {
+    maxWidth: '80%',
+    margin: 'auto'
+  }
+}));
+
 const singlepost = ({data, pageContext}) => {
+  const classes = useStyles();
 
   const post = data.markdownRemark.frontmatter;
   const author = authors.find(x => x.name === post.author)
@@ -18,24 +35,31 @@ const singlepost = ({data, pageContext}) => {
   return (
     <Layout pageTitle={post.title} postAuthor={author} authorImageFluid={data.file.childImageSharp.fluid}>
       <SEO title={post.title} />   
-        <Card>
-          <Img className="card-img-top" fluid={post.image.childImageSharp.fluid}/>
-          <CardBody>
-            <CardSubtitle>
-              <span className="text-info">{post.date}</span> by {' '}
-              <span className="text-info">{post.author}</span>
-            </CardSubtitle>
-            <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
-            <ul className="post-tags">
-              { post.tags.map(tag => (
-                <li key={tag} >
-                  <Link to={`/tag/${slugify(tag)}`}>
-                    <Badge color="primary"> {tag} </Badge>
-                  </Link>
-                </li>
-              )) }
-            </ul>
-          </CardBody>
+        <Card className={classes.card}>
+          <CardActionArea>
+            <Img className="card-image-top" fluid={post.image.childImageSharp.fluid}/>
+            <CardHeader
+            avatar={
+              <Avatar aria-label="Recipe" className={classes.avatar}>
+                AB
+              </Avatar>
+            }
+            title={post.title}
+            subheader={post.date}
+            />
+            <CardContent>    
+              <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
+            </CardContent>
+          </CardActionArea>
+          <CardActions className={classes.chiprow}>
+            <div >
+              {post.tags.map(tag => (
+                <Link key={tag} to={`/tag/${slugify(tag)}`}>
+                  <Chip size='small' color='primary' label={tag} className={classes.chip} />
+                </Link>
+                ))}
+            </div>
+          </CardActions>
         </Card>
         <h3 className="text-center">
           Share this Post
