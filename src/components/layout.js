@@ -40,14 +40,16 @@ const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => {
     }
   `)
 
+  const space = parseInt(data.site.siteMetadata.gridSpacing);
+
   return (
       <div className={classes.root}>
         <CssBaseline />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <Container component="main" className={classes.main} maxWidth="lg">
           <Header siteTitle={data.site.siteMetadata.title} />
-          <Grid container spacing={data.site.siteMetadata.gridSpacing}>
-            <Grid item xs={12}>
+          <Grid container spacing={space}>
+            <Grid item xs={12} md={12}>
               {children}
             </Grid>
           </Grid>
