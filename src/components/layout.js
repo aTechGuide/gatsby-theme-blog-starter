@@ -4,9 +4,9 @@ import { useStaticQuery, graphql } from "gatsby"
 import {CssBaseline, Grid, Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Header from "./header"
 import Footer from './Footer';
 import '../styles/index.scss';
+import Header from "./header"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -44,10 +44,10 @@ const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => {
 
   return (
       <div className={classes.root}>
+        <Header />
         <CssBaseline />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
         <Container component="main" className={classes.main} maxWidth="lg">
-          <Header siteTitle={data.site.siteMetadata.title} />
           <Grid container spacing={space}>
             <Grid item xs={12} md={12}>
               {children}

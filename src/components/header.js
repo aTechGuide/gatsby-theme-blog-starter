@@ -1,60 +1,30 @@
-import PropTypes from "prop-types"
 import React from "react"
 
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink} from 'reactstrap';
+import { makeStyles } from '@material-ui/core/styles';
+import {AppBar, Toolbar, Typography, Button, Link} from '@material-ui/core';
 
-class Header extends React.Component {
-  constructor(props) {
-    super(props);
+const useStyles = makeStyles(theme => ({
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false
-    };
-  }
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
-  render() {
-    return (    
-        <Navbar fixed="top" light expand="sm">
-          <div className="container">
-          <NavbarBrand href="/">{this.props.siteTitle}</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/team">Team</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/tags">Tags</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/about">About</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-          </div>
-        </Navbar>
-    );
-  }
-}
+const Header = () => {
+  const classes = useStyles();
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
+  return (
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            <Link color="inherit" href="/">Arabic Blog</Link>
+          </Typography>
+          <Button href="/tags" color="inherit">Tags</Button>
+        </Toolbar>
+      </AppBar>
+  );
 }
 
 export default Header
