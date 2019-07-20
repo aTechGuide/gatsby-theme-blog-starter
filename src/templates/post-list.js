@@ -8,19 +8,21 @@ import { Grid} from '@material-ui/core';
 const postList = ({data, pageContext}) => {
   const posts = data.allMarkdownRemark.edges
   const {currentPage, numberOfPages} = pageContext
-
+  
   return (
     <Layout pageTitle={`Page: ${currentPage}`}>
       <Grid container spacing={1} justify='center' >
         {posts.map(({node}) => (
           <Grid key={node.id} item>
-            <Post key={node.id} 
-            slug={node.frontmatter.title}
-            author={node.frontmatter.author}
-            date={node.frontmatter.date}
-            body={node.excerpt}
-            tags={node.frontmatter.tags}
-            fluid={node.frontmatter.image.childImageSharp.fluid}
+            <Post 
+              key={node.id}
+              title={node.frontmatter.title} 
+              slug={node.fields.slug}
+              author={node.frontmatter.author}
+              date={node.frontmatter.date}
+              body={node.excerpt}
+              tags={node.frontmatter.tags}
+              fluid={node.frontmatter.image.childImageSharp.fluid}
             />
           </Grid>
         )) }

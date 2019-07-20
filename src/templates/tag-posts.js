@@ -14,11 +14,13 @@ const tagPosts = ({data, pageContext}) => {
 
   return (
     <Layout pageTitle={pageHeader}>
-      <Grid container spacing={1} justify='center' >
+      <Grid container spacing={parseInt(data.site.siteMetadata.gridSpacing)} justify='center' >
         {data.allMarkdownRemark.edges.map(({node}) => (
           <Grid key={node.id} item>
-            <Post key={node.id} 
-              slug={node.frontmatter.title}
+            <Post 
+              key={node.id} 
+              title={node.frontmatter.title}
+              slug={node.fields.slug}
               author={node.frontmatter.author}
               date={node.frontmatter.date}
               body={node.excerpt}
@@ -34,6 +36,11 @@ const tagPosts = ({data, pageContext}) => {
 
 export const tagQuery = graphql`
     query($tag: String!){
+      site {
+        siteMetadata {
+          gridSpacing
+        }
+      }
       allMarkdownRemark (
         sort: {fields: [frontmatter___date], order: DESC}
         filter: { frontmatter: {tags: { in: [$tag]} } }
@@ -49,7 +56,7 @@ export const tagQuery = graphql`
                 tags
                 image {
                   childImageSharp {
-                    fluid(maxWidth: 650, maxHeight: 370) {
+                    fluid(maxWidth: 350, maxHeight: 120) {
                       ...GatsbyImageSharpFluid
                     }
                   }

@@ -17,17 +17,21 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
   },
   card: {
-    maxWidth: 345
+    width: 350,
+    height: 420
+  },
+  cardActionArea: {
+    height: 370
   }
 }));
 
 const Post = ({title, author, slug, date, body, fluid, tags}) => {
-  
+
   const classes = useStyles();
   return (
     <Card className={classes.card}>
-      <CardActionArea>
-        <Img className="card-image-top" fluid={fluid}/>
+      <CardActionArea href={"/" + slug} className={classes.cardActionArea}>
+        <Img fluid={fluid}/>
         <CardHeader
         avatar={
           <Avatar aria-label="Recipe" className={classes.avatar}>
@@ -51,7 +55,7 @@ const Post = ({title, author, slug, date, body, fluid, tags}) => {
             </Link>
             ))}
         </div>
-        <Button href={slug} size="small" color="primary" variant='outlined'>
+        <Button href={"/" + slug} size="small" color="primary" variant='outlined'>
           Read More
         </Button>
       </CardActions>

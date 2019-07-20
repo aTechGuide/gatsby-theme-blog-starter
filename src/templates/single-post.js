@@ -2,9 +2,8 @@ import React from 'react';
 import Layout from '../components/layout';
 import { graphql, Link } from 'gatsby';
 import SEO from '../components/seo';
-import {Avatar, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip, Grid} from '@material-ui/core';
+import {Avatar, CardHeader, Card,CardActions,CardContent, Chip, Grid} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Img from 'gatsby-image';
 import authors from '../util/authors';
 import {slugify} from '../util/UtilityFunctions';
 import Sidebar from '../components/Sidebar';
@@ -29,17 +28,18 @@ const PostCard = ({data, post}) => {
 
   return (
     <Card>
-      <CardActionArea>
-        <Img className="card-image-top" fluid={post.image.childImageSharp.fluid}/>
-        <CardHeader
-          avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
-          title={post.title}
-          subheader={post.date}
-        />
-        <CardContent>    
-          <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
-        </CardContent>
-      </CardActionArea>
+      
+      {/* <Img fluid={post.image.childImageSharp.fluid}/> */}
+      <CardHeader
+        avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
+        title={post.title}
+        subheader={post.date}
+        titleTypographyProps={{component: 'h1'}}
+      />
+      <CardContent>    
+        <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
+      </CardContent>
+      
       <CardActions className={classes.chiprow}>
         <div >
           {post.tags.map(tag => (
@@ -76,17 +76,18 @@ const singlepost = ({data, pageContext}) => {
   
   const post = data.markdownRemark.frontmatter;
   const author = authors.find(x => x.name === post.author)
+  const space = parseInt(data.site.siteMetadata.gridSpacing)
 
   return (
     <Layout pageTitle={post.title} postAuthor={author} authorImageFluid={data.file.childImageSharp.fluid}>
       <SEO title={post.title} />
 
         {/* Main Container */}
-        <Grid container spacing={data.site.siteMetadata.gridSpacing}>
+        <Grid container spacing={space}>
           
           <Grid item xs={12} md={9}>
             {/* Left Container Start */}
-            <Grid container spacing={data.site.siteMetadata.gridSpacing} >
+            <Grid container spacing={space} >
               <Grid item xs={12} >
                 <PostCard post={post} data={data}/>
               </Grid>
@@ -99,7 +100,7 @@ const singlepost = ({data, pageContext}) => {
 
           <Grid item xs={12} md={3}>
             {/* Right Container Start*/}
-            <Grid container spacing={data.site.siteMetadata.gridSpacing} >
+            <Grid container spacing={space} >
               <Grid item xs={12}>
                 <Sidebar />
               </Grid>

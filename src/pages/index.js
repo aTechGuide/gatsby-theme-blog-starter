@@ -7,8 +7,16 @@ import Post from "../components/Post";
 import PaginationLinks from '../components/PaginationLinks';
 import { Grid} from '@material-ui/core';
 import 'typeface-roboto';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  shadowBox: {
+    
+  }
+}));
 
 const IndexPage = () => {
+  const classes = useStyles();
 
   const postsPerPage = 2;
   let numberOfPages;
@@ -25,7 +33,7 @@ const IndexPage = () => {
               <Grid container spacing={parseInt(data.site.siteMetadata.gridSpacing)} justify='center' >
                 {data.allMarkdownRemark.edges.map(({node}) => (
 
-                  <Grid key={node.id} item>
+                  <Grid key={node.id} item className={classes.shadowBox}>
                     <Post 
                       key={node.id}
                       title={node.frontmatter.title} 
@@ -73,7 +81,7 @@ const indexQuery = graphql`
             tags
             image {
               childImageSharp {
-                fluid(maxWidth: 400) {
+                fluid(maxWidth: 350, maxHeight: 120) {
                   ...GatsbyImageSharpFluid
                 }
               }
