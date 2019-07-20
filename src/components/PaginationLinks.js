@@ -1,5 +1,7 @@
 import React from 'react';
-import {Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+
+import {Grid, IconButton, Button} from '@material-ui/core';
+import {ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 
 const PaginationLinks = ({currentPage, numberOfPages}) => {
 
@@ -10,45 +12,48 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
   const nextPage = '/page/' + (currentPage + 1).toString()
   
   return (
-    <Pagination aria-label="Page navigation example">
-      {isFirst ? (
-        <PaginationItem disabled>
-          <PaginationLink previous href="/" />
-        </PaginationItem>
-      ) : (
-        <PaginationItem >
-          <PaginationLink previous href={previousPage} />
-        </PaginationItem>
-      ) }
-
+    <Grid container spacing={1} alignItems="center">
+      <Grid item>
+        {
+          isFirst ? (
+          <IconButton href="/" disabled>
+            <ArrowBackIos />
+          </IconButton>
+          ) : (
+          <IconButton href={previousPage} >
+            <ArrowBackIos />
+          </IconButton>
+          ) 
+        }
+      </Grid>
+      
         {Array.from({length: numberOfPages}, (_, i) => 
           currentPage === i + 1 ? (
-            <PaginationItem active key={`page-number${i + 1}`} >
-              <PaginationLink href={`/${i === 0 ? '': 'page/' + (i + 1) }`} >
-                {i + 1}
-              </PaginationLink>
-            </PaginationItem>
+            <Grid item key={`page-number${i + 1}`}>
+              <Button variant="contained" href={`/${i === 0 ? '': 'page/' + (i + 1) }`} size="small" color="primary"> {i + 1} </Button>
+            </Grid>
           ) : (
-            <PaginationItem key={`page-number${i + 1}`} >
-              <PaginationLink href={`/${i === 0 ? '': 'page/' + (i + 1) }`} >
-                {i + 1}
-              </PaginationLink>
-            </PaginationItem>
+            <Grid item key={`page-number${i + 1}`}>
+              <Button href={`/${i === 0 ? '': 'page/' + (i + 1) }`} variant="outlined" size="small" color="primary"> {i + 1} </Button>
+            </Grid>
           )
         ) }
 
-      {isLast ? (
-        <PaginationItem disabled>
-          <PaginationLink next href={nextPage} />
-        </PaginationItem>
-      ) : (
-        <PaginationItem >
-          <PaginationLink next href={nextPage} />
-        </PaginationItem>
-      )
-
-      }
-    </Pagination>
+      <Grid item>
+        {
+          isLast ? (
+          <IconButton href={nextPage} disabled >
+            <ArrowForwardIos />
+          </IconButton>
+          ) : (
+          <IconButton href={nextPage} >
+            <ArrowForwardIos />
+          </IconButton>
+          )
+        }
+      </Grid>
+      
+    </Grid>
   );
 }
 

@@ -5,7 +5,7 @@ import {CssBaseline, Grid, Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Footer from './Footer';
-import '../styles/index.scss';
+// import '../styles/index.scss';
 import Header from "./header"
 
 const useStyles = makeStyles(theme => ({
