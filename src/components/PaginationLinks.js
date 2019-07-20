@@ -52,7 +52,6 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
           )
         }
       </Grid>
-      
     </Grid>
   );
 }
