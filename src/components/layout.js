@@ -46,7 +46,7 @@ const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => {
       <div className={classes.root}>
         <Header />
         <CssBaseline />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        {/* <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> */}
         <Container component="main" className={classes.main} maxWidth="lg">
           <Grid container spacing={space}>
             <Grid item xs={12} md={12}>
