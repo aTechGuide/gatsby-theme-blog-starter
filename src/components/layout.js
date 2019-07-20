@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import {CssBaseline, Grid} from '@material-ui/core';
+import {CssBaseline, Grid, Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Header from "./header"
@@ -10,48 +10,52 @@ import '../styles/index.scss';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
   },
-  paper: {
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2),
+  },
+  footer: {
     padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
+    marginTop: 'auto',
+    backgroundColor: 'white',
   },
 }));
 
-
 const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => {
-  // const classes = useStyles();
+  const classes = useStyles();
   // authorImageFluid and postAuthor used to be passed in Sidebar component
-  
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {
           title
+          gridSpacing
         }
       }
     }
   `)
 
   return (
-    <>
-      <CssBaseline />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <Grid container spacing={2} style={{marginTop: 64}}>
-       
-        <Grid item xs={12}>
-          
-          {children}
-        
-        </Grid>
-        <Grid item xs={12}>
+      <div className={classes.root}>
+        <CssBaseline />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <Container component="main" className={classes.main} maxWidth="lg">
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <Grid container spacing={data.site.siteMetadata.gridSpacing}>
+            <Grid item xs={12}>
+              {children}
+            </Grid>
+          </Grid>
+        </Container>
+        <footer className={classes.footer}>
           <Footer />
-        </Grid>
-      </Grid>
-    </>
+        </footer>
+    </div>
   )
 }
 

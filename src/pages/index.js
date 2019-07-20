@@ -22,7 +22,7 @@ const IndexPage = () => {
           numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
           return (
             <React.Fragment>
-              <Grid container spacing={1} justify='center' >
+              <Grid container spacing={data.site.siteMetadata.gridSpacing} justify='center' >
                 {data.allMarkdownRemark.edges.map(({node}) => (
 
                   <Grid key={node.id} item>
@@ -53,6 +53,11 @@ const IndexPage = () => {
 
 const indexQuery = graphql`
   {
+    site {
+      siteMetadata {
+        gridSpacing
+      }
+    }
     allMarkdownRemark(
       sort: {fields: [frontmatter___date], order: DESC}
       limit: 2
