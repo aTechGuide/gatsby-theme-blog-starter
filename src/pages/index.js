@@ -8,6 +8,7 @@ import PaginationLinks from '../components/PaginationLinks';
 import { Grid} from '@material-ui/core';
 import 'typeface-roboto';
 import { makeStyles } from '@material-ui/core/styles';
+import '../styles/global.css';
 
 const useStyles = makeStyles(theme => ({
   shadowBox: {

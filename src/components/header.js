@@ -1,7 +1,8 @@
 import React from "react"
 
 import { makeStyles } from '@material-ui/core/styles';
-import {AppBar, Toolbar, Typography, Button, Link} from '@material-ui/core';
+import {Link} from 'gatsby';
+import {AppBar, Toolbar, Typography, Button} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -10,6 +11,18 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
+  homeLink: {
+    color: theme.palette.primary.contrastText
+  },
+  menuLink: {
+    color: theme.palette.secondary.contrastText,
+    margin: '8px' 
+  },
+  activeLink: {
+    background: theme.palette.primary.light,
+    borderRadius: '5px',
+    padding: '3px'
+  }
 }));
 
 const Header = () => {
@@ -19,9 +32,11 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link color="inherit" href="/">Arabic Blog</Link>
+            <Link className={classes.homeLink} to="/">Arabic Blog</Link>
           </Typography>
-          <Button href="/tags" color="inherit">Tags</Button>
+          <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags">Tags</Link>
+          <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/about">About</Link>
+          {/* <Button href="/tags" color="inherit">Tags</Button> */}
         </Toolbar>
       </AppBar>
   );
