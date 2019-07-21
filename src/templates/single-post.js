@@ -8,6 +8,9 @@ import authors from '../util/authors';
 import {slugify} from '../util/UtilityFunctions';
 import Sidebar from '../components/Sidebar';
 
+/**
+ * Template used by Blog Posts files under posts folder
+ */
 const useStyles = makeStyles(theme => ({
   chiprow: {
     display: 'flex',
