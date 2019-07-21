@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
-import {slugify} from '../util/UtilityFunctions';
+import {slugify} from '../../util/UtilityFunctions';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {Avatar, Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Post = ({title, author, slug, date, body, fluid, tags}) => {
+const PostSnippet = ({title, author, slug, date, body, fluid, tags}) => {
 
   const classes = useStyles();
   return (
@@ -63,4 +63,4 @@ const Post = ({title, author, slug, date, body, fluid, tags}) => {
   );
 }
 
-export default Post;
+export default PostSnippet;

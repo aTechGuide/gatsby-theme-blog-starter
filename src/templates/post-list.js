@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
-import Post from '../components/Post';
+import PostSnippet from '../components/post/PostSnippet';
 import PaginationLinks from '../components/PaginationLinks';
 import { Grid} from '@material-ui/core';
 
@@ -14,7 +14,7 @@ const postList = ({data, pageContext}) => {
       <Grid container spacing={1} justify='center' >
         {posts.map(({node}) => (
           <Grid key={node.id} item>
-            <Post 
+            <PostSnippet 
               key={node.id}
               title={node.frontmatter.title} 
               slug={node.fields.slug}

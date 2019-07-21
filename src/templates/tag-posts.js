@@ -1,7 +1,7 @@
 import React from 'react';
 import {graphql} from 'gatsby';
 import Layout from '../components/layout';
-import Post from '../components/Post';
+import PostSnippet from '../components/post/PostSnippet';
 
 import { Grid} from '@material-ui/core';
 
@@ -17,7 +17,7 @@ const tagPosts = ({data, pageContext}) => {
       <Grid container spacing={parseInt(data.site.siteMetadata.gridSpacing)} justify='center' >
         {data.allMarkdownRemark.edges.map(({node}) => (
           <Grid key={node.id} item>
-            <Post 
+            <PostSnippet 
               key={node.id} 
               title={node.frontmatter.title}
               slug={node.fields.slug}

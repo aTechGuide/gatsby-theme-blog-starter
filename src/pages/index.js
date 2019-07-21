@@ -3,7 +3,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql, StaticQuery } from "gatsby";
-import Post from "../components/Post";
+import PostSnippet from "../components/post/PostSnippet";
 import PaginationLinks from '../components/PaginationLinks';
 import { Grid} from '@material-ui/core';
 import 'typeface-roboto';
@@ -34,7 +34,7 @@ const IndexPage = () => {
                 {data.allMarkdownRemark.edges.map(({node}) => (
 
                   <Grid key={node.id} item className={classes.shadowBox}>
-                    <Post 
+                    <PostSnippet 
                       key={node.id}
                       title={node.frontmatter.title} 
                       author={node.frontmatter.author}
