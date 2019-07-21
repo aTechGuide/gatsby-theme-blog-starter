@@ -29,8 +29,33 @@ module.exports = {
         path: `${__dirname}/src/posts`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Plugins For Image Processing
+    `gatsby-plugin-sharp`, // Image Transformations; Sharp should be before we transform our markdown file
+    {
+      resolve: 'gatsby-transformer-remark', // Requires to format markdown
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 750,
+              linkImagesToOriginal: false
+            }
+          }
+        ]
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-material-ui',
+      options: {
+        // stylesProvider: {
+        //   injectFirst: true,
+        // },
+      },
+    },
+    // this (optional) plugin enables Progressive Web App + Offline functionality
+    // To learn more, visit: https://gatsby.dev/offline
+    // `gatsby-plugin-offline`,
     // {
     //   resolve: `gatsby-plugin-manifest`,
     //   options: {
@@ -43,18 +68,5 @@ module.exports = {
     //     icon: `src/images/icon.png`, // This path is relative to the root of the site.
     //   },
     // },
-    `gatsby-transformer-remark`,
-    {
-      resolve: 'gatsby-plugin-material-ui',
-      // If you want to use styled components you should change the injection order.
-      options: {
-        // stylesProvider: {
-        //   injectFirst: true,
-        // },
-      },
-    },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

@@ -17,6 +17,8 @@ Welcome to code blog. Enjoy the content. This is third PostWelcome to code blog.
 Welcome to code blog. Enjoy the content. This is third PostWelcome to code blog. Enjoy the content. This is third PostWelcome to code blog. Enjoy the content. This is third Post
 Welcome to code blog. Enjoy the content. This is third Post
 
+![Docker Image](./docker.png){:title="Docker Image"}
+
 Welcome to code blog. Enjoy the content. This is third Post
 Welcome to code blog. Enjoy the content. This is third Post
 Welcome to code blog. Enjoy the content. This is third Post
