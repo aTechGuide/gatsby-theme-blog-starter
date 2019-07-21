@@ -6,6 +6,7 @@ image: ./docker.png
 tags: 
 - code
 - design
+published: true
 ---
 
 Welcome to code blog. Enjoy the content. This is second Post.

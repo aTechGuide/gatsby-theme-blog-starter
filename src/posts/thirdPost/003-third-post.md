@@ -7,6 +7,7 @@ tags:
 - code
 - design
 - tutorial
+published: true
 ---
 
 Welcome to code blog. Enjoy the content. This is third Post.
