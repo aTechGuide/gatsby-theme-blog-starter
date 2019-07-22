@@ -1,6 +1,5 @@
 const {slugify} = require('./src/util/UtilityFunctions')
 const path = require('path')
-const authors = require('./src/util/authors')
 const _ = require('lodash')
 
 exports.onCreateNode = ({node, actions}) => {
@@ -133,8 +132,7 @@ function createPosts(posts, createPage, templates) {
       path: node.fields.slug,
       component: templates.singlePost,
       context: {
-        slug: node.fields.slug,
-        imageUrl: authors.find(x => x.name === node.frontmatter.author).imageUrl
+        slug: node.fields.slug
       }
     });
   });

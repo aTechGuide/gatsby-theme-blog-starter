@@ -20,8 +20,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FullPost = ({data, post}) => {
+const FullPost = ({data}) => {
   const classes = useStyles();
+
+  const post = data.markdownRemark.frontmatter;
 
   return (
     <Card>

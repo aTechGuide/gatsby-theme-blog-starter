@@ -5,7 +5,6 @@ import {CssBaseline, Grid, Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Footer from './Footer';
-// import '../styles/index.scss';
 import Header from "./header"
 
 const useStyles = makeStyles(theme => ({
@@ -25,9 +24,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => {
+const Layout = ({ children, pageTitle }) => {
   const classes = useStyles();
-  // authorImageFluid and postAuthor used to be passed in Sidebar component
 
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {

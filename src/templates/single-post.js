@@ -3,7 +3,6 @@ import Layout from '../components/layout';
 import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import {Grid} from '@material-ui/core';
-import authors from '../util/authors';
 
 import Sidebar from '../components/Sidebar';
 import Sharing from '../components/Sharing';
@@ -16,11 +15,10 @@ import FullPost from '../components/post/FullPost';
 const singlepost = ({data, pageContext}) => {
   
   const post = data.markdownRemark.frontmatter;
-  const author = authors.find(x => x.name === post.author)
   const space = parseInt(data.site.siteMetadata.gridSpacing)
 
   return (
-    <Layout pageTitle={post.title} postAuthor={author} authorImageFluid={data.file.childImageSharp.fluid}>
+    <Layout pageTitle={post.title} >
       <SEO title={post.title} />
 
         {/* Main Container */}
@@ -30,7 +28,7 @@ const singlepost = ({data, pageContext}) => {
             {/* Left Container Start */}
             <Grid container spacing={space} >
               <Grid item xs={12} >
-                <FullPost post={post} data={data}/>
+                <FullPost data={data}/>
               </Grid>
               <Grid item xs={12}>
                 <Sharing pageContext={pageContext} post={post}/>
@@ -56,7 +54,7 @@ const singlepost = ({data, pageContext}) => {
 }
 
 export const postQuery = graphql`
-  query blogPostBySlug($slug: String!, $imageUrl: String!) {
+  query blogPostBySlug($slug: String!) {
     site {
       siteMetadata {
         gridSpacing
@@ -76,13 +74,6 @@ export const postQuery = graphql`
               ...GatsbyImageSharpFluid
             }
           }
-        }
-      }
-    }
-    file(relativePath: { eq: $imageUrl }) {
-      childImageSharp {
-        fluid(maxWidth: 300) {
-          ...GatsbyImageSharpFluid
         }
       }
     }
