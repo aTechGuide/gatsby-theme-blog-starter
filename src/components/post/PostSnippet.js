@@ -18,20 +18,27 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     width: 350,
-    height: 420
+    // height: 420,
+    transition: 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)',
+    '&:hover': {
+      transform: 'scale(1.03, 1.03)'
+    }
   },
   cardActionArea: {
-    height: 370
-  }
+    // height: 370
+  },
+  
 }));
 
-const PostSnippet = ({title, author, slug, date, body, fluid, tags}) => {
+const PostSnippet = ({title, author, slug, date, body, fluid, fixed, tags}) => {
 
   const classes = useStyles();
   return (
     <Card className={classes.card}>
       <CardActionArea href={"/" + slug} className={classes.cardActionArea}>
-        <Img fluid={fluid}/>
+        {/* <Img fluid={fluid}/> */}
+        <Img fixed={fixed}/>
+
         <CardHeader
         avatar={
           <Avatar aria-label="Recipe" className={classes.avatar}>
