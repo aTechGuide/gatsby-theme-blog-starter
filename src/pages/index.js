@@ -12,7 +12,7 @@ import '../styles/global.css';
 
 const useStyles = makeStyles(theme => ({
   postGridItem: {
-    padding: '8px'
+    padding: theme.spacing(2)
   }
 }));
 
@@ -42,7 +42,7 @@ const IndexPage = () => {
                         key={node.id}
                         title={node.frontmatter.title} 
                         author={node.frontmatter.author}
-                        slug={node.fields.slug}
+                        slug={node.frontmatter.slug}
                         date={node.frontmatter.date}
                         body={node.excerpt}
                         // fluid={node.frontmatter.image.childImageSharp.fluid}
@@ -88,6 +88,7 @@ const indexQuery = graphql`
             date(formatString: "MMM Do YYYY")
             author
             tags
+            slug
             image {
               childImageSharp {
                 fixed(width: 350) {
@@ -95,9 +96,6 @@ const indexQuery = graphql`
                 }
               }
             }
-          }
-          fields{
-            slug
           }
           excerpt
         }

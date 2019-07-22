@@ -60,7 +60,7 @@ export const postQuery = graphql`
         gridSpacing
       }
     }
-    markdownRemark(fields: { slug: {eq: $slug}}) {
+    markdownRemark(frontmatter: { slug: {eq: $slug}}) {
       id
       html
       frontmatter{

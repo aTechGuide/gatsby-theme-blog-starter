@@ -8,6 +8,7 @@ tags:
 - design
 - tutorial
 published: true
+slug: third-post
 ---
 
 Welcome to code blog. Enjoy the content. This is third Post.

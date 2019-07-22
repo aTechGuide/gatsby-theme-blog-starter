@@ -2,6 +2,7 @@ const {slugify} = require('./src/util/UtilityFunctions')
 const path = require('path')
 const _ = require('lodash')
 
+/*
 exports.onCreateNode = ({node, actions}) => {
   const {createNodeField} = actions
 
@@ -14,6 +15,7 @@ exports.onCreateNode = ({node, actions}) => {
     })
   }
 }
+*/
 
 exports.createPages = ({actions, graphql}) => {
   const {createPage} = actions;
@@ -31,12 +33,10 @@ exports.createPages = ({actions, graphql}) => {
       edges {
         node {
           id
-          fields {
-            slug
-          }
           frontmatter {
             author
             tags
+            slug
           }
         }
       }
@@ -129,10 +129,10 @@ function createTagsPage(posts, createPage, templates) {
 function createPosts(posts, createPage, templates) {
   posts.forEach(({ node }) => {
     createPage({
-      path: node.fields.slug,
+      path: node.frontmatter.slug,
       component: templates.singlePost,
       context: {
-        slug: node.fields.slug
+        slug: node.frontmatter.slug
       }
     });
   });

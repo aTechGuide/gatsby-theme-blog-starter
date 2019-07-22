@@ -5,6 +5,9 @@ import PostSnippet from '../components/post/PostSnippet';
 import PaginationLinks from '../components/PaginationLinks';
 import { Grid} from '@material-ui/core';
 
+/**
+ * This Template is used to generate pages for Pagination
+ */
 const postList = ({data, pageContext}) => {
   const posts = data.allMarkdownRemark.edges
   const {currentPage, numberOfPages} = pageContext
@@ -17,12 +20,13 @@ const postList = ({data, pageContext}) => {
             <PostSnippet 
               key={node.id}
               title={node.frontmatter.title} 
-              slug={node.fields.slug}
+              slug={node.frontmatter.slug}
               author={node.frontmatter.author}
               date={node.frontmatter.date}
               body={node.excerpt}
               tags={node.frontmatter.tags}
-              fluid={node.frontmatter.image.childImageSharp.fluid}
+              //fluid={node.frontmatter.image.childImageSharp.fluid}
+              fixed={node.frontmatter.image.childImageSharp.fixed}
             />
           </Grid>
         )) }
@@ -52,16 +56,14 @@ export const postListQuery = graphql`
             date(formatString: "MMM Do YYYY")
             author
             tags
+            slug
             image {
               childImageSharp {
-                fluid(maxWidth: 650, maxHeight: 370) {
-                  ...GatsbyImageSharpFluid
+                fixed(width: 350) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
-          }
-          fields{
-            slug
           }
           excerpt
         }

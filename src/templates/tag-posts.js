@@ -4,8 +4,16 @@ import Layout from '../components/layout';
 import PostSnippet from '../components/post/PostSnippet';
 
 import { Grid} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  postGridItem: {
+    padding: theme.spacing(2)
+  }
+}));
 
 const tagPosts = ({data, pageContext}) => {
+  const classes = useStyles();
 
   const {tag} = pageContext;
   const { totalCount } = data.allMarkdownRemark
@@ -14,18 +22,19 @@ const tagPosts = ({data, pageContext}) => {
 
   return (
     <Layout pageTitle={pageHeader}>
-      <Grid container spacing={parseInt(data.site.siteMetadata.gridSpacing)} justify='center' >
+      <Grid container justify='center' >
         {data.allMarkdownRemark.edges.map(({node}) => (
-          <Grid key={node.id} item>
+          <Grid key={node.id} item className={classes.postGridItem}>
             <PostSnippet 
               key={node.id} 
               title={node.frontmatter.title}
-              slug={node.fields.slug}
+              slug={node.frontmatter.slug}
               author={node.frontmatter.author}
               date={node.frontmatter.date}
               body={node.excerpt}
               tags={node.frontmatter.tags}
-              fluid={node.frontmatter.image.childImageSharp.fluid}
+              //fluid={node.frontmatter.image.childImageSharp.fluid}
+              fixed={node.frontmatter.image.childImageSharp.fixed}
               />
           </Grid>
         ))}
@@ -54,16 +63,14 @@ export const tagQuery = graphql`
                 date(formatString: "MMM Do YYYY")
                 author
                 tags
+                slug
                 image {
                   childImageSharp {
-                    fluid(maxWidth: 350, maxHeight: 120) {
-                      ...GatsbyImageSharpFluid
+                    fixed(width: 350) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }
-              }
-              fields{
-                slug
               }
               excerpt
             }

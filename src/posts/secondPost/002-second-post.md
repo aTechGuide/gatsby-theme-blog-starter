@@ -7,6 +7,7 @@ tags:
 - code
 - design
 published: true
+slug: second-post
 ---
 
 Welcome to code blog. Enjoy the content. This is second Post.
