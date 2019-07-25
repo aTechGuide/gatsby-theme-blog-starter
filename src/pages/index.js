@@ -3,21 +3,11 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql, StaticQuery } from "gatsby";
-import PostSnippet from "../components/post/PostSnippet";
-import PaginationLinks from '../components/PaginationLinks';
-import { Grid} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import 'typeface-roboto';
 import '../styles/global.css';
-
-const useStyles = makeStyles(theme => ({
-  postGridItem: {
-    padding: theme.spacing(2)
-  }
-}));
+import IndexPageGrid from "../components/IndexPageGrid";
 
 const IndexPage = () => {
-  const classes = useStyles();
 
   const postsPerPage = 2;
   let numberOfPages;
@@ -29,38 +19,12 @@ const IndexPage = () => {
         query={indexQuery} 
         render={data => {
           numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
+          const posts = data.allMarkdownRemark.edges
           return (
-            <Grid container justify='center' alignItems='center' direction='column'>
-              <Grid item>
-                <Grid container justify='center' >
-                  {data.allMarkdownRemark.edges.map(({node}) => (
-
-                    // TODO Make style with pallete
-                    <Grid key={node.id} item className={classes.postGridItem} > 
-                      <PostSnippet 
-                        
-                        key={node.id}
-                        title={node.frontmatter.title} 
-                        author={node.frontmatter.author}
-                        slug={node.frontmatter.slug}
-                        date={node.frontmatter.date}
-                        body={node.excerpt}
-                        // fluid={node.frontmatter.image.childImageSharp.fluid}
-                        fixed={node.frontmatter.image.childImageSharp.fixed}
-                        tags={node.frontmatter.tags} />
-                      </Grid>
-                  ))}
-                  
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Grid container justify='center' >
-                  <Grid item>
-                  <PaginationLinks currentPage={1} numberOfPages={numberOfPages} />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>  
+            <IndexPageGrid 
+              posts={posts} 
+              currentPage={1}
+              numberOfPages={numberOfPages} />
           )
         }}/>
     </Layout>

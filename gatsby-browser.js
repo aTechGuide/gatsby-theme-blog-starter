@@ -5,3 +5,5 @@
  */
 
 // You can delete this file if you're not using it
+require("./src/styles/code-theme.css")
+require("prismjs/plugins/line-numbers/prism-line-numbers.css")

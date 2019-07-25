@@ -1,41 +1,24 @@
 import React from 'react';
 import Layout from '../components/layout';
 import { graphql } from 'gatsby';
-import PostSnippet from '../components/post/PostSnippet';
-import PaginationLinks from '../components/PaginationLinks';
-import { Grid} from '@material-ui/core';
+import IndexPageGrid from '../components/IndexPageGrid';
 
 /**
  * This Template is used to generate pages for Pagination
  */
+
 const postList = ({data, pageContext}) => {
+
   const posts = data.allMarkdownRemark.edges
   const {currentPage, numberOfPages} = pageContext
   
   return (
     <Layout pageTitle={`Page: ${currentPage}`}>
-      <Grid container spacing={1} justify='center' >
-        {posts.map(({node}) => (
-          <Grid key={node.id} item>
-            <PostSnippet 
-              key={node.id}
-              title={node.frontmatter.title} 
-              slug={node.frontmatter.slug}
-              author={node.frontmatter.author}
-              date={node.frontmatter.date}
-              body={node.excerpt}
-              tags={node.frontmatter.tags}
-              //fluid={node.frontmatter.image.childImageSharp.fluid}
-              fixed={node.frontmatter.image.childImageSharp.fixed}
-            />
-          </Grid>
-        )) }
-      </Grid>
-      <Grid container spacing={1} justify='center' >
-        <Grid item>
-          <PaginationLinks currentPage={currentPage} numberOfPages={numberOfPages} />
-        </Grid>
-      </Grid>
+      
+      <IndexPageGrid 
+        posts={posts}
+        currentPage={currentPage}
+        numberOfPages={numberOfPages} />
       
     </Layout>
   );

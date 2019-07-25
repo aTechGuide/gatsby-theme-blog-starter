@@ -9,6 +9,9 @@ const useStyles = makeStyles(theme => ({
   activeLink: {
     fontWeight: 'bold',
     color: 'Red'
+  },
+  postGridItem: {
+    padding: theme.spacing(2)
   }
 }));
 
@@ -40,7 +43,7 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
       
         {Array.from({length: numberOfPages}, (_, i) => 
           currentPage === i + 1 ? (
-            <Grid item key={`page-number${i + 1}`}>
+            <Grid item key={`page-number${i + 1}`} className={classes.postGridItem} >
               <Link to={`/${i === 0 ? '': 'page/' + (i + 1) }`} activeClassName={classes.activeLink}>{i + 1}</Link>
             </Grid>
           ) : (

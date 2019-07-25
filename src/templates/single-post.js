@@ -7,26 +7,33 @@ import {Grid} from '@material-ui/core';
 import Sidebar from '../components/Sidebar';
 import Sharing from '../components/Sharing';
 import FullPost from '../components/post/FullPost';
+import { makeStyles } from '@material-ui/core/styles';
 
 /**
  * Template used by Blog Posts files under posts folder
  */
 
+const useStyles = makeStyles(theme => ({
+  postGridItem: {
+    padding: theme.spacing(2)
+  }
+}));
+
 const singlepost = ({data, pageContext}) => {
+  const classes = useStyles();
   
   const post = data.markdownRemark.frontmatter;
-  const space = parseInt(data.site.siteMetadata.gridSpacing)
 
   return (
     <Layout pageTitle={post.title} >
       <SEO title={post.title} />
 
         {/* Main Container */}
-        <Grid container spacing={space}>
+        <Grid container >
           
-          <Grid item xs={12} md={9}>
+          <Grid item xs={12} md={9} className={classes.postGridItem}>
             {/* Left Container Start */}
-            <Grid container spacing={space} >
+            <Grid container >
               <Grid item xs={12} >
                 <FullPost data={data}/>
               </Grid>
@@ -37,9 +44,9 @@ const singlepost = ({data, pageContext}) => {
             {/* Left Container End */}      
           </Grid>
 
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={3} className={classes.postGridItem}>
             {/* Right Container Start*/}
-            <Grid container spacing={space} >
+            <Grid container >
               <Grid item xs={12}>
                 <Sidebar />
               </Grid>
@@ -55,11 +62,6 @@ const singlepost = ({data, pageContext}) => {
 
 export const postQuery = graphql`
   query blogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        gridSpacing
-      }
-    }
     markdownRemark(frontmatter: { slug: {eq: $slug}}) {
       id
       html

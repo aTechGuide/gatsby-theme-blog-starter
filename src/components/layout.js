@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: 'auto',
     backgroundColor: theme.palette.primary.light,
     width: '100%'
-  },
+  }
 }));
 
 const Layout = ({ children, pageTitle }) => {
