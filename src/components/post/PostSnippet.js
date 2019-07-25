@@ -5,7 +5,7 @@ import Img from 'gatsby-image';
 import {slugify} from '../../util/UtilityFunctions';
 
 import { makeStyles } from '@material-ui/core/styles';
-import {Avatar, Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
+import {Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   chiprow: {
