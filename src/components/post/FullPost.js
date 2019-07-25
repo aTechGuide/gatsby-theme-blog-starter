@@ -2,7 +2,9 @@ import React from 'react';
 import {Avatar, CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {indigo} from '@material-ui/core/colors';
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import Img from "gatsby-image"
+
 
 import {slugify} from '../../util/UtilityFunctions';
 
@@ -104,6 +106,19 @@ const useStyles = makeStyles(theme => ({
 
 const FullPost = ({data}) => {
   const classes = useStyles();
+  const icon = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "icon.png" }) {
+        childImageSharp {
+          # Specify a fixed image and fragment.
+          # The default width is 400 pixels
+          fixed(width:80) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
 
   const post = data.markdownRemark.frontmatter;
 
@@ -112,7 +127,8 @@ const FullPost = ({data}) => {
       
       {/* <Img fluid={post.image.childImageSharp.fluid}/> */}
       <CardHeader
-        avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
+        // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
+        avatar={<Img fixed={icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
         title={post.title}
         subheader={post.date}
         titleTypographyProps={{variant: 'h4' ,component: 'h1'}}
