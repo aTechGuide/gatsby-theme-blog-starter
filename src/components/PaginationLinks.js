@@ -5,15 +5,16 @@ import {ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(theme => {
+  return({
   activeLink: {
     fontWeight: 'bold',
     color: 'Red'
   },
   postGridItem: {
-    padding: theme.spacing(2)
+    padding: theme.postGridItemPadding
   }
-}));
+})});
 
 const PaginationLinks = ({currentPage, numberOfPages}) => {
 
@@ -47,7 +48,7 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
               <Link to={`/${i === 0 ? '': 'page/' + (i + 1) }`} activeClassName={classes.activeLink}>{i + 1}</Link>
             </Grid>
           ) : (
-            <Grid item key={`page-number${i + 1}`}>
+            <Grid item key={`page-number${i + 1}`} className={classes.postGridItem}>
               <Link to={`/${i === 0 ? '': 'page/' + (i + 1) }`}>{i + 1}</Link>
             </Grid>
           )

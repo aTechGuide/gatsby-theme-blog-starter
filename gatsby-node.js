@@ -109,7 +109,6 @@ function createTagsPage(posts, createPage, templates) {
   });
   // {code: 2, design: 6, ...}
   tags = _.uniq(tags);
-  console.log(tags);
   createPage({
     path: '/tags',
     component: templates.tagsPage,

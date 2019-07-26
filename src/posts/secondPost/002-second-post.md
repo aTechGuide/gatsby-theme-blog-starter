@@ -1,5 +1,5 @@
 ---
-title: 'Second Post'
+pagetitle: 'Second Post'
 date: '2018-12-02'
 author: 'Ali'
 image: ./docker.png

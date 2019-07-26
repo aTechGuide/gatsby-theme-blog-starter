@@ -15,13 +15,13 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.contrastText
   },
   menuLink: {
-    color: theme.palette.secondary.contrastText,
-    margin: '8px' 
+    color: theme.palette.primary.contrastText,
+    margin: theme.spacing(2)
   },
   activeLink: {
     background: theme.palette.primary.light,
-    borderRadius: '5px',
-    padding: '3px'
+    borderRadius: theme.spacing(1),
+    padding: theme.spacing(1)
   }
 }));
 

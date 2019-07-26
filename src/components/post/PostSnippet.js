@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
   
 }));
 
-const PostSnippet = ({title, author, slug, date, body, fluid, fixed, tags}) => {
+const PostSnippet = ({pagetitle, author, slug, date, body, fluid, fixed, tags}) => {
 
   const classes = useStyles();
   const icon = useStaticQuery(graphql`
@@ -53,7 +53,7 @@ const PostSnippet = ({title, author, slug, date, body, fluid, fixed, tags}) => {
 
         <CardHeader
         avatar={<Img fixed={icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
-        title={title}
+        title={pagetitle}
         subheader={date}
       />
         <CardContent>    

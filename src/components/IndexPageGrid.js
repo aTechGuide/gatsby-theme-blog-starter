@@ -9,12 +9,13 @@ import { makeStyles } from '@material-ui/core/styles';
  */
 const useStyles = makeStyles(theme => ({
   postGridItem: {
-    padding: theme.spacing(2)
+    padding: theme.postGridItemPadding
   }
 }));
 
 const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
   const classes = useStyles();
+  // const theme
 
   return (
     <Grid container justify='center' alignItems='center' direction='column'>
@@ -24,7 +25,7 @@ const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
             <Grid key={node.id} item className={classes.postGridItem} > 
               <PostSnippet 
                 key={node.id}
-                title={node.frontmatter.title} 
+                pagetitle={node.frontmatter.pagetitle} 
                 author={node.frontmatter.author}
                 slug={node.frontmatter.slug}
                 date={node.frontmatter.date}

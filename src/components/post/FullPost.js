@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
+import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {indigo} from '@material-ui/core/colors';
 import { Link, graphql, useStaticQuery } from 'gatsby';
@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
   
   chiprow: {
     display: 'flex',
-    justifyContent: 'space-between',
     flexWrap: 'wrap',
   },
   chip: {
@@ -124,12 +123,10 @@ const FullPost = ({data}) => {
 
   return (
     <Card>
-      
-      {/* <Img fluid={post.image.childImageSharp.fluid}/> */}
       <CardHeader
         // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
         avatar={<Img fixed={icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
-        title={post.title}
+        title={post.pagetitle}
         subheader={post.date}
         titleTypographyProps={{variant: 'h4' ,component: 'h1'}}
         className={classes.header}
@@ -139,13 +136,13 @@ const FullPost = ({data}) => {
       </CardContent>
       
       <CardActions className={classes.chiprow}>
-        <div >
+        
           {post.tags.map(tag => (
             <Link key={tag} to={`/tag/${slugify(tag)}`}>
               <Chip size='small' color='primary' label={tag} className={classes.chip} />
             </Link>
             ))}
-        </div>
+        
       </CardActions>
     </Card>
   );

@@ -3,9 +3,10 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { graphql, StaticQuery } from "gatsby";
-import 'typeface-roboto';
 import '../styles/global.css';
 import IndexPageGrid from "../components/IndexPageGrid";
+
+import 'typeface-roboto';
 
 const IndexPage = () => {
 
@@ -13,21 +14,21 @@ const IndexPage = () => {
   let numberOfPages;
 
   return(
-    <Layout pageTitle="Arabic Blog">
-      <SEO title="Home" />
-      <StaticQuery 
-        query={indexQuery} 
-        render={data => {
-          numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
-          const posts = data.allMarkdownRemark.edges
-          return (
-            <IndexPageGrid 
-              posts={posts} 
-              currentPage={1}
-              numberOfPages={numberOfPages} />
-          )
-        }}/>
-    </Layout>
+      <Layout pageTitle="Arabic Blog">
+        <SEO title="Home" />
+        <StaticQuery 
+          query={indexQuery} 
+          render={data => {
+            numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
+            const posts = data.allMarkdownRemark.edges
+            return (
+              <IndexPageGrid 
+                posts={posts} 
+                currentPage={1}
+                numberOfPages={numberOfPages} />
+            )
+          }}/>
+      </Layout>
   )
 }
 
@@ -48,7 +49,7 @@ const indexQuery = graphql`
         node {
           id
           frontmatter {
-            title
+            pagetitle
             date(formatString: "MMM Do YYYY")
             author
             tags
