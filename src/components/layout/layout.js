@@ -7,8 +7,8 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import {deepPurple, amber} from '@material-ui/core/colors/';
 
-import Footer from './Footer';
-import Header from "./header"
+import Footer from '../Footer';
+import Header from "../header"
 
 /**
  * This class is Parent to all the components
