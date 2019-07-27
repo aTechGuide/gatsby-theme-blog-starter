@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+
 import {CssBaseline} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import {deepPurple, red, indigo, yellow, cyan, lightGreen} from '@material-ui/core/colors/';
@@ -43,7 +43,7 @@ let theme = createMuiTheme({
   highlightThree: lightGreen
 });
 
-const Layout = ({ children, pageTitle }) => {
+const Layout = ({ children, pageTitle, icon }) => {
   const classes = useStyles();
 
   return (
@@ -52,7 +52,7 @@ const Layout = ({ children, pageTitle }) => {
       <div className={classes.root}>
         <Header />
         {children}
-        <Footer />
+        <Footer icon={icon}/>
       </div>
     </ThemeProvider>
   )

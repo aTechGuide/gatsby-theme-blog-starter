@@ -31,7 +31,7 @@ const Header = () => {
   return (
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h1" className={classes.title}>
             <Link className={classes.homeLink} to="/">Arabic Blog</Link>
           </Typography>
           <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags">Tags</Link>

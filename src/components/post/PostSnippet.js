@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
 import {slugify} from '../../util/UtilityFunctions';
@@ -30,21 +30,10 @@ const useStyles = makeStyles(theme => ({
   
 }));
 
-const PostSnippet = ({pagetitle, author, slug, date, body, fluid, fixed, tags}) => {
+const PostSnippet = ({pagetitle, author, slug, date, body, fluid, fixed, tags, icon}) => {
 
   const classes = useStyles();
-  const icon = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "icon.png" }) {
-        childImageSharp {
-          fixed(width:60) {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-    }
-  `)
-
+ 
   return (
     <Card className={classes.card}>
       <CardActionArea href={"/" + slug} className={classes.cardActionArea}>

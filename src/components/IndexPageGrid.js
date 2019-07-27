@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
+const IndexPageGrid = ({posts, currentPage, numberOfPages, icon}) => {
   const classes = useStyles();
   // const theme
 
@@ -32,7 +32,8 @@ const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
                 body={node.excerpt}
                 // fluid={node.frontmatter.image.childImageSharp.fluid}
                 fixed={node.frontmatter.image.childImageSharp.fixed}
-                tags={node.frontmatter.tags} />
+                tags={node.frontmatter.tags}
+                icon={icon} />
               </Grid>
           ))}
           

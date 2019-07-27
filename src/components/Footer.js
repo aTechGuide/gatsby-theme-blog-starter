@@ -1,27 +1,36 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Container, Typography} from '@material-ui/core';
+import {Grid, Typography} from '@material-ui/core';
+import Img from 'gatsby-image';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    textTransform: 'capitalize'
+  logo: {
+    flexGrow: 1
   },
   footer: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
     marginTop: 'auto',
     backgroundColor: theme.palette.primary.light,
     width: '100%'
   }
 }));
 
-export default function StickyFooter() {
+const Footer = ({icon}) => {
   const classes = useStyles();
+  console.log(icon);
 
   return (
-    <footer className={classes.footer}>
-      <Container maxWidth="lg" className={classes.root}>
-        <Typography variant="body1">My sticky footer can be found here.</Typography>
-      </Container>  
-    </footer>
+    <Grid container className={classes.footer} alignItems='center' >
+      <Grid item className={classes.logo}>
+        <Img fixed={icon.file.childImageSharp.fixed} className="App-logo" />        
+      </Grid>
+      
+      <Grid item>
+        <Typography variant="body1">Proudly Powered by <a href="https://www.gatsbyjs.org/">Gatsby</a> and <a href="https://www.netlify.com/">Netlify</a></Typography>
+      </Grid> 
+    </Grid>
   );
 }
+
+
+export default Footer;

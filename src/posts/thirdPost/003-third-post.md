@@ -1,17 +1,20 @@
 ---
-pagetitle: 'Third Post'
-date: '2018-12-03'
-author: 'Ali'
-image: ./docker.png
-tags: 
-- code
-- design
-- tutorial
+title: SEO Title
+description: SEO Description
+pagetitle: Page Title
+summary: Page Description
+date: '2019-02-07'
+update_date: '2019-03-02'
+tags:
+  - Arabic
+label:
+  - Nahw
+slug: dummy
 published: true
-slug: third-post
+image: ../../images/icon.png
 ---
 
-Welcome to code blog. Following represents how we highlight our code.  
+This page has details of text formatting used in Arabic Blog with examples.
 
 **First Word**{: .firstword}
 
