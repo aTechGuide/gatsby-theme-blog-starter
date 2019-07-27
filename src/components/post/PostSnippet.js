@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 
-import {slugify} from '../../util/UtilityFunctions';
-
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
+
+import {slugify} from '../../util/UtilityFunctions';
+import {Consumer} from '../../context/context';
 
 const useStyles = makeStyles(theme => ({
   chiprow: {
@@ -30,40 +31,45 @@ const useStyles = makeStyles(theme => ({
   
 }));
 
-const PostSnippet = ({pagetitle, author, slug, date, body, fluid, fixed, tags, icon}) => {
+const PostSnippet = ({pagetitle, author, slug, date, body, fixed, tags}) => {
 
   const classes = useStyles();
  
   return (
-    <Card className={classes.card}>
-      <CardActionArea href={"/" + slug} className={classes.cardActionArea}>
-        {/* <Img fluid={fluid}/> */}
-        <Img fixed={fixed}/>
-
-        <CardHeader
-        avatar={<Img fixed={icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
-        title={pagetitle}
-        subheader={date}
-      />
-        <CardContent>    
-          <Typography variant="body2" color="textSecondary" component="p">
-            {body}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions className={classes.chiprow}>
-        <div >
-          {tags.map(tag => (
-            <Link key={tag} to={`/tag/${slugify(tag)}`}>
-              <Chip size='small' color='primary' label={tag} className={classes.chip} />
-            </Link>
-            ))}
-        </div>
-        <Button href={"/" + slug} size="small" color="primary" variant='outlined'>
-          Read More
-        </Button>
-      </CardActions>
-    </Card>
+    <Consumer>
+      {
+        value => (
+          <Card className={classes.card}>
+            <CardActionArea href={"/" + slug} className={classes.cardActionArea}>
+              
+              <Img fixed={fixed}/>
+              <CardHeader
+              avatar={<Img fixed={value.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
+              title={pagetitle}
+              subheader={date}
+            />
+              <CardContent>    
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {body}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions className={classes.chiprow}>
+              <div >
+                {tags.map(tag => (
+                  <Link key={tag} to={`/tag/${slugify(tag)}`}>
+                    <Chip size='small' color='primary' label={tag} className={classes.chip} />
+                  </Link>
+                  ))}
+              </div>
+              <Button href={"/" + slug} size="small" color="primary" variant='outlined'>
+                Read More
+              </Button>
+            </CardActions>
+          </Card>
+        )
+      }
+    </Consumer>
   );
 }
 

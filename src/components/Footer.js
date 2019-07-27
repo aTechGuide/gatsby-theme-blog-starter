@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Grid, Typography} from '@material-ui/core';
 import Img from 'gatsby-image';
 
+import {Consumer} from './../context/context';
+
 const useStyles = makeStyles(theme => ({
   logo: {
     flexGrow: 1
@@ -17,18 +19,23 @@ const useStyles = makeStyles(theme => ({
 
 const Footer = ({icon}) => {
   const classes = useStyles();
-  console.log(icon);
 
   return (
-    <Grid container className={classes.footer} alignItems='center' >
-      <Grid item className={classes.logo}>
-        <Img fixed={icon.file.childImageSharp.fixed} className="App-logo" />        
-      </Grid>
-      
-      <Grid item>
-        <Typography variant="body1">Proudly Powered by <a href="https://www.gatsbyjs.org/">Gatsby</a> and <a href="https://www.netlify.com/">Netlify</a></Typography>
-      </Grid> 
-    </Grid>
+    <Consumer>
+      {
+        value => (
+          <Grid container className={classes.footer} alignItems='center' >
+            <Grid item className={classes.logo}>
+              <Img fixed={value.icon.file.childImageSharp.fixed} className="App-logo" />        
+            </Grid>
+            
+            <Grid item>
+              <Typography variant="body1">Proudly Powered by <a href="https://www.gatsbyjs.org/">Gatsby</a> and <a href="https://www.netlify.com/">Netlify</a></Typography>
+            </Grid> 
+          </Grid>
+        )
+      }
+    </Consumer>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import {useStaticQuery, graphql} from 'gatsby';
 
 import {CssBaseline} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,6 +10,7 @@ import {deepPurple, red, indigo, yellow, cyan, lightGreen} from '@material-ui/co
 
 import Footer from '../Footer';
 import Header from "../header"
+import {Provider} from '../../context/context';
 
 /**
  * This class is Parent to all the components
@@ -43,18 +45,35 @@ let theme = createMuiTheme({
   highlightThree: lightGreen
 });
 
-const Layout = ({ children, pageTitle, icon }) => {
+const Layout = ({ children, pageTitle }) => {
   const classes = useStyles();
 
+  /**
+   * Loding ICON which can be used everywhere
+   */
+  const icon = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "icon.png" }) {
+        childImageSharp {
+          fixed(width:60) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
+
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className={classes.root}>
-        <Header />
-        {children}
-        <Footer icon={icon}/>
-      </div>
-    </ThemeProvider>
+    <Provider value={{icon}}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className={classes.root}>
+          <Header />
+          {children}
+          <Footer/>
+        </div>
+      </ThemeProvider>
+    </Provider>
   )
 }
 
