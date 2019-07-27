@@ -30,27 +30,27 @@ const Share = ({ socialConfig, tags }) => {
     <Card>
       <CardContent>    
         <Grid container alignItems='center' >
-          <Grid item className={classes.postGridItem} xs={12}>
+          <Grid item className={classes.postGridItem} xs={12} md={4}>
             <Typography variant='h5'>
               Share this Post
             </Typography>
           </Grid>
-          <Grid item className={classes.postGridItem}>
+          <Grid item className={classes.postGridItem} md={2}>
             <FacebookShareButton url={postLink}  >
               <FacebookIcon size={32} round={true} />
             </FacebookShareButton>
           </Grid>
-          <Grid item className={classes.postGridItem}>
+          <Grid item className={classes.postGridItem} md={2}>
             <TwitterShareButton url={postLink} title={socialConfig.config.title} via={socialConfig.twitterHandle.split('@').join('')} hashtags={tags} >
               <TwitterIcon size={32} round={true} />
             </TwitterShareButton>
           </Grid>
-          <Grid item className={classes.postGridItem}>
+          <Grid item className={classes.postGridItem} md={2}>
             <LinkedinShareButton url={postLink} title={socialConfig.config.title} >
               <LinkedinIcon size={32} round={true} />
             </LinkedinShareButton>
           </Grid>
-          <Grid item className={classes.postGridItem}>
+          <Grid item className={classes.postGridItem} md={2}>
             <RedditShareButton url={postLink} className="button is-outlined is-rounded reddit" title={socialConfig.config.title} >
               <RedditIcon size={32} round={true} />
             </RedditShareButton>
