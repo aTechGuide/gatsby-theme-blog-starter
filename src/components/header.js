@@ -16,12 +16,18 @@ const useStyles = makeStyles(theme => ({
   },
   menuLink: {
     color: theme.palette.primary.contrastText,
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    '&:hover': {
+      color: theme.palette.secondary.main
+    }
   },
   activeLink: {
     background: theme.palette.primary.light,
     borderRadius: theme.spacing(1),
-    padding: theme.spacing(1)
+    padding: theme.spacing(1),
+    '&:hover': {
+      color: 'white'
+    }
   }
 }));
 
@@ -31,12 +37,15 @@ const Header = () => {
   return (
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h1" className={classes.title}>
+          <Typography variant="h4" component='h1' className={classes.title}>
             <Link className={classes.homeLink} to="/">Arabic Blog</Link>
           </Typography>
-          <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags">Tags</Link>
-          <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/about">About</Link>
-          {/* <Button href="/tags" color="inherit">Tags</Button> */}
+          <Typography>
+            <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags">Tags</Link>
+          </Typography>
+          {/* <Typography>
+            <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/about">About</Link>
+          </Typography> */}
         </Toolbar>
       </AppBar>
   );
