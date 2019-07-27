@@ -1,18 +1,15 @@
 import React from 'react';
 import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import {indigo} from '@material-ui/core/colors';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import Img from "gatsby-image"
-
 
 import {slugify} from '../../util/UtilityFunctions';
 
 /**
  dt, .word{color: blue;}
-dd {color: darkblue;}
+dd {color: darkblue; padding-left: 40px}
 dt, dd {font-weight: bold}
-dd {padding-left: 40px}
 
 .heading1, .irabhighlight{color: darkred;}
 .heading2{color: darkmagenta;}
@@ -34,72 +31,78 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '80%',
     margin: 'auto'
   },
-  postFont: {
-    font: '16px/1.5 "Courier New", sans-serif',
-    color: 'rgb(0, 0, 0)'
-  },
   header: {
     paddingBottom: '0px'
   },
-  '@media (min-width: 37.5rem)': {
-    postFont: {
-      fontSize : '20px'
-    }
-  },
   '@global': {
     '.firstword': {
-      color: theme.palette.primary.dark,
+      color: theme.palette.primary[500],
       fontSize: theme.spacing(3)
     },
-    '.word' : {
-      color: theme.palette.primary.main
+    '.word' : { //<- Deprecate this
+      color: theme.palette.primary[500]
     },
-    '.heading1': {
-      color: 'darkred'
+    '.irab' : {
+      color: theme.palette.primary[500],
+      display: 'block'
     },
     '.irabhighlight': {
-      color: 'darkred'
+      color: theme.headingColor[500]
+    },
+    '.heading1': {
+      color: theme.headingColor[900]
     },
     '.heading2' : {
-      color: 'darkmagenta'
+      color: theme.headingColor[400]
     },
     '.exception' : {
-      color: 'red',
+      color: theme.palette.error['dark'],
       display: 'inline'
     },
     '.bg-yellow' : {
-      backgroundColor: 'yellow'
+      backgroundColor: theme.highlightOne[200],
+      borderRadius: theme.spacing(.5)
     },
     '.bg-cyan' : {
-      backgroundColor: 'lightcyan'
+      backgroundColor: theme.highlightTwo[50],
+      borderRadius: theme.spacing(.5)
     },
     '.bg-green' : {
-      backgroundColor: 'lightgreen'
+      backgroundColor: theme.highlightThree[100],
+      borderRadius: theme.spacing(.5)
     },
     'h2' : {
-      margin: '0px',
-      fontSize: theme.spacing(3),
+      fontSize: "1.5rem",
+      fontWeight: 500,
+      color: theme.palette.secondary[700] ,
+      margin: 0,
       marginTop: theme.spacing(2),
     },
     'h3' : {
-      margin: '0px',
-      fontSize: theme.spacing(2.5),
+      fontSize: "1.2rem",
+      fontWeight: 500,
+      color: theme.palette.secondary[700] ,
+      margin: 0,
       marginTop: theme.spacing(2),
     },
     'p' : {
-      margin: '0px'
+      margin: 0
     },
     'ul' : {
-      margin: '0px'
+      margin: 0
     },
     'blockquote' : {
-      margin: '0px',
+      margin: 0,
       padding: '0 1rem',
       borderLeft: '0.25rem solid #ccc',
       width: 'fit-content',
-      background: indigo[50]
+      borderTopRightRadius: theme.spacing(1),
+      borderBottomRightRadius: theme.spacing(1),
+      background: theme.palette.grey[200]
+    },
+    '.arabic': {
+      fontFamily :'Markazi Text'
     }
-
   }
 }));
 
@@ -128,7 +131,7 @@ const FullPost = ({data}) => {
         avatar={<Img fixed={icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
         title={post.pagetitle}
         subheader={post.date}
-        titleTypographyProps={{variant: 'h4' ,component: 'h1'}}
+        titleTypographyProps={{variant: 'h1', component: 'h1'}}
         className={classes.header}
       />
       <CardContent>    

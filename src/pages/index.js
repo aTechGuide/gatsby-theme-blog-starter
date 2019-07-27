@@ -7,6 +7,7 @@ import '../styles/global.css';
 import IndexPageGrid from "../components/IndexPageGrid";
 
 import 'typeface-roboto';
+import 'typeface-markazi-text';
 
 const IndexPage = () => {
 

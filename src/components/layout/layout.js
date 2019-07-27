@@ -3,9 +3,9 @@ import PropTypes from "prop-types"
 import {CssBaseline} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import {deepPurple, amber} from '@material-ui/core/colors/';
+import {deepPurple, red, indigo, yellow, cyan, lightGreen} from '@material-ui/core/colors/';
 
 import Footer from '../Footer';
 import Header from "../header"
@@ -20,22 +20,28 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
-  },
-  main: {
-    marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2),
   }
 }));
 
 let theme = createMuiTheme({
   palette: {
     primary: deepPurple,
-    secondary: amber
+    secondary: red
   },
-  postGridItemPadding: '16px'
+  typography: {
+    fontSize: 16,
+    h1 : {
+      fontSize: "3rem",
+      fontWeight: 500,
+      color: deepPurple[700]
+    }
+  },
+  postGridItemPadding: '16px',
+  headingColor: indigo,
+  highlightOne: yellow,
+  highlightTwo: cyan,
+  highlightThree: lightGreen
 });
-
-theme = responsiveFontSizes(theme);
 
 const Layout = ({ children, pageTitle }) => {
   const classes = useStyles();

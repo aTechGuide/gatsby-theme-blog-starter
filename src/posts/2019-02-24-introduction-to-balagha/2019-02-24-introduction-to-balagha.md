@@ -1,5 +1,5 @@
 ---
-title: Introduction to Balagha (Arabic Rhetoric) 
+title: Introduction to Balagha (Arabic Rhetoric) | البلاغة
 description: We will learn what is Balagha and its divisions (أقسام). Why we study Balagha and the difference between الفصاحة and البلاغة.
 pagetitle: Introduction to Balagha
 summary: We will learn what is Balagha and its divisions (أقسام). Why we study Balagha and the difference between الفصاحة and البلاغة.
@@ -11,10 +11,9 @@ tags:
   - Nahw
 label:
   - balagha
-published: true
 slug: introduction-to-balagha
+published: true
 image: ./3-divisions-of-balagha.png
-logo: fas fa-graduation-cap
 ---
 
 **Balagha**{: .firstword} Or **البلاغة**{: .firstword} is a الكلام or Speech that affects us, moves us, etc.
@@ -84,7 +83,7 @@ Before moving any further, let's understand the terms الفصاحة and الب�
 
 Let's begin with
 
-### **فصاحة الكلمة**{: .word}
+### **فصاحة الكلمة**
 
 **Rule 1**{: .heading1} **عدم تنافر الحروف**  
 There should be no تنافر in الحروف. By تنافر, we mean mutual aversion, discord between the letters. For, e.g. word, مستشزرات is different to pronounce.
@@ -102,7 +101,7 @@ If we come with a word that doesn't match the rules, then it is مخالفة ا�
 **Rule 3**{: .heading1} **الغرابة**  
 الغرابة mean to use strange words in a sentence. For e.g. using تكأكأ (to gather) 
 
-### **فصاحة الكلام**{: .word}
+### **فصاحة الكلام**
 **Rule 1**{: .heading1} **عدم تنافر الكلمات**  
 There should be no تنافر in الكلمات. By تنافر, we mean we do not put words together in الكلمات which makes it hard on the tongue.  
 
@@ -123,7 +122,7 @@ In ضعف التأليف, our sentence is correct, but we have contradicted an i
 **Rule 3**{: .heading1} **التعقيد**  
 After reading a text, If we are not clear what the speaker wanted, i.e. الكلام صعب الفهم.
 
-### **فصاحة المتكلم**{: .word}
+### **فصاحة المتكلم**
 It is the ability of the speaker to be able to express what he wants with الكلام فصاحة in any field or area.
 
 <br/>
@@ -145,7 +144,7 @@ PS: We don't have the concept of بلاغة الكلمة because when we can't r
 
 Let's begin with
 
-### **بلاغة الكلام**{: .word}
+### **بلاغة الكلام**
 بلاغة الكلام implies using the right style in the right place. Arabs say, "لكلِ مَقَام مَقَال" meaning for every situation there is a قول. 
 
 > أن يكون الكلام مناسباً لما تريد أن تقوله مع الفصاحة
@@ -154,7 +153,7 @@ Let's begin with
 
 For e.g., in the Quran the same story is being told in different places with different styles, different words, the different type of Tawkeed, etc.
 
-### **بلاغة المتكلم**{: .word}
+### **بلاغة المتكلم**
 It is the ability of the speaker to be able to express what he wants with الكلام بليغ in any field or area.
 
 <br/>
