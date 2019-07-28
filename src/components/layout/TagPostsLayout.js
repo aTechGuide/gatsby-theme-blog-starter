@@ -23,7 +23,6 @@ const TagPostsLayout = ({data, pageContext}) => {
               key={node.id} 
               title={node.frontmatter.title}
               slug={node.frontmatter.slug}
-              author={node.frontmatter.author}
               date={node.frontmatter.date}
               body={node.excerpt}
               tags={node.frontmatter.tags}

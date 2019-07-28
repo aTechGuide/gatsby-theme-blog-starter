@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   
 }));
 
-const PostSnippet = ({pagetitle, author, slug, date, body, fixed, tags}) => {
+const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
 
   const classes = useStyles();
  

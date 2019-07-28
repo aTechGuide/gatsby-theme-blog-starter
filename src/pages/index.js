@@ -54,7 +54,6 @@ const indexQuery = graphql`
           frontmatter {
             pagetitle
             date(formatString: "MMM Do YYYY")
-            author
             tags
             slug
             image {

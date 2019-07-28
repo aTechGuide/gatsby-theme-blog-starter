@@ -26,7 +26,6 @@ const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
               <PostSnippet 
                 key={node.id}
                 pagetitle={node.frontmatter.pagetitle} 
-                author={node.frontmatter.author}
                 slug={node.frontmatter.slug}
                 date={node.frontmatter.date}
                 body={node.excerpt}

@@ -37,7 +37,6 @@ export const postListQuery = graphql`
           frontmatter {
             title
             date(formatString: "MMM Do YYYY")
-            author
             tags
             slug
             image {

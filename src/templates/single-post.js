@@ -28,7 +28,6 @@ export const postQuery = graphql`
       html
       frontmatter{
         pagetitle
-        author
         date(formatString: "MMM Do YYYY")
         tags
         slug
