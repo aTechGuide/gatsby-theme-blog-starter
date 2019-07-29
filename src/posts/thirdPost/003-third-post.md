@@ -3,7 +3,7 @@ title: SEO Title
 description: SEO Description
 pagetitle: Page Title
 summary: Page Description
-date: '2019-02-07'
+date: '2019-02-06'
 update_date: '2019-03-02'
 tags:
   - Arabic

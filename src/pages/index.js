@@ -3,7 +3,6 @@ import { graphql, StaticQuery} from "gatsby";
 
 import Layout from "../components/layout/layout"
 import SEO from "../components/seo"
-import '../styles/global.css';
 import IndexPageGrid from "../components/IndexPageGrid";
 
 import 'typeface-roboto';
