@@ -47,6 +47,7 @@ let theme = createMuiTheme({
 
 const Layout = ({ children, pageTitle }) => {
   const classes = useStyles();
+  // <h1>{pageTitle}</h1>
 
   /**
    * Loding ICON which can be used everywhere

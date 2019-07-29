@@ -1,9 +1,13 @@
 module.exports = {
   siteMetadata: {
+    // Final blog https://github.com/hidjou/classsed-gatsby-blog/
     title: `Arabic Blog`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Kamran Ali's Arabic Grammar Blog`,
     author: `Kamran Ali`,
+    url: `https://arabicblog.info`,
     gridSpacing: `2`,
+    email: `admin@arabicblog.info`,
+    paginate: `12`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

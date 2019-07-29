@@ -73,7 +73,8 @@ const Footer = () => {
             <Grid item xs={12} md={12} lg={3}>
               <Typography variant="body1" className={classes.text}>
                 Proudly Powered by {' '}
-                <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby</a> and {' '}
+                <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
+                <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
                 <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
               </Typography>
             </Grid> 
