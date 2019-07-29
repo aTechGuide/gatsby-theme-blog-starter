@@ -6,8 +6,8 @@ import { Container } from "@material-ui/core";
 
 const privacyPolicy = () => {
   return (
-    <Layout pageTitle="Terms of Use">
-      <SEO title="Terms of Use" />
+    <Layout pageTitle="Privact Policy">
+      <SEO title="Privact Policy" />
       <Container>
       <p>Last Updated: 16 May 2019</p>
         <p>This privacy policy (&quot;Policy&quot;) describes how Website Operator (&quot;Website Operator&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;) collects, protects and uses the personally identifiable information (&quot;Personal Information&quot;) you (&quot;User&quot;, &quot;you&quot; or &quot;your&quot;) may provide on the <a target="_blank" rel="nofollow noopener noreferrer" href="https://arabicblog.info">arabicblog.info</a> website and any of its products or services (collectively, &quot;Website&quot; or &quot;Services&quot;). It also describes the choices available to you regarding our use of your Personal Information and how you can access and update this information. This Policy does not apply to the practices of companies that we do not own or control, or to individuals that we do not employ or manage.</p>

@@ -8,7 +8,8 @@ import {Consumer} from './../context/context';
 
 const useStyles = makeStyles(theme => ({
   logo: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginLeft: theme.spacing(2)
   },
   footer: {
     padding: theme.spacing(1),
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     color: theme.palette.primary.contrastText,
-    margin: theme.spacing(2)
+    marginLeft: theme.spacing(2)
   },
   textLink: {
     color: theme.palette.primary.contrastText,
@@ -51,23 +52,28 @@ const Footer = () => {
       {
         value => (
           <Grid container className={classes.footer} alignItems='center' >
-            <Grid item className={classes.logo}>
-              <Img fixed={value.icon.file.childImageSharp.fixed} className="App-logo" />        
+            <Grid item className={classes.logo} xs={12} md={12} lg={2}>
+              <Link to='/'><Img fixed={value.icon.file.childImageSharp.fixed} className="App-logo" /></Link>
             </Grid>
-            <Grid item>
+            <Grid item xs={12} md={4} lg={2}>
+              <Typography>
+                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english">About</Link>
+              </Typography>
+            </Grid>
+            <Grid item xs={12} md={4} lg={2}>
               <Typography>
                 <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use">Terms of Use</Link>
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={12} md={4} lg={2}>
               <Typography>
                 <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy">Privacy Policy</Link>
               </Typography>
             </Grid>
-            <Grid item>
+            <Grid item xs={12} md={12} lg={3}>
               <Typography variant="body1" className={classes.text}>
                 Proudly Powered by {' '}
-                <a class={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby</a> and {' '}
+                <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby</a> and {' '}
                 <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
               </Typography>
             </Grid> 
