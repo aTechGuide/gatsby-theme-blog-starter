@@ -3,6 +3,7 @@ import {graphql} from 'gatsby';
 import Layout from '../components/layout/layout';
 
 import TagPostsLayout from '../components/layout/TagPostsLayout';
+import PageLayout from '../components/layout/PageLayout';
 
 const tagPosts = ({data, pageContext}) => {
 
@@ -11,8 +12,10 @@ const tagPosts = ({data, pageContext}) => {
   const pageHeader = `${totalCount} post${totalCount === 1 ?  '' : 's'} tagged with "${tag}"`
 
   return (
-    <Layout pageTitle={pageHeader}>
-      <TagPostsLayout data={data} pageContext={pageContext}/>
+    <Layout >
+      <PageLayout title={pageHeader}>
+        <TagPostsLayout data={data} pageContext={pageContext}/>
+      </PageLayout> 
     </Layout>
   );
 }

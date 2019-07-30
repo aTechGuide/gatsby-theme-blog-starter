@@ -1,7 +1,11 @@
 import React from 'react';
 import {Card, CardContent, TextField, Typography, Button} from '@material-ui/core';
+import { useTheme } from '@material-ui/styles';
 
 const Sidebar = () => {
+
+  const theme = useTheme();
+
   return (
     <div>
       <Card>
@@ -41,9 +45,7 @@ const Sidebar = () => {
             <Button
               type="submit"
               fullWidth
-              variant="contained"
-              color="primary"
-              // className={classes.submit}
+              {...theme.button}        
             >
             Subscribe
           </Button>

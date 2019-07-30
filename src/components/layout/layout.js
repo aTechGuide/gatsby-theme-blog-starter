@@ -38,6 +38,10 @@ let theme = createMuiTheme({
       color: deepPurple[700]
     }
   },
+  button: {
+    color: "primary",
+    variant: "contained"
+  },
   postGridItemPadding: '16px',
   headingColor: indigo,
   highlightOne: yellow,
