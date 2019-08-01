@@ -96,6 +96,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
-    ` gatsby-plugin-netlify-headers`,
+    `gatsby-plugin-netlify-headers`,
   ],
 }
