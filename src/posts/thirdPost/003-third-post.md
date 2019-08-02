@@ -9,7 +9,7 @@ tags:
   - Arabic
 label:
   - Nahw
-slug: dummy
+slug: theme
 published: true
 image: ../../images/icon.png
 ---

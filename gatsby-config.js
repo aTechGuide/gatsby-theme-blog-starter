@@ -83,19 +83,19 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-plugin-manifest`, //<- Creates manifest file
       options: {
-        name: `ArabicBlog`,
-        short_name: `ArabicBlog`,
-        description: `Arabic Notes`,
-        start_url: `/`,
-        background_color: `#673ab7`,
-        theme_color: `#673ab7`,
-        display: `standalone`,
-        icon: `src/images/icon.png`, // This path is relative to the root of the site.
+        name: "ArabicBlog.info",
+        short_name: "ArabicBlog",
+        description: "Arabic Notes",
+        start_url: "/",
+        background_color: "#673ab7",
+        theme_color: "#673ab7",
+        display: "standalone",
+        icon: "src/images/icon.png",
       },
     },
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`, //<- Adds service worker; Add after gatsby-plugin-manifest
     `gatsby-plugin-netlify-headers`,
   ],
 }
