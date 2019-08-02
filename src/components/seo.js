@@ -67,7 +67,28 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
+    >
+      <script type="text/javascript">
+        {`console.log("Script inserted");
+
+          function showAddToHomeScreen() {
+            console.log("showAddToHomeScreen Called");
+            var a2hsBtn = document.querySelector(".ad2hs-prompt");
+            a2hsBtn.style.display = "block";
+            a2hsBtn.addEventListener("click", addToHomeScreen);
+          }
+
+        var deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', function (e) {
+          console.log("Event Fired");
+          e.preventDefault();
+          deferredPrompt = e;
+          showAddToHomeScreen();
+
+        });`}
+      </script>
+    </Helmet>
   )
 }
 
