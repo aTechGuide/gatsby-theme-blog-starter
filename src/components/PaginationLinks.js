@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Grid, IconButton} from '@material-ui/core';
+import {Grid, IconButton, Tooltip} from '@material-ui/core';
 import {ArrowBackIos, ArrowForwardIos } from '@material-ui/icons';
 import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,13 +31,17 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
       <Grid item>
         {
           isFirst ? (
-          <IconButton href="/" disabled>
-            <ArrowBackIos />
-          </IconButton>
+            <Tooltip title="Previous Page">
+              <IconButton href="/" disabled>
+                <ArrowBackIos >Back</ ArrowBackIos>
+              </IconButton>
+            </Tooltip>
           ) : (
-          <IconButton href={previousPage} >
-            <ArrowBackIos />
-          </IconButton>
+            <Tooltip title="Previous Page">
+              <IconButton href={previousPage} >
+                <ArrowBackIos >Back</ ArrowBackIos>
+              </IconButton>
+            </Tooltip>
           ) 
         }
       </Grid>
@@ -57,13 +61,17 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
       <Grid item>
         {
           isLast ? (
-          <IconButton href={nextPage} disabled >
-            <ArrowForwardIos />
-          </IconButton>
+            <Tooltip title="Next Page">
+              <IconButton href={nextPage} disabled >
+                <ArrowForwardIos />
+              </IconButton >
+            </Tooltip>
           ) : (
-          <IconButton href={nextPage} >
-            <ArrowForwardIos />
-          </IconButton>
+            <Tooltip title="Next Page">
+              <IconButton href={nextPage} >
+                <ArrowForwardIos />
+              </IconButton>
+            </Tooltip>
           )
         }
       </Grid>
