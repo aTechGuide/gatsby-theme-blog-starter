@@ -2,7 +2,8 @@ import React from "react"
 
 import { makeStyles } from '@material-ui/core/styles';
 import {Link} from 'gatsby';
-import {AppBar, Toolbar, Typography} from '@material-ui/core';
+import {AppBar, Toolbar, Typography, Button, Tooltip} from '@material-ui/core';
+import { useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -33,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 const Header = () => {
   const classes = useStyles();
+  const theme = useTheme();
 
   return (
       <AppBar position="static">
@@ -43,9 +45,15 @@ const Header = () => {
           <Typography>
             <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags">Tags</Link>
           </Typography>
-          {/* <Typography>
-            <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/about">About</Link>
-          </Typography> */}
+          <Typography>
+          <Tooltip title="Install App for Offline View">
+            <Button 
+              {...theme.button}
+              style={{display: 'none'}}
+              id='a2hs'>
+                Install</Button>
+          </Tooltip>
+          </Typography>
         </Toolbar>
       </AppBar>
   );

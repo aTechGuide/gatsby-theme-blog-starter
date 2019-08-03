@@ -68,33 +68,8 @@ function SEO({ description, lang, meta, title }) {
         },
       ].concat(meta)}
     >
-      <script type="text/javascript">
-        {`console.log("Script inserted");
+      <script type="text/javascript" src="/script.js">
 
-          function showAddToHomeScreen() { 
-            console.log("showAddToHomeScreen Called");
-            deferredPrompt.prompt();
-            deferredPrompt.userChoice
-              .then(function(choiceResult){
-            if (choiceResult.outcome === 'accepted') {
-              console.log('User accepted the A2HS prompt');
-            } else {
-              console.log('User dismissed the A2HS prompt');
-            }
-
-            deferredPrompt = null;
-
-          });}
-
-        var deferredPrompt;
-
-        window.addEventListener('beforeinstallprompt', function (e) {
-          console.log("Event Fired");
-          e.preventDefault();
-          deferredPrompt = e;
-          showAddToHomeScreen();
-
-        });`}
       </script>
     </Helmet>
   )
