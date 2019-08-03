@@ -71,19 +71,20 @@ function SEO({ description, lang, meta, title }) {
       <script type="text/javascript">
         {`console.log("Script inserted");
 
-          function showAddToHomeScreen() {
+          function showAddToHomeScreen() { 
             console.log("showAddToHomeScreen Called");
             deferredPrompt.prompt();
             deferredPrompt.userChoice
               .then(function(choiceResult){
-              if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the A2HS prompt');
-              } else {
-                console.log('User dismissed the A2HS prompt');
-              }
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
 
             deferredPrompt = null;
-          }
+
+          });}
 
         var deferredPrompt;
 
