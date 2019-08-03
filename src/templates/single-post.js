@@ -11,11 +11,17 @@ import SinglePostLayout from '../components/layout/SinglePostLayout';
 
 const singlepost = ({data, pageContext}) => {
 
-  const{pagetitle} = data.markdownRemark.frontmatter;
+  const{title, description, tags, slug, image} = data.markdownRemark.frontmatter;
 
   return (
-    <Layout pageTitle={pagetitle} >
-      <SEO title={pagetitle} />
+    <Layout>
+      <SEO 
+        title={title}
+        description={description}
+        tags={tags.join(",")}
+        image={image.childImageSharp.fluid}
+        isBlogPost={true}
+        slug={slug} />
       <SinglePostLayout data={data} />
     </Layout>
   );
@@ -27,8 +33,12 @@ export const postQuery = graphql`
       id
       html
       frontmatter{
+        title
+        description
         pagetitle
+        summary
         date(formatString: "MMM Do YYYY")
+        update_date(formatString: "MMM Do YYYY")
         tags
         slug
         image {

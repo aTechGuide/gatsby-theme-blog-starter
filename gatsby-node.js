@@ -122,7 +122,7 @@ function createTagsPage(posts, createPage, templates) {
 /**
  * For each Node (i.e. mark down file) 
  * - We are creating a page having path = slug.
- * - We are passing the author image URL + slug via context
+ * - We are passing slug via context
  */
 function createPosts(posts, createPage, templates) {
   posts.forEach(({ node }) => {

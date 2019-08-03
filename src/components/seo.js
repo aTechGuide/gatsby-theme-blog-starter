@@ -1,16 +1,9 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slug, meta }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -18,55 +11,109 @@ function SEO({ description, lang, meta, title }) {
           siteMetadata {
             title
             description
+            twitterId
+            url
+            keywords
           }
         }
       }
     `
   )
 
+  const pageTitle = title || site.siteMetadata.title
   const metaDescription = description || site.siteMetadata.description
+  
+  const keywords = tags || site.siteMetadata.keywords.join(",")
+  const twitterId = site.siteMetadata.twitterId
+
+  const domain = site.siteMetadata.url
+  const url = slug ? `${domain}/${slug}` : domain
+
+  const image = metaImage && metaImage.src
+            ? `${domain}${metaImage.src}`
+            : null;
+  
+  const type = isBlogPost ? `article` : `website`
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={pageTitle}
       meta={[
         {
           name: `description`,
           content: metaDescription,
         },
         {
+          name: "keywords",
+          content: keywords
+        },
+        {
+          property: `og:url`,
+          content: url,
+        },
+        {
+          property: `og:type`,
+          content: type,
+        },
+        {
           property: `og:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           property: `og:description`,
           content: metaDescription,
         },
         {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
+          name: `twitter:site`,
+          content: domain,
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: twitterId,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           name: `twitter:description`,
           content: metaDescription,
         },
-      ].concat(meta)}
+      ].concat(
+        metaImage
+          ? [
+              {
+                property: "og:image",
+                content: image
+              },
+              // {
+              //   property: "og:image:width",
+              //   content: metaImage.width
+              // },
+              // {
+              //   property: "og:image:height",
+              //   content: metaImage.height
+              // },
+              {
+                name: "twitter:card",
+                content: "summary_large_image"
+              },
+              {
+                property: "twitter:image",
+                content: image
+              }
+            ]
+          : [
+              {
+                name: "twitter:card",
+                content: "summary"
+              }
+            ]
+      )
+      .concat(meta)}
     >
       <script type="text/javascript" src="/script.js">
 
@@ -77,8 +124,8 @@ function SEO({ description, lang, meta, title }) {
 
 SEO.defaultProps = {
   lang: `en`,
-  meta: [],
-  description: ``,
+  isBlogPost: false,
+  meta: []
 }
 
 SEO.propTypes = {

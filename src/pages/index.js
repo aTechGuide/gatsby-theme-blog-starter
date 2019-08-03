@@ -14,8 +14,8 @@ const IndexPage = () => {
   let numberOfPages;
 
   return(
-    <Layout pageTitle="Arabic Blog" >
-      <SEO title="Home" />
+    <Layout >
+      <SEO title="Arabic Blog" />
       <StaticQuery 
         query={indexQuery} 
         render={data => {

@@ -49,10 +49,9 @@ let theme = createMuiTheme({
   highlightThree: lightGreen
 });
 
-const Layout = ({ children, pageTitle }) => {
+const Layout = ({ children }) => {
   const classes = useStyles();
-  // <h1>{pageTitle}</h1>
-
+  
   /**
    * Loding ICON which can be used everywhere
    */
