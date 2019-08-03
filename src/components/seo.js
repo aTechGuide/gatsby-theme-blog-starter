@@ -73,9 +73,16 @@ function SEO({ description, lang, meta, title }) {
 
           function showAddToHomeScreen() {
             console.log("showAddToHomeScreen Called");
-            var a2hsBtn = document.querySelector(".ad2hs-prompt");
-            a2hsBtn.style.display = "block";
-            a2hsBtn.addEventListener("click", addToHomeScreen);
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice
+              .then(function(choiceResult){
+              if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+              } else {
+                console.log('User dismissed the A2HS prompt');
+              }
+
+            deferredPrompt = null;
           }
 
         var deferredPrompt;
