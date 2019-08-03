@@ -12,7 +12,7 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
             title
             description
             twitterId
-            url
+            siteUrl
             keywords
           }
         }
@@ -26,7 +26,7 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
   const keywords = tags || site.siteMetadata.keywords.join(",")
   const twitterId = site.siteMetadata.twitterId
 
-  const domain = site.siteMetadata.url
+  const domain = site.siteMetadata.siteUrl
   const url = slug ? `${domain}/${slug}` : domain
 
   const image = metaImage && metaImage.src

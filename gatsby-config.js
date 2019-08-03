@@ -5,7 +5,7 @@ module.exports = {
     description: `Kamran Ali's Arabic Grammar Blog`,
     author: `Kamran Ali`,
     twitterId: `@aTechGuide`,
-    url: `https://arabicblog.info`,
+    siteUrl: `https://arabicblog.info`,
     keywords: [`Arabic`, `ArabicBlog`, `Arabic Tutorials`, `Arabic Grammar`, `Arabic Grammar Tutorials`, `Learn Arabic in English`],
     gridSpacing: `2`,
     email: `admin@arabicblog.info`,
@@ -14,6 +14,70 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-catch-links`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                author
+                siteUrl
+                site_url: siteUrl
+                email
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map(edge => {
+                return({
+                  title: edge.node.frontmatter.pagetitle,
+                  description: edge.node.frontmatter.summary,
+                  guid: `${site.siteMetadata.siteUrl}/${edge.node.frontmatter.slug}`,
+                  custom_elements: [
+                    { "link": `${site.siteMetadata.siteUrl}/${edge.node.frontmatter.slug}` },
+                    { "category": `[${edge.node.frontmatter.tags.join(",")}]` },
+                    { "pubDate": edge.node.frontmatter.update_date != 'Invalid date' ? edge.node.frontmatter.update_date : edge.node.frontmatter.date},
+                    //{ "content:encoded": edge.node.html }
+                  ],
+                })
+              })
+            },
+            query: `
+              {
+                allMarkdownRemark(
+                  sort: { order: DESC, fields: [frontmatter___date] },
+                ) {
+                  edges {
+                    node {
+                      html
+                      frontmatter {
+                        pagetitle
+                        summary
+                        date(formatString: "ddd, D MMM YYYY h:mm:ss ZZ")
+                        update_date(formatString: "ddd, D MMM YYYY h:mm:ss ZZ")
+                        tags
+                        slug
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/feed.xml",
+            title: "Arabic Blog",
+            feed_url: `https://arabicblog.info/feed.xml`,
+            site_url: `https://arabicblog.info/`,
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
