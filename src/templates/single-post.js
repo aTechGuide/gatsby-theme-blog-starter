@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout/layout';
 import { graphql } from 'gatsby';
-import SEO from '../components/seo';
+import SEO from '../components/seo/Seo';
 
 import SinglePostLayout from '../components/layout/SinglePostLayout';
 
@@ -11,7 +11,7 @@ import SinglePostLayout from '../components/layout/SinglePostLayout';
 
 const singlepost = ({data, pageContext}) => {
 
-  const{title, description, tags, slug, image} = data.markdownRemark.frontmatter;
+  const{title, description, tags, slug, image, date, update_date} = data.markdownRemark.frontmatter;
 
   return (
     <Layout>
@@ -21,7 +21,9 @@ const singlepost = ({data, pageContext}) => {
         tags={tags.join(",")}
         image={image.childImageSharp.fluid}
         isBlogPost={true}
-        slug={slug} />
+        slug={slug}
+        date={date}
+        update_date={update_date} />
       <SinglePostLayout data={data} />
     </Layout>
   );
@@ -37,8 +39,8 @@ export const postQuery = graphql`
         description
         pagetitle
         summary
-        date(formatString: "MMM Do YYYY")
-        update_date(formatString: "MMM Do YYYY")
+        date(formatString: "MMM D, YYYY")
+        update_date(formatString: "MMM D, YYYY")
         tags
         slug
         image {

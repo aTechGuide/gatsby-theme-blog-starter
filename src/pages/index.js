@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, StaticQuery} from "gatsby";
 
 import Layout from "../components/layout/layout"
-import SEO from "../components/seo"
+import SEO from "../components/seo/Seo"
 import IndexPageGrid from "../components/IndexPageGrid";
 
 import 'typeface-roboto';

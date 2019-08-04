@@ -5,11 +5,18 @@ module.exports = {
     description: `Kamran Ali's Arabic Grammar Blog`,
     author: `Kamran Ali`,
     twitterId: `@aTechGuide`,
-    siteUrl: `https://arabicblog.info`,
+    //siteUrl: `https://arabicblog.info`,
+    siteUrl: `https://arabicblog.netlify.com`,
+    genre: 'Arabic Grammar Tutorials',
     keywords: [`Arabic`, `ArabicBlog`, `Arabic Tutorials`, `Arabic Grammar`, `Arabic Grammar Tutorials`, `Learn Arabic in English`],
     gridSpacing: `2`,
     email: `admin@arabicblog.info`,
     paginate: `12`,
+    social: [
+      'https://www.facebook.com/arabicblog/'
+    ],
+    contactSupport: 'https://www.facebook.com/arabicblog/',
+    bingId: 'B73F178C4AB143116D3FE641C6044861'
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

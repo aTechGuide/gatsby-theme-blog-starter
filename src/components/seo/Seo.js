@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slug, meta }) {
+function Seo({ title, description, tags, lang, image: metaImage, isBlogPost, slug, date, update_date, meta }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -13,12 +13,29 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
             description
             twitterId
             siteUrl
+            genre
             keywords
+            author
+            email
+            social
+            contactSupport
+            bingId
           }
         }
       }
     `
   )
+  const icon = useStaticQuery(graphql`
+    query {
+      file(relativePath: { eq: "icon.png" }) {
+        childImageSharp {
+          fixed(width:60) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  `)
 
   const pageTitle = title || site.siteMetadata.title
   const metaDescription = description || site.siteMetadata.description
@@ -35,6 +52,62 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
   
   const type = isBlogPost ? `article` : `website`
 
+  const siteSchema = {
+    "@context": "http://schema.org/",
+    "@type": "Organization",
+    "name": site.siteMetadata.title,
+    "legalName" : site.siteMetadata.title,
+    "url": site.siteMetadata.siteUrl,
+    "logo": `${site.siteMetadata.siteUrl}${icon.file.childImageSharp.fixed.src}`,
+    "founders": [
+      {
+      "@type": "Person",
+      "name": site.siteMetadata.author
+      }],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "email": site.siteMetadata.email,
+      "url": site.siteMetadata.contactSupport
+      },
+    "sameAs": [ 
+      site.siteMetadata.social.join(",")
+    ]
+  }
+
+  const blogSchema = { 
+    "@context": "http://schema.org", 
+    "@type": "BlogPosting",
+    "headline": pageTitle,
+    "image": image,
+    "editor": site.siteMetadata.author, 
+    "genre": site.siteMetadata.genre, 
+    "keywords": keywords, 
+    "url": url,
+    "datePublished": date,
+    "dateCreated": date,
+    "dateModified": update_date !== 'Invalid date' ? update_date : date,
+    "description": metaDescription,
+    "author": {
+       "@type": "Person",
+       "name": site.siteMetadata.author
+     },
+     "publisher": {
+       "@type": "Organization",
+       "name": site.siteMetadata.title,
+       "logo": {
+         "@type": "ImageObject",
+         "url": `${site.siteMetadata.siteUrl}${icon.file.childImageSharp.fixed.src}`
+       }
+     },
+     "mainEntityOfPage": {
+       "@type": "WebPage",
+       "@id": url
+     }
+    }
+
+  const schema = isBlogPost ? blogSchema : siteSchema
+
   return (
     <Helmet
       htmlAttributes={{
@@ -45,6 +118,10 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `author`,
+          content: site.siteMetadata.author,
         },
         {
           name: "keywords",
@@ -67,6 +144,10 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
           content: metaDescription,
         },
         {
+          property: `og:locale`,
+          content: "en_US",
+        },
+        {
           name: `twitter:site`,
           content: domain,
         },
@@ -82,12 +163,20 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
           name: `twitter:description`,
           content: metaDescription,
         },
+        {
+          name: `msvalidate.01`,
+          content: site.siteMetadata.bingId,
+        },
       ].concat(
         metaImage
           ? [
               {
                 property: "og:image",
                 content: image
+              },
+              { 
+                property: "og:image:alt", 
+                content: title 
               },
               // {
               //   property: "og:image:width",
@@ -104,6 +193,10 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
               {
                 property: "twitter:image",
                 content: image
+              },
+              { 
+                property: "twitter:image:alt", 
+                content: title 
               }
             ]
           : [
@@ -115,24 +208,25 @@ function SEO({ title, description, tags, lang, image: metaImage, isBlogPost, slu
       )
       .concat(meta)}
     >
-      <script type="text/javascript" src="/script.js">
+      <script type="text/javascript" src="/script.js" />
+      <script type="application/ld+json">{JSON.stringify(schema)}</script>
 
-      </script>
+      <link rel="canonical" href={url} />
     </Helmet>
   )
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   lang: `en`,
   isBlogPost: false,
   meta: []
 }
 
-SEO.propTypes = {
+Seo.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
 
-export default SEO
+export default Seo
