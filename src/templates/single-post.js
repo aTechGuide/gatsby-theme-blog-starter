@@ -1,7 +1,8 @@
 import React from 'react';
-import Layout from '../components/layout/layout';
 import { graphql } from 'gatsby';
-import SEO from '../components/seo/Seo';
+
+import Layout from '../components/layout/layout';
+import Seo from '../components/seo/Seo';
 
 import SinglePostLayout from '../components/layout/SinglePostLayout';
 
@@ -11,14 +12,14 @@ import SinglePostLayout from '../components/layout/SinglePostLayout';
 
 const singlepost = ({data, pageContext}) => {
 
-  const{title, description, tags, slug, image, date, update_date} = data.markdownRemark.frontmatter;
+  const{title, description, tags, image, slug, date, update_date} = data.markdownRemark.frontmatter;
 
   return (
     <Layout>
-      <SEO 
+      <Seo 
         title={title}
         description={description}
-        tags={tags.join(",")}
+        tags={tags}
         image={image.childImageSharp.fluid}
         isBlogPost={true}
         slug={slug}

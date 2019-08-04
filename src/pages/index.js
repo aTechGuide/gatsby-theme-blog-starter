@@ -2,7 +2,7 @@ import React from "react"
 import { graphql, StaticQuery} from "gatsby";
 
 import Layout from "../components/layout/layout"
-import SEO from "../components/seo/Seo"
+import Seo from "../components/seo/Seo"
 import IndexPageGrid from "../components/IndexPageGrid";
 
 import 'typeface-roboto';
@@ -15,7 +15,8 @@ const IndexPage = () => {
 
   return(
     <Layout >
-      <SEO title="Arabic Blog" />
+      <Seo title="Arabic Blog"/>
+      
       <StaticQuery 
         query={indexQuery} 
         render={data => {

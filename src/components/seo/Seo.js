@@ -3,7 +3,31 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ title, description, tags, lang, image: metaImage, isBlogPost, slug, date, update_date, meta }) {
+/**
+ * Page should provide following props
+ * - title
+ * - description
+ * - tags (Array of keywords inserted in page. If provided, prepended to default keywords)
+ * - slug (because its used in canonocal links)
+ * 
+ * Blog should provide page props + following
+ * - image: Pass either fluid Or fixed
+ *   - Blogs pass fluid
+ * - isBlogPost
+ * - date
+ * - update_date
+ * 
+ * Default values
+ * - isBlogPost: false
+ * - lang: en
+ * = meta: []
+ */
+
+ /**
+  * Always add Seo to New Page "i.e." an entry page of the App just below <Layout> Component.
+  * Do NOT add Seo in other Layouts
+  */
+function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, date, update_date, lang, meta }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -39,8 +63,8 @@ function Seo({ title, description, tags, lang, image: metaImage, isBlogPost, slu
 
   const pageTitle = title || site.siteMetadata.title
   const metaDescription = description || site.siteMetadata.description
-  
-  const keywords = tags || site.siteMetadata.keywords.join(",")
+
+  const keywords = tags ? tags.concat(site.siteMetadata.keywords) : site.siteMetadata.keywords.join(",")
   const twitterId = site.siteMetadata.twitterId
 
   const domain = site.siteMetadata.siteUrl
@@ -57,8 +81,8 @@ function Seo({ title, description, tags, lang, image: metaImage, isBlogPost, slu
     "@type": "Organization",
     "name": site.siteMetadata.title,
     "legalName" : site.siteMetadata.title,
-    "url": site.siteMetadata.siteUrl,
-    "logo": `${site.siteMetadata.siteUrl}${icon.file.childImageSharp.fixed.src}`,
+    "url": domain,
+    "logo": `${domain}${icon.file.childImageSharp.fixed.src}`,
     "founders": [
       {
       "@type": "Person",
@@ -97,7 +121,7 @@ function Seo({ title, description, tags, lang, image: metaImage, isBlogPost, slu
        "name": site.siteMetadata.title,
        "logo": {
          "@type": "ImageObject",
-         "url": `${site.siteMetadata.siteUrl}${icon.file.childImageSharp.fixed.src}`
+         "url": `${domain}${icon.file.childImageSharp.fixed.src}`
        }
      },
      "mainEntityOfPage": {

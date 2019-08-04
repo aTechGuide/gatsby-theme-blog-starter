@@ -1,12 +1,12 @@
 import React from 'react';
-import Layout from '../components/layout/layout';
+import { Link } from 'gatsby';
 import {Chip, Badge} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {slugify} from '../util/UtilityFunctions';
-
-import { Link } from 'gatsby';
 import PageLayout from '../components/layout/PageLayout';
+import Layout from '../components/layout/layout';
+import Seo from "../components/seo/Seo"
 
 /**
  * This template is used generate the page containing all the Tags used in the site
@@ -28,6 +28,12 @@ const tagsPage = ({pageContext}) => {
 
   return (
     <Layout>
+      <Seo 
+        title={`Arabic Blog Tags`}
+        description={`Arabic Blog Tags: ${tags}`}
+        tags={[tags]}
+        slug={`tags`} />
+
       <PageLayout title="Tags">
         {tags.map(tag => (
           <Link key={tag} to={`/tag/${slugify(tag)}`}>

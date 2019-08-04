@@ -1,7 +1,9 @@
 import React from 'react';
-import Layout from '../components/layout/layout';
 import { graphql } from 'gatsby';
+
+import Layout from '../components/layout/layout';
 import IndexPageGrid from '../components/IndexPageGrid';
+import Seo from "../components/seo/Seo"
 
 /**
  * This Template is used to generate pages for Pagination
@@ -14,6 +16,10 @@ const postList = ({data, pageContext}) => {
   
   return (
     <Layout pageTitle={`Page: ${currentPage}`}>
+      <Seo 
+        title="Arabic Blog"
+        description={`Arabic Blog ${currentPage} page.`}
+        slug={`/page/${currentPage}`} />
       
       <IndexPageGrid 
         posts={posts}

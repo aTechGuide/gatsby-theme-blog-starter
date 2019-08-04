@@ -2,7 +2,6 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Container } from "@material-ui/core";
-import SEO from '../seo/Seo';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -15,7 +14,6 @@ const PageLayout = ({children, title}) => {
 
   return (
     <>
-      <SEO title={title} />
       <Container className={classes.container} >
         <Typography variant='h1' align='center'>
             {title}

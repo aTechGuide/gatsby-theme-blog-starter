@@ -1,10 +1,17 @@
 import React from "react"
 
 import Layout from "../components/layout/layout"
+import Seo from "../components/seo/Seo"
 import PageLayout from "../components/layout/PageLayout";
 
 const TermsOfUse = () => (
   <Layout pageTitle="Terms of Use">
+    <Seo 
+      title="Terms Of Use"
+      description="Terms Of Use for Arabic Blog"
+      tags={["Terms Of Use"]}
+      slug="/terms-of-use" />
+
     <PageLayout title="Terms of Use">
       <p>Last Updated: 12 May 2019</p>
       

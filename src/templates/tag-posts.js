@@ -1,9 +1,10 @@
 import React from 'react';
 import {graphql} from 'gatsby';
-import Layout from '../components/layout/layout';
 
+import Layout from '../components/layout/layout';
 import TagPostsLayout from '../components/layout/TagPostsLayout';
 import PageLayout from '../components/layout/PageLayout';
+import Seo from '../components/seo/Seo';
 
 const tagPosts = ({data, pageContext}) => {
 
@@ -13,6 +14,12 @@ const tagPosts = ({data, pageContext}) => {
 
   return (
     <Layout >
+      <Seo 
+        title={`${tag} Posts`}
+        description={`Arabic Blog Posts Related to ${tag} Tag.`}
+        tags={[tag]}
+        slug={`tag/${tag}`} />
+
       <PageLayout title={pageHeader}>
         <TagPostsLayout data={data} pageContext={pageContext}/>
       </PageLayout> 

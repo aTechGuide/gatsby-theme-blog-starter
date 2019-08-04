@@ -1,11 +1,18 @@
 import React from "react"
 
 import Layout from "../components/layout/layout"
+import Seo from "../components/seo/Seo"
 import PageLayout from "../components/layout/PageLayout";
 
 const privacyPolicy = () => {
   return (
     <Layout>
+      <Seo 
+        title="Privacy Policy"
+        description="Privacy Policy of Arabic Blog"
+        tags={["Privacy Policy"]}
+        slug="/privacy-policy" />
+        
       <PageLayout title="Privacy Policy">
         <p>Last Updated: 16 May 2019</p>
           <p>This privacy policy (&quot;Policy&quot;) describes how Website Operator (&quot;Website Operator&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;) collects, protects and uses the personally identifiable information (&quot;Personal Information&quot;) you (&quot;User&quot;, &quot;you&quot; or &quot;your&quot;) may provide on the <a target="_blank" rel="nofollow noopener noreferrer" href="https://arabicblog.info">arabicblog.info</a> website and any of its products or services (collectively, &quot;Website&quot; or &quot;Services&quot;). It also describes the choices available to you regarding our use of your Personal Information and how you can access and update this information. This Policy does not apply to the practices of companies that we do not own or control, or to individuals that we do not employ or manage.</p>
