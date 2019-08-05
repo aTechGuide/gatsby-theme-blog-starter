@@ -28,7 +28,7 @@ import { useStaticQuery, graphql } from "gatsby"
   * Do NOT add Seo in other Layouts
   */
 function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, date, update_date, lang, meta }) {
-  const { site } = useStaticQuery(
+  const { site, file } = useStaticQuery(
     graphql`
       query {
         site {
@@ -46,20 +46,16 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
             bingId
           }
         }
-      }
-    `
-  )
-  const icon = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "icon.png" }) {
-        childImageSharp {
-          fixed(width:60) {
-            ...GatsbyImageSharpFixed
+        file(relativePath: { eq: "icon.png" }) {
+          childImageSharp {
+            fixed(width:60) {
+              ...GatsbyImageSharpFixed
+            }
           }
         }
       }
-    }
-  `)
+    `
+  )
 
   const pageTitle = title || site.siteMetadata.title
   const metaDescription = description || site.siteMetadata.description
@@ -82,7 +78,7 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
     "name": site.siteMetadata.title,
     "legalName" : site.siteMetadata.title,
     "url": domain,
-    "logo": `${domain}${icon.file.childImageSharp.fixed.src}`,
+    "logo": `${domain}${file.childImageSharp.fixed.src}`,
     "founders": [
       {
       "@type": "Person",
@@ -121,7 +117,7 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
        "name": site.siteMetadata.title,
        "logo": {
          "@type": "ImageObject",
-         "url": `${domain}${icon.file.childImageSharp.fixed.src}`
+         "url": `${domain}${file.childImageSharp.fixed.src}`
        }
      },
      "mainEntityOfPage": {

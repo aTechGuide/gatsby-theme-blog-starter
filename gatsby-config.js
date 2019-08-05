@@ -169,6 +169,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`, //<- Adds service worker; Add after gatsby-plugin-manifest
-    `gatsby-plugin-netlify-headers`,
+    `gatsby-plugin-netlify`,
   ],
 }
