@@ -1,3 +1,13 @@
+const cspDirectives = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.google-analytics.com",
+  "font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "img-src 'self' https://www.google-analytics.com"
+];
+
+const directivesToCspHeader = headers => headers.join(';');
+
 module.exports = {
   siteMetadata: {
     // Final blog https://github.com/hidjou/classsed-gatsby-blog/
@@ -169,6 +179,20 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`, //<- Adds service worker; Add after gatsby-plugin-manifest
-    `gatsby-plugin-netlify`,
+    {
+      resolve: 'gatsby-plugin-netlify',
+      options: {
+        headers: {
+          '/*': [
+            'X-Frame-Options: DENY',
+            'X-XSS-Protection: 1; mode=block',
+            'X-Content-Type-Options: nosniff',
+            `Content-Security-Policy: ${directivesToCspHeader(cspDirectives)}`,
+            'Referrer-Policy: no-referrer-when-downgrade'
+          ]
+        }
+      }
+    }
+    
   ],
 }
