@@ -11,7 +11,7 @@ tags:
   - Nahw
 label:
   - balagha
-slug: introduction-to-balagha/
+slug: introduction-to-balagha
 published: true
 image: ./3-divisions-of-balagha.png
 ---
