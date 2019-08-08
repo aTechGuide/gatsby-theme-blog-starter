@@ -10,7 +10,7 @@ import SinglePostLayout from '../components/layout/SinglePostLayout';
  * Template used by Blog Posts files under posts folder
  */
 
-const singlepost = ({data, pageContext}) => {
+const singlepost = ({data}) => {
 
   const{title, description, tags, image, slug, date, update_date} = data.markdownRemark.frontmatter;
 
