@@ -57,17 +57,17 @@ const Footer = () => {
             </Grid>
             <Grid item xs={12} md={4} lg={2}>
               <Typography>
-                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english">About</Link>
+                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english/">About</Link>
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} lg={2}>
               <Typography>
-                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use">Terms of Use</Link>
+                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use/">Terms of Use</Link>
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} lg={2}>
               <Typography>
-                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy">Privacy Policy</Link>
+                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
               </Typography>
             </Grid>
             <Grid item xs={12} md={12} lg={3}>
