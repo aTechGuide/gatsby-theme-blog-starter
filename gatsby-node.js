@@ -71,7 +71,7 @@ function createPaginationPages(posts, createPage, templates) {
     if (isFirstPage)
       return;
     createPage({
-      path: `/page/${currentPage}`,
+      path: `/page/${currentPage}/`,
       component: templates.postList,
       context: {
         limit: postsPerPage,
@@ -86,7 +86,7 @@ function createPaginationPages(posts, createPage, templates) {
 function createPagePerTag(tags, createPage, templates) {
   tags.forEach(tag => {
     createPage({
-      path: `/tag/${slugify(tag)}`,
+      path: `/tag/${slugify(tag)}/`,
       component: templates.tagPosts,
       context: {
         tag
@@ -109,7 +109,7 @@ function createTagsPage(posts, createPage, templates) {
   // {code: 2, design: 6, ...}
   tags = _.uniq(tags);
   createPage({
-    path: '/tags',
+    path: '/tags/',
     component: templates.tagsPage,
     context: {
       tags,

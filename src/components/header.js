@@ -43,7 +43,7 @@ const Header = () => {
             <Link className={classes.homeLink} to="/">Arabic Blog</Link>
           </Typography>
           <Typography>
-            <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags">Tags</Link>
+            <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags/">Tags</Link>
           </Typography>
           <Typography>
           <Tooltip title="Install App for Offline View">

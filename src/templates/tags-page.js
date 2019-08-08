@@ -36,7 +36,7 @@ const tagsPage = ({pageContext}) => {
 
       <PageLayout title="Tags">
         {tags.map(tag => (
-          <Link key={tag} to={`/tag/${slugify(tag)}`}>
+          <Link key={tag} to={`/tag/${slugify(tag)}/`}>
             <Badge className={classes.margin} badgeContent={tagPostCounts[tag]} color="secondary">
               <Chip size='small' color='primary' label={tag} />
               {/* <MailIcon /> */}
