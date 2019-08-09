@@ -230,7 +230,36 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
     >
       <script type="text/javascript">
         {`
-          function b(){document.querySelector("#a2hs").style.display="none";c.prompt();c.userChoice.then(function(){c=null})}var c;window.addEventListener("beforeinstallprompt",function(a){a.preventDefault();c=a;a=document.querySelector("#a2hs");a.style.display="block";a.addEventListener("click",b)});
+          // This JS file is minified and used in Seo.js
+
+          function addToHomeScreen() { 
+            var a2hsBtn = document.querySelector("#a2hs");
+            a2hsBtn.style.display = "none";
+            deferredPrompt.prompt();
+              // .then(
+              //   result => alert(result), 
+              //   error => alert(error)
+              // );
+            deferredPrompt.userChoice
+              .then(function(choiceResult){
+            if (choiceResult.outcome === 'accepted') {
+              console.log('User accepted the A2HS prompt');
+            } else {
+              console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+          });}
+          
+          var deferredPrompt;
+          
+          window.addEventListener('beforeinstallprompt', function (e) {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            var a2hsBtn = document.querySelector("#a2hs");
+            a2hsBtn.style.display = "block";
+            a2hsBtn.addEventListener("click", addToHomeScreen);
+          });
         `}
       </script>
       <script type="application/ld+json">{JSON.stringify(schema)}</script>
