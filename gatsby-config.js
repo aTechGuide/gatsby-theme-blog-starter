@@ -1,7 +1,7 @@
 const cspDirectives = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://www.google-analytics.com",
-  "font-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com",
+  "font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "img-src 'self' data: https://www.google-analytics.com",
   "object-src 'none'"
