@@ -228,7 +228,11 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
       )
       .concat(meta)}
     >
-      <script type="text/javascript" src="/script.js" />
+      <script type="text/javascript">
+        {`
+          function b(){document.querySelector("#a2hs").style.display="none";c.prompt();c.userChoice.then(function(){c=null})}var c;window.addEventListener("beforeinstallprompt",function(a){a.preventDefault();c=a;a=document.querySelector("#a2hs");a.style.display="block";a.addEventListener("click",b)});
+        `}
+      </script>
       <script type="application/ld+json">{JSON.stringify(schema)}</script>
 
       <link rel="canonical" href={url} />
