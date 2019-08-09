@@ -8,15 +8,15 @@ function addToHomeScreen() {
     //   result => alert(result), 
     //   error => alert(error)
     // );
-  // deferredPrompt.userChoice
-  //   .then(function(choiceResult){
-  //     if (choiceResult.outcome === 'accepted') {
-        
-  //     } else {
-  //     }
-  //     deferredPrompt = null;
-  //   });
-}
+  deferredPrompt.userChoice
+    .then(function(choiceResult){
+  // if (choiceResult.outcome === 'accepted') {
+  //   console.log('User accepted the A2HS prompt');
+  // } else {
+  //   console.log('User dismissed the A2HS prompt');
+  // }
+  deferredPrompt = null;
+});}
 
 var deferredPrompt;
 
