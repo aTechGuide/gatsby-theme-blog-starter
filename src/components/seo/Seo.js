@@ -228,7 +228,11 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
       )
       .concat(meta)}
     >
-      <script type="text/javascript" src="/script.js" />
+      <script type="text/javascript">
+        {`
+          function addToHomeScreen(){document.querySelector("#a2hs").style.display="none";deferredPrompt.prompt();deferredPrompt.userChoice.then(function(a){deferredPrompt=null})}var deferredPrompt;window.addEventListener("beforeinstallprompt",function(a){a.preventDefault();deferredPrompt=a;a=document.querySelector("#a2hs");a.style.display="block";a.addEventListener("click",addToHomeScreen)});
+        `}
+      </script>
       <script type="application/ld+json">{JSON.stringify(schema)}</script>
 
       <link rel="canonical" href={url} />
