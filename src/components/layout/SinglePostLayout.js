@@ -1,12 +1,12 @@
 import React from 'react';
-
 import {Grid} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import Sidebar from '../Sidebar';
 import Share from '../Share';
 import FullPost from '../post/FullPost';
+import Comments from '../Comments';
 
-import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => {
   return({
@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => {
     padding: theme.postGridItemPadding
   },
   shareItem: {
+    marginTop: theme.postGridItemPadding
+  },
+  comment: {
     marginTop: theme.postGridItemPadding
   },
   sidebar: {
@@ -41,16 +44,13 @@ const SinglePostLayout = ({data}) => {
         </Grid>
         <Grid item xs={12} className={classes.shareItem}>
           <Share
-            socialConfig={{
-              twitterHandle: '@bornShrewd',
-              siteDomain: 'https://arabicblog.info/',
-              config: {
-                url: slug,
-                title: pagetitle
-              },
-            }}
+            slug={slug}
+            pagetitle={pagetitle}
             tags={post.tags}
           />
+        </Grid>
+        <Grid item xs={12} className={classes.comment}>
+          <Comments slug={slug} pagetitle={pagetitle} id={data.markdownRemark.id}/>
         </Grid>
       </Grid> 
       {/* Left Container End */}      

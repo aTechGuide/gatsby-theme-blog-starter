@@ -1,5 +1,6 @@
 import React from 'react';
 import {Grid, Typography, Card, CardContent} from '@material-ui/core';
+import {useStaticQuery, graphql} from 'gatsby';
 
 import {
 	FacebookShareButton,
@@ -20,10 +21,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Share = ({ socialConfig, tags }) => {
+const Share = ({slug, pagetitle, tags }) => {
 
   const classes = useStyles();
-  const postLink= socialConfig.siteDomain + socialConfig.config.url;
+
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            siteUrl
+            twitterId
+          }
+        }
+      }
+    `
+  )
+
+  const postLink= site.siteMetadata.siteUrl + slug;
 
   return(
 
@@ -41,17 +56,17 @@ const Share = ({ socialConfig, tags }) => {
             </FacebookShareButton>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
-            <TwitterShareButton url={postLink} title={socialConfig.config.title} via={socialConfig.twitterHandle.split('@').join('')} hashtags={tags} >
+            <TwitterShareButton url={postLink} title={pagetitle} via={site.siteMetadata.twitterId.split('@').join('')} hashtags={tags} >
               <TwitterIcon size={32} round={true} />
             </TwitterShareButton>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
-            <LinkedinShareButton url={postLink} title={socialConfig.config.title} >
+            <LinkedinShareButton url={postLink} title={pagetitle} >
               <LinkedinIcon size={32} round={true} />
             </LinkedinShareButton>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
-            <RedditShareButton url={postLink} className="button is-outlined is-rounded reddit" title={socialConfig.config.title} >
+            <RedditShareButton url={postLink} className="button is-outlined is-rounded reddit" title={pagetitle} >
               <RedditIcon size={32} round={true} />
             </RedditShareButton>
           </Grid>
