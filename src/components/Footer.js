@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Grid, Typography} from '@material-ui/core';
+import {Typography} from '@material-ui/core';
 import Img from 'gatsby-image';
 import {Link} from 'gatsby';
 
@@ -15,7 +15,15 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     marginTop: 'auto',
     backgroundColor: theme.palette.primary.dark,
-    width: '100%'
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  '@media (min-width: 1024px)': {
+    footer: {
+      flexDirection: 'row',
+      alignItems: 'center'
+    }
   },
   text: {
     color: theme.palette.primary.contrastText,
@@ -51,34 +59,26 @@ const Footer = () => {
     <Consumer>
       {
         value => (
-          <Grid container className={classes.footer} alignItems='center' >
-            <Grid item className={classes.logo} xs={12} md={12} lg={2}>
-              <Link to='/'><Img fixed={value.icon.file.childImageSharp.fixed} className="App-logo" /></Link>
-            </Grid>
-            <Grid item xs={12} md={4} lg={2}>
-              <Typography>
+          <footer className={classes.footer}>
+            <div className={classes.logo}>
+              <Img fixed={value.icon.file.childImageSharp.fixed} className="App-logo" />
+            </div> 
+            <Typography>
                 <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english/">About</Link>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={4} lg={2}>
-              <Typography>
-                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use/">Terms of Use</Link>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={4} lg={2}>
-              <Typography>
-                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} md={12} lg={3}>
-              <Typography variant="body1" className={classes.text}>
-                Proudly Powered by {' '}
-                <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
-                <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
-                <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
-              </Typography>
-            </Grid> 
-          </Grid>
+            </Typography>
+            <Typography>
+              <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use/">Terms of Use</Link>
+            </Typography>
+            <Typography>
+              <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
+            </Typography>
+            <Typography variant="body1" className={classes.text}>
+              Proudly Powered by {' '}
+              <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
+              <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
+              <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
+            </Typography>
+          </footer>
         )
       }
     </Consumer>
