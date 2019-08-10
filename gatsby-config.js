@@ -1,10 +1,9 @@
 const cspDirectives = [
-  "default-src 'self'",
+  "default-src 'self' https://disqus.com https://c.disquscdn.com",
   "script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://arabic-blog.disqus.com",
-  "prefetch-src https://disqus.com https://c.disquscdn.com",
   "frame-src https://disqus.com",
   "font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://c.disquscdn.com",
   "img-src 'self' data: https://www.google-analytics.com https://referrer.disqus.com https://c.disquscdn.com",
   "object-src 'none'"
 ];
