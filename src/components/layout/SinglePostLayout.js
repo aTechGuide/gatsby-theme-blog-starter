@@ -1,12 +1,11 @@
-import React from 'react';
-import {Grid} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import {Grid, Button} from '@material-ui/core';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import Sidebar from '../Sidebar';
 import Share from '../Share';
 import FullPost from '../post/FullPost';
-import Comments from '../Comments';
-
+import DisqusComments from '../comments/DisqusComments';
 
 const useStyles = makeStyles(theme => {
   return({
@@ -18,6 +17,11 @@ const useStyles = makeStyles(theme => {
   },
   comment: {
     marginTop: theme.postGridItemPadding
+    
+  },
+  commentButton: {
+    display: 'flex',
+    justifyContent: 'center'
   },
   sidebar: {
     [theme.breakpoints.down('sm')]: {
@@ -26,13 +30,15 @@ const useStyles = makeStyles(theme => {
   }
 })});
 
-
 const SinglePostLayout = ({data}) => {
 
   const classes = useStyles();
+  const [visibleComments, setVisibleComments] = useState(false);
+  const theme = useTheme();
+
   const post = data.markdownRemark.frontmatter;
   const{pagetitle, slug} = post
-  
+
   return (
     <Grid container >
           
@@ -50,7 +56,10 @@ const SinglePostLayout = ({data}) => {
           />
         </Grid>
         <Grid item xs={12} className={classes.comment}>
-          <Comments slug={slug} pagetitle={pagetitle} id={data.markdownRemark.id}/>
+          { visibleComments ? 
+            <DisqusComments slug={slug} pagetitle={pagetitle} id={data.markdownRemark.id}/> 
+            : <div className={classes.commentButton}> <Button {...theme.button} onClick={() => setVisibleComments(true)}> Click to Load Comments</Button> </div>
+          } 
         </Grid>
       </Grid> 
       {/* Left Container End */}      

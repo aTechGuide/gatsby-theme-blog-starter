@@ -2,7 +2,7 @@ import React from 'react';
 import Disqus from 'disqus-react';
 import {useStaticQuery, graphql} from 'gatsby';
 
-const Comments = ({slug, pagetitle, id}) => {
+const DisqusComments = ({slug, pagetitle, id}) => {
 
   const { site } = useStaticQuery(
     graphql`
@@ -30,4 +30,4 @@ const Comments = ({slug, pagetitle, id}) => {
   );
 }
 
-export default Comments;
+export default DisqusComments;

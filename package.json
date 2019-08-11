@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kamran Ali <kamranalinitb@gmail.com>",
   "dependencies": {
+    "@loadable/component": "^5.10.2",
     "@material-ui/core": "^4.3.1",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.0",
