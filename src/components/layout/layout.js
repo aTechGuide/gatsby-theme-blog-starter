@@ -10,7 +10,7 @@ import {deepPurple, red, indigo, yellow, cyan, lightGreen} from '@material-ui/co
 
 import Footer from '../Footer';
 import Header from "../header"
-import {Provider} from '../../context/context';
+import {Provider} from '../../context/Context';
 
 /**
  * This class is Parent to all the components

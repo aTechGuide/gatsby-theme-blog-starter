@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
 import Img from "gatsby-image"
 
 import {slugify} from '../../util/UtilityFunctions';
-import {Consumer} from '../../context/context';
+import Context from '../../context/Context';
 
 /**
  dt, .word{color: blue;}
@@ -109,40 +109,34 @@ const useStyles = makeStyles(theme => ({
 
 const FullPost = ({data}) => {
   const classes = useStyles();
+  const contextData = useContext(Context)
 
   const post = data.markdownRemark.frontmatter;
 
   return (
-    <Consumer>
-      {
-        value => (
-          <Card>
-            <CardHeader
-              // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
-              avatar={<Img fixed={value.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
-              title={post.pagetitle}
-              subheader={post.date}
-              titleTypographyProps={{variant: 'h1', component: 'h1'}}
-              className={classes.header}
-            />
-            <CardContent>    
-              <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} className={classes.postFont}/>
-            </CardContent>
-            
-            <CardActions className={classes.chiprow}>
-              
-                {post.tags.map(tag => (
-                  <Link key={tag} to={`/tag/${slugify(tag)}`}>
-                    <Chip size='small' color='primary' label={tag} className={classes.chip} />
-                  </Link>
-                  ))}
-              
-            </CardActions>
-          </Card>
-        )
-      }
-    </Consumer>
-    
+    <Card>
+      <CardHeader
+        // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
+        avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
+        title={post.pagetitle}
+        subheader={post.date}
+        titleTypographyProps={{variant: 'h1', component: 'h1'}}
+        className={classes.header}
+      />
+      <CardContent>    
+        <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} className={classes.postFont}/>
+      </CardContent>
+      
+      <CardActions className={classes.chiprow}>
+        
+          {post.tags.map(tag => (
+            <Link key={tag} to={`/tag/${slugify(tag)}`}>
+              <Chip size='small' color='primary' label={tag} className={classes.chip} />
+            </Link>
+            ))}
+        
+      </CardActions>
+    </Card>
   );
 }
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
 import Img from 'gatsby-image';
 import {Link} from 'gatsby';
 
-import {Consumer} from './../context/context';
+import Context from '../context/Context';
 
 const useStyles = makeStyles(theme => ({
   logo: {
@@ -54,34 +54,29 @@ const useStyles = makeStyles(theme => ({
 
 const Footer = () => {
   const classes = useStyles();
+  const contextData = useContext(Context)
 
   return (
-    <Consumer>
-      {
-        value => (
-          <footer className={classes.footer}>
-            <div className={classes.logo}>
-              <Img fixed={value.icon.file.childImageSharp.fixed} className="App-logo" />
-            </div> 
-            <Typography>
-                <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english/">About</Link>
-            </Typography>
-            <Typography>
-              <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use/">Terms of Use</Link>
-            </Typography>
-            <Typography>
-              <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
-            </Typography>
-            <Typography variant="body1" className={classes.text}>
-              Proudly Powered by {' '}
-              <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
-              <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
-              <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
-            </Typography>
-          </footer>
-        )
-      }
-    </Consumer>
+    <footer className={classes.footer}>
+      <div className={classes.logo}>
+        <Img fixed={contextData.icon.file.childImageSharp.fixed} className="App-logo" />
+      </div> 
+      <Typography>
+          <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english/">About</Link>
+      </Typography>
+      <Typography>
+        <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use/">Terms of Use</Link>
+      </Typography>
+      <Typography>
+        <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
+      </Typography>
+      <Typography variant="body1" className={classes.text}>
+        Proudly Powered by {' '}
+        <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
+        <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
+        <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
+      </Typography>
+    </footer>
   );
 }
 
