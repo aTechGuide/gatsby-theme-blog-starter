@@ -112,6 +112,7 @@ const FullPost = ({data}) => {
   const contextData = useContext(Context)
 
   const post = data.markdownRemark.frontmatter;
+  const update_date = post.update_date;
 
   return (
     <Card>
@@ -119,7 +120,7 @@ const FullPost = ({data}) => {
         // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
         avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
         title={post.pagetitle}
-        subheader={post.date}
+        subheader={update_date !== 'Invalid date' ? `Published: ${post.date} • Updated: ${post.update_date}` : `Published: ${post.date}`}
         titleTypographyProps={{variant: 'h1', component: 'h1'}}
         className={classes.header}
       />

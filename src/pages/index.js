@@ -51,18 +51,18 @@ const indexQuery = graphql`
           id
           frontmatter {
             pagetitle
-            date(formatString: "MMM Do YYYY")
+            summary
+            date(formatString: "MMM D, YYYY")
             tags
             slug
             image {
               childImageSharp {
-                fixed(width: 350) {
+                fixed(width: 350, height: 150) {
                   ...GatsbyImageSharpFixed
                 }
               }
             }
           }
-          excerpt
         }
       }
     }

@@ -28,7 +28,7 @@ const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
                 pagetitle={node.frontmatter.pagetitle} 
                 slug={node.frontmatter.slug}
                 date={node.frontmatter.date}
-                body={node.excerpt}
+                body={node.frontmatter.summary}
                 // fluid={node.frontmatter.image.childImageSharp.fluid}
                 fixed={node.frontmatter.image.childImageSharp.fixed}
                 tags={node.frontmatter.tags} />

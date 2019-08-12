@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { Link } from 'gatsby';
+import { navigate } from 'gatsby';
 import Img from 'gatsby-image';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,26 +9,28 @@ import {slugify} from '../../util/UtilityFunctions';
 import Context from '../../context/Context';
 
 const useStyles = makeStyles(theme => ({
-  chiprow: {
-    display: 'flex',
+  cardActionBottom: {
     justifyContent: 'space-between',
-    flexWrap: 'wrap',
+    paddingTop: '0px'
   },
   chip: {
     margin: theme.spacing(1),
   },
+  chipRow: {
+    display: 'flex',
+  },
   card: {
     width: 350,
-    // height: 420,
     transition: 'all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)',
     '&:hover': {
       transform: 'scale(1.03, 1.03)'
     }
   },
-  cardActionArea: {
-    // height: 370
-  },
-  
+  cardContent: {
+    paddingTop: '0px',
+    paddingBottom: '0px',
+    height: '100px',
+  }
 }));
 
 const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
@@ -37,8 +39,8 @@ const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
   const contextData = useContext(Context)
  
   return (
-    <Card className={classes.card}>
-      <CardActionArea href={"/" + slug} className={classes.cardActionArea}>
+    <Card className={classes.card} raised>
+      <CardActionArea href={"/" + slug}>
         
         <Img fixed={fixed}/>
         <CardHeader
@@ -46,18 +48,17 @@ const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
         title={pagetitle}
         subheader={date}
       />
-        <CardContent>    
+        <CardContent className={classes.cardContent}>    
           <Typography variant="body2" color="textSecondary" component="p">
             {body}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions className={classes.chiprow}>
-        <div >
+      <CardActions className={classes.cardActionBottom}>
+        <div className={classes.chipRow}>
           {tags.map(tag => (
-            <Link key={tag} to={`/tag/${slugify(tag)}`}>
-              <Chip size='small' color='primary' label={tag} className={classes.chip} />
-            </Link>
+            <Chip key={tag} size='small' color='primary' label={tag} className={classes.chip} 
+              clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
             ))}
         </div>
         <Button href={"/" + slug} size="small" color="primary" variant='outlined'>
