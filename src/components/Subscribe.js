@@ -2,12 +2,11 @@ import React from 'react';
 import {Card, CardContent, TextField, Typography, Button} from '@material-ui/core';
 import { useTheme } from '@material-ui/styles';
 
-const Sidebar = () => {
+const Subscribe = () => {
 
   const theme = useTheme();
 
   return (
-    <div>
       <Card>
         <CardContent>
           <Typography variant='h5' component='h3' color='primary' align='center' >
@@ -16,15 +15,6 @@ const Sidebar = () => {
           <Typography variant='body1' >
             Receive E Mail notification of Latest Tutorials
           </Typography>
-        </CardContent>
-          
-        <CardContent>
-          {/* <Form className="text-center">
-            <FormGroup>
-              <Input type="email" name="email" placeholder="Your email address.." />
-            </FormGroup>
-            <button className="btn btn-outline-success text-uppercase"> Subscribe </button>
-          </Form> */}
           <form action="https://kamranali.us19.list-manage.com/subscribe/post?u=81033a93b0c17d2aca19ba835&amp;id=32d4ecb6e3" 
             method="post" 
             name="mc-embedded-subscribe-form" 
@@ -52,8 +42,7 @@ const Sidebar = () => {
           </form>
         </CardContent>
       </Card>
-    </div>
   );
 }
 
-export default Sidebar;
+export default Subscribe;

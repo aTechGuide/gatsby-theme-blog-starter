@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {Grid, Button} from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-import Sidebar from '../Sidebar';
+import Subscribe from '../Subscribe';
 import Share from '../Share';
 import FullPost from '../post/FullPost';
 import DisqusComments from '../comments/DisqusComments';
@@ -69,7 +69,7 @@ const SinglePostLayout = ({data}) => {
       {/* Right Container Start*/}
       <Grid container >
         <Grid item xs={12} >
-          <Sidebar />
+          <Subscribe />
         </Grid>
       </Grid>
       {/* Right Container End*/}
