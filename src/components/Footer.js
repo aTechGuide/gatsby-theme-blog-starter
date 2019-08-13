@@ -2,14 +2,20 @@ import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
 import Img from 'gatsby-image';
-import {Link} from 'gatsby';
+import {Link, navigate} from 'gatsby';
 
 import Context from '../context/Context';
 
 const useStyles = makeStyles(theme => ({
   logo: {
     flexGrow: 1,
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
+  },
+  logoClick: {
+    display: 'inline-block',
+    '&:hover': {
+      cursor: 'pointer'
+    }
   },
   footer: {
     padding: theme.spacing(1),
@@ -59,7 +65,9 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <div className={classes.logo}>
-        <Img fixed={contextData.icon.file.childImageSharp.fixed} className="App-logo" />
+        <div className={classes.logoClick} onClick={() => navigate('/')}>
+          <Img fixed={contextData.icon.file.childImageSharp.fixed} className="App-logo" />
+        </div>
       </div> 
       <Typography>
           <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english/">About</Link>

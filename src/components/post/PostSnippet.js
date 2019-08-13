@@ -41,8 +41,8 @@ const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
   return (
     <Card className={classes.card} raised>
       <CardActionArea href={"/" + slug}>
-        
-        <Img fixed={fixed}/>
+        <Img fixed={fixed} draggable={false} title={pagetitle} alt={pagetitle} />
+      </CardActionArea>
         <CardHeader
         avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
         title={pagetitle}
@@ -53,7 +53,7 @@ const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
             {body}
           </Typography>
         </CardContent>
-      </CardActionArea>
+      
       <CardActions className={classes.cardActionBottom}>
         <div className={classes.chipRow}>
           {tags.map(tag => (
