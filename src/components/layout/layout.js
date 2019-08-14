@@ -42,6 +42,10 @@ let theme = createMuiTheme({
     color: "primary",
     variant: "contained"
   },
+  linkTransition: {
+    fade: "true",
+    duration: .5
+  },
   postGridItemPadding: '16px',
   headingColor: indigo,
   highlightOne: yellow,
