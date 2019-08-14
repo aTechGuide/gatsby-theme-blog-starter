@@ -28,7 +28,8 @@ module.exports = {
       'https://www.facebook.com/arabicblog/'
     ],
     contactSupport: 'https://www.facebook.com/arabicblog/',
-    bingId: 'B73F178C4AB143116D3FE641C6044861'
+    bingId: 'B73F178C4AB143116D3FE641C6044861',
+    menuLinks: [{name: 'Tags', link: '/tags/'}]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

@@ -1,7 +1,7 @@
 import React from "react"
 
 import { makeStyles } from '@material-ui/core/styles';
-import {Link} from 'gatsby';
+import {Link, useStaticQuery, graphql} from 'gatsby';
 import {AppBar, Toolbar, Typography, Button, Tooltip} from '@material-ui/core';
 import { useTheme } from "@material-ui/styles";
 
@@ -36,6 +36,21 @@ const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
 
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            menuLinks {
+              name
+              link
+            }
+          }
+        }
+      }
+    `
+  )
+
   return (
       <AppBar position="static">
         <Toolbar>
@@ -43,7 +58,9 @@ const Header = () => {
             <Link className={classes.homeLink} to="/">Arabic Blog</Link>
           </Typography>
           <Typography>
-            <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/tags/">Tags</Link>
+            {site.siteMetadata.menuLinks.map(link => (
+              <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
+            )) }    
           </Typography>
           <Typography>
           <Tooltip title="Install App for Offline View">
