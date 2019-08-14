@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
 
 import {slugify} from '../../util/UtilityFunctions';
-import Context from '../../context/Context';
+import Context from '../Context';
 
 const useStyles = makeStyles(theme => ({
   cardActionBottom: {

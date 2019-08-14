@@ -5,7 +5,7 @@ import { Link } from 'gatsby';
 import Img from "gatsby-image"
 
 import {slugify} from '../../util/UtilityFunctions';
-import Context from '../../context/Context';
+import Context from '../Context';
 
 /**
  dt, .word{color: blue;}

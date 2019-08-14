@@ -4,7 +4,7 @@ import {Typography} from '@material-ui/core';
 import Img from 'gatsby-image';
 import {Link, navigate} from 'gatsby';
 
-import Context from '../context/Context';
+import Context from './Context';
 
 const useStyles = makeStyles(theme => ({
   logo: {
