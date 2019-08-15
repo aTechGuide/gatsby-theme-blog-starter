@@ -1,8 +1,8 @@
 import React from "react"
 
 import { makeStyles } from '@material-ui/core/styles';
-import {useStaticQuery, graphql} from 'gatsby';
-import AniLink from "gatsby-plugin-transition-link/AniLink";
+import {useStaticQuery, graphql, Link} from 'gatsby';
+//import AniLink from "gatsby-plugin-transition-link/AniLink";
 import {AppBar, Toolbar, Typography, Button, Tooltip} from '@material-ui/core';
 import { useTheme } from "@material-ui/styles";
 
@@ -56,13 +56,14 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h4" component='h2' className={classes.title}>
-            {/* <Link className={classes.homeLink} to="/">Arabic Blog</Link> */}
-            <AniLink className={classes.homeLink} to="/" {...theme.linkTransition}>Arabic Blog</AniLink>
+            
+            <Link className={classes.homeLink} to="/">Arabic Blog</Link>
+            {/* <AniLink className={classes.homeLink} to="/" {...theme.linkTransition}>Arabic Blog</AniLink> */}
           </Typography>
             {site.siteMetadata.menuLinks.map(link => (
-              // <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
               <Typography key={link.name}>
-                <AniLink  className={classes.menuLink} activeClassName={classes.activeLink} to={link.link} {...theme.linkTransition}>{link.name}</AniLink>
+                <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
+                {/* <AniLink  className={classes.menuLink} activeClassName={classes.activeLink} to={link.link} {...theme.linkTransition}>{link.name}</AniLink> */}
               </Typography>              
             )) }    
           <Typography>
