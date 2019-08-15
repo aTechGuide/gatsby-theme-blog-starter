@@ -4,13 +4,12 @@ import {useStaticQuery, graphql} from 'gatsby';
 
 import {CssBaseline} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import {deepPurple, red, indigo, yellow, cyan, lightGreen} from '@material-ui/core/colors/';
 
 import Footer from '../Footer';
 import Header from "../header"
 import {Provider} from '../Context';
+import theme from '../../util/theme';
 
 /**
  * This class is Parent to all the components
@@ -24,34 +23,6 @@ const useStyles = makeStyles(theme => ({
     minHeight: '100vh',
   }
 }));
-
-let theme = createMuiTheme({
-  palette: {
-    primary: deepPurple,
-    secondary: red
-  },
-  typography: {
-    fontSize: 16,
-    h1 : {
-      fontSize: "3rem",
-      fontWeight: 500,
-      color: deepPurple[700]
-    }
-  },
-  button: {
-    color: "primary",
-    variant: "contained"
-  },
-  linkTransition: {
-    fade: "true",
-    duration: .5
-  },
-  postGridItemPadding: '16px',
-  headingColor: indigo,
-  highlightOne: yellow,
-  highlightTwo: cyan,
-  highlightThree: lightGreen
-});
 
 const Layout = ({ children }) => {
   const classes = useStyles();

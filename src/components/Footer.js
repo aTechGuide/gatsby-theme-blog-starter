@@ -60,7 +60,8 @@ const useStyles = makeStyles(theme => ({
 
 const Footer = () => {
   const classes = useStyles();
-  const contextData = useContext(Context)
+  const contextData = useContext(Context);
+  const date = new Date().getFullYear();
 
   return (
     <footer className={classes.footer}>
@@ -79,7 +80,8 @@ const Footer = () => {
         <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
       </Typography>
       <Typography variant="body1" className={classes.text}>
-        Proudly Powered by {' '}
+        {`Copyright © Arabic Blog ${date}. Powered by `}
+        
         <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
         <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
         <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
