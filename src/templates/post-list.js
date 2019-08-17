@@ -41,19 +41,8 @@ export const postListQuery = graphql`
         node {
           id 
           frontmatter {
-            title
-            date(formatString: "MMM Do YYYY")
-            tags
-            slug
-            image {
-              childImageSharp {
-                fixed(width: 350) {
-                  ...GatsbyImageSharpFixed
-                }
-              }
-            }
+            ...PostFrontMatter
           }
-          excerpt
         }
       }
     }

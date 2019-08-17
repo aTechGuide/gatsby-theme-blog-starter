@@ -21,13 +21,13 @@ const TagPostsLayout = ({data, pageContext}) => {
           <Grid key={node.id} item className={classes.postGridItem}>
             <PostSnippet 
               key={node.id} 
-              title={node.frontmatter.title}
+              pagetitle={node.frontmatter.pagetitle}
               slug={node.frontmatter.slug}
               date={node.frontmatter.date}
-              body={node.excerpt}
-              tags={node.frontmatter.tags}
+              body={node.frontmatter.summary}
               //fluid={node.frontmatter.image.childImageSharp.fluid}
               fixed={node.frontmatter.image.childImageSharp.fixed}
+              tags={node.frontmatter.tags}
               />
           </Grid>
         ))}

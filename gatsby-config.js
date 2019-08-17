@@ -21,7 +21,6 @@ module.exports = {
     siteUrl: `https://arabicblog.netlify.com`,
     genre: 'Arabic Grammar Tutorials',
     keywords: [`Arabic`, `ArabicBlog`, `Arabic Tutorials`, `Arabic Grammar`, `Arabic Grammar Tutorials`, `Learn Arabic in English`],
-    gridSpacing: `2`,
     email: `admin@arabicblog.info`,
     paginate: `12`,
     social: [

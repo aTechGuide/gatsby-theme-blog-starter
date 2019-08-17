@@ -29,11 +29,6 @@ const tagPosts = ({data, pageContext}) => {
 
 export const tagQuery = graphql`
     query($tag: String!){
-      site {
-        siteMetadata {
-          gridSpacing
-        }
-      }
       allMarkdownRemark (
         sort: {fields: [frontmatter___date], order: DESC}
         filter: { frontmatter: {tags: { in: [$tag]} } }
@@ -43,25 +38,12 @@ export const tagQuery = graphql`
             node {
               id 
               frontmatter {
-                title
-                date(formatString: "MMM Do YYYY")
-                tags
-                slug
-                image {
-                  childImageSharp {
-                    fixed(width: 350) {
-                      ...GatsbyImageSharpFixed
-                    }
-                  }
-                }
+                ...PostFrontMatter
               }
-              excerpt
             }
           }
       }
-      
     }
-
 `
 
 export default tagPosts;
