@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { navigate } from 'gatsby';
+import { navigate, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
+const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
 
   const classes = useStyles();
   const contextData = useContext(Context)
@@ -68,5 +68,22 @@ const PostSnippet = ({pagetitle, slug, date, body, fixed, tags}) => {
     </Card>
   );
 }
+
+export const postFrontMatter = graphql`
+  fragment PostFrontMatter on MarkdownRemarkFrontmatter {
+    pagetitle
+    summary
+    date(formatString: "MMM D, YYYY")
+    tags
+    slug
+    image {
+      childImageSharp {
+        fixed(width: 350, height: 150) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+}
+`
 
 export default PostSnippet;
