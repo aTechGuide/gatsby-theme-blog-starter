@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import {Chip, Badge} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { navigate } from 'gatsby';
 
 import {slugify} from '../util/UtilityFunctions';
 import PageLayout from '../components/layout/PageLayout';
@@ -36,13 +36,10 @@ const tagsPage = ({pageContext}) => {
 
       <PageLayout title="Tags">
         {tags.map(tag => (
-          <Link key={tag} to={`/tag/${slugify(tag)}/`}>
-            <Badge className={classes.margin} badgeContent={tagPostCounts[tag]} color="secondary">
-              <Chip size='small' color='primary' label={tag} />
-              {/* <MailIcon /> */}
+            <Badge key={tag} className={classes.margin} badgeContent={tagPostCounts[tag]} color="secondary">
+              <Chip size='small' color='primary' label={tag} 
+                clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
             </Badge>
-            
-          </Link>
         ))}
       </PageLayout>
     </Layout>
