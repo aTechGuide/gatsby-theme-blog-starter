@@ -3,6 +3,7 @@ import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
 import Img from "gatsby-image"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import {slugify} from '../../util/UtilityFunctions';
 import Context from '../Context';
@@ -111,8 +112,7 @@ const FullPost = ({data}) => {
   const classes = useStyles();
   const contextData = useContext(Context)
 
-  const post = data.markdownRemark.frontmatter;
-  const update_date = post.update_date;
+  const post = data.mdx.frontmatter;
 
   return (
     <Card>
@@ -120,12 +120,13 @@ const FullPost = ({data}) => {
         // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
         avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
         title={post.pagetitle}
-        subheader={update_date !== 'Invalid date' ? `Published: ${post.date} • Updated: ${post.update_date}` : `Published: ${post.date}`}
+        subheader={post.update_date !== post.date ? `Published: ${post.date} • Updated: ${post.update_date}` : `Published: ${post.date}`}
         titleTypographyProps={{variant: 'h1', component: 'h1'}}
         className={classes.header}
       />
       <CardContent>    
-        <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} className={classes.postFont}/>
+        {/* <div dangerouslySetInnerHTML={{ __html: data.mdx.html }} className={classes.postFont}/> */}
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
       </CardContent>
       
       <CardActions className={classes.chiprow}>

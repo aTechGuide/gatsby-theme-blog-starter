@@ -4,7 +4,7 @@ description: We will learn what is Balagha and its divisions (أقسام). Why w
 pagetitle: Introduction to Balagha
 summary: We will learn what is Balagha and its divisions (أقسام). Why we study Balagha and the difference between الفصاحة and البلاغة.
 date: '2019-02-24'
-update_date: ''
+update_date: '2019-02-24'
 tags:
   - Balagha
   - Irab

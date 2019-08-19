@@ -50,17 +50,17 @@ This page has details of text formatting used in Arabic Blog with examples.
 
 > blockquote: Welcome to code blog.
 
-<br>
+<br/>
 
 `Code: Welcome to code blog. Enjoy the content. This is third Post`
 
 
-<br>
+<br/>
 
 > **عاصياً**{: .arabic .irab}
  منادى **منصوب**{: .irabhighlight} وعلامة نصبه الفتحة
 
-<br>
+<br/>
 
 > **زيد**{: .arabic .irab}
  منادى مبني على الضم في محل نصب

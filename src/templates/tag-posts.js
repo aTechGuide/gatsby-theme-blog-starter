@@ -9,7 +9,7 @@ import Seo from '../components/seo/Seo';
 const tagPosts = ({data, pageContext}) => {
 
   const {tag} = pageContext;
-  const { totalCount } = data.allMarkdownRemark
+  const { totalCount } = data.allMdx
   const pageHeader = `${totalCount} post${totalCount === 1 ?  '' : 's'} tagged with "${tag}"`
 
   return (
@@ -29,7 +29,7 @@ const tagPosts = ({data, pageContext}) => {
 
 export const tagQuery = graphql`
     query($tag: String!){
-      allMarkdownRemark (
+      allMdx (
         sort: {fields: [frontmatter___date], order: DESC}
         filter: { frontmatter: {tags: { in: [$tag]} } }
       ) {

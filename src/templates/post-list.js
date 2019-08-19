@@ -11,7 +11,7 @@ import Seo from "../components/seo/Seo"
 
 const postList = ({data, pageContext}) => {
 
-  const posts = data.allMarkdownRemark.edges
+  const posts = data.allMdx.edges
   const {currentPage, numberOfPages} = pageContext
   
   return (
@@ -32,7 +32,7 @@ const postList = ({data, pageContext}) => {
 
 export const postListQuery = graphql`
   query postListQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark (
+    allMdx (
       sort: {fields: [frontmatter___date], order: DESC}
       limit: $limit
       skip: $skip

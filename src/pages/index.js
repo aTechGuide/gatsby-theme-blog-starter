@@ -12,8 +12,8 @@ const IndexPage = () => {
 
   const postsPerPage = 2;
   const data = useStaticQuery(indexQuery)
-  const numberOfPages = Math.ceil(data.allMarkdownRemark.totalCount / postsPerPage);
-  const posts = data.allMarkdownRemark.edges
+  const numberOfPages = Math.ceil(data.allMdx.totalCount / postsPerPage);
+  const posts = data.allMdx.edges
 
   return(
     <Layout >
@@ -28,7 +28,7 @@ const IndexPage = () => {
 
 const indexQuery = graphql`
   {
-    allMarkdownRemark(
+    allMdx(
       sort: {fields: [frontmatter___date], order: DESC}
       limit: 2
       filter: {frontmatter: {published: {eq: true}}}

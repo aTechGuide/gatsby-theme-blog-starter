@@ -6,7 +6,7 @@ const _ = require('lodash')
 exports.onCreateNode = ({node, actions}) => {
   const {createNodeField} = actions
 
-  if(node.internal.type === 'MarkdownRemark'){
+  if(node.internal.type === 'Mdx'){
     const slugFromTitle = slugify(node.frontmatter.title)
     createNodeField({
       node,
@@ -29,7 +29,7 @@ exports.createPages = ({actions, graphql}) => {
 
   return graphql(`
   {
-    allMarkdownRemark {
+    allMdx {
       edges {
         node {
           id
@@ -44,7 +44,7 @@ exports.createPages = ({actions, graphql}) => {
   `).then(res => {
       if(res.errors) return Promise.reject(res.errors)
 
-      const posts = res.data.allMarkdownRemark.edges
+      const posts = res.data.allMdx.edges
 
       // Create Posts Pages
       createPosts(posts, createPage, templates);

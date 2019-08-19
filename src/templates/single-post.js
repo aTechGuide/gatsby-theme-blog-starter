@@ -12,7 +12,7 @@ import SinglePostLayout from '../components/layout/SinglePostLayout';
 
 const singlepost = ({data}) => {
 
-  const{title, description, tags, image, slug, date, update_date} = data.markdownRemark.frontmatter;
+  const{title, description, tags, image, slug, date, update_date} = data.mdx.frontmatter;
 
   return (
     <Layout>
@@ -32,9 +32,9 @@ const singlepost = ({data}) => {
 
 export const postQuery = graphql`
   query blogPostBySlug($slug: String!) {
-    markdownRemark(frontmatter: { slug: {eq: $slug}}) {
+    mdx(frontmatter: { slug: {eq: $slug}}) {
       id
-      html
+      body
       frontmatter{
         title
         description

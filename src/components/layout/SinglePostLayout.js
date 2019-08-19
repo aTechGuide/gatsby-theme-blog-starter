@@ -36,7 +36,7 @@ const SinglePostLayout = ({data}) => {
   const [visibleComments, setVisibleComments] = useState(false);
   const theme = useTheme();
 
-  const post = data.markdownRemark.frontmatter;
+  const post = data.mdx.frontmatter;
   const{pagetitle, slug} = post
 
   return (
@@ -57,7 +57,7 @@ const SinglePostLayout = ({data}) => {
         </Grid>
         <Grid item xs={12} className={classes.comment}>
           { visibleComments ? 
-            <DisqusComments slug={slug} pagetitle={pagetitle} id={data.markdownRemark.id}/> 
+            <DisqusComments slug={slug} pagetitle={pagetitle} id={data.mdx.id}/> 
             : <div className={classes.commentButton}> <Button {...theme.button} onClick={() => setVisibleComments(true)}> Click to Load Comments</Button> </div>
           } 
         </Grid>

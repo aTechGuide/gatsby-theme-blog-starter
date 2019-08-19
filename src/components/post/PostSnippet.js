@@ -70,7 +70,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
 }
 
 export const postFrontMatter = graphql`
-  fragment PostFrontMatter on MarkdownRemarkFrontmatter {
+  fragment PostFrontMatter on MdxFrontmatter {
     pagetitle
     summary
     date(formatString: "MMM D, YYYY")

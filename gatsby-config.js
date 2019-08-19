@@ -59,8 +59,8 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map(edge => {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
                 return({
                   title: edge.node.frontmatter.pagetitle,
                   description: edge.node.frontmatter.summary,
@@ -68,7 +68,7 @@ module.exports = {
                   custom_elements: [
                     { "link": `${site.siteMetadata.siteUrl}/${edge.node.frontmatter.slug}` },
                     { "category": `[${edge.node.frontmatter.tags.join(",")}]` },
-                    { "pubDate": edge.node.frontmatter.update_date != 'Invalid date' ? edge.node.frontmatter.update_date : edge.node.frontmatter.date},
+                    { "pubDate": edge.node.frontmatter.update_date !== edge.node.frontmatter.date ? edge.node.frontmatter.update_date : edge.node.frontmatter.date},
                     //{ "content:encoded": edge.node.html }
                   ],
                 })
@@ -76,12 +76,11 @@ module.exports = {
             },
             query: `
               {
-                allMarkdownRemark(
+                allMdx(
                   sort: { order: DESC, fields: [frontmatter___date] },
                 ) {
                   edges {
                     node {
-                      html
                       frontmatter {
                         pagetitle
                         summary
@@ -125,12 +124,20 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`, // Plugins For Image Processing
-    `gatsby-plugin-sharp`, // Image Transformations; Sharp should be before we transform our markdown file
+    `gatsby-plugin-sharp`, // Image Transformations; Sharp should be before we transform our mdx file
     {
-      resolve: 'gatsby-transformer-remark', // Requires to format markdown
+      resolve: 'gatsby-plugin-mdx', // Requires to format mdx
       options: {
-        plugins: [
-          'gatsby-remark-attr', // Add attributes to MarkdownRemark
+        extensions: [`.mdx`, `.md`],
+        remarkPlugins: [require("remark-attr")],
+        plugins: [`gatsby-remark-images`], // <- Hack to make this plugin work properly
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              linkImagesToOriginal: false
+            }
+          },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -155,13 +162,6 @@ module.exports = {
               ],
             },
           },
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 750,
-              linkImagesToOriginal: false
-            }
-          }
         ]
       }
     },

@@ -106,7 +106,7 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
     "url": url,
     "datePublished": date,
     "dateCreated": date,
-    "dateModified": update_date !== 'Invalid date' ? update_date : date,
+    "dateModified": update_date !== date ? update_date : date,
     "description": metaDescription,
     "author": {
        "@type": "Person",

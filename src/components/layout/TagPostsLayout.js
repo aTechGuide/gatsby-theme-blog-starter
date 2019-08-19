@@ -17,7 +17,7 @@ const TagPostsLayout = ({data, pageContext}) => {
 
   return (
     <Grid container justify='center' >
-        {data.allMarkdownRemark.edges.map(({node}) => (
+        {data.allMdx.edges.map(({node}) => (
           <Grid key={node.id} item className={classes.postGridItem}>
             <PostSnippet 
               key={node.id} 
