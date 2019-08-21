@@ -1,15 +1,3 @@
-const cspDirectives = [
-  "default-src 'self' https://disqus.com https://c.disquscdn.com",
-  "script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://arabic-blog.disqus.com",
-  "frame-src https://disqus.com",
-  "font-src 'self' data: https://fonts.googleapis.com https://fonts.gstatic.com",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://c.disquscdn.com",
-  "img-src 'self' data: https://www.google-analytics.com https://referrer.disqus.com https://c.disquscdn.com",
-  "object-src 'none'"
-];
-
-const directivesToCspHeader = headers => headers.join(';');
-
 module.exports = {
   siteMetadata: {
     // Final blog https://github.com/hidjou/classsed-gatsby-blog/
@@ -165,19 +153,5 @@ module.exports = {
         // },
       },
     },
-    {
-      resolve: 'gatsby-plugin-netlify',
-      options: {
-        headers: {
-          '/*': [
-            'X-Frame-Options: DENY',
-            'X-XSS-Protection: 1; mode=block',
-            'X-Content-Type-Options: nosniff',
-            `Content-Security-Policy: ${directivesToCspHeader(cspDirectives)}`,
-            'Referrer-Policy: no-referrer-when-downgrade'
-          ]
-        }
-      }
-    }
   ],
 }
