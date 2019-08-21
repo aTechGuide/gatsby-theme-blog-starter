@@ -17,17 +17,18 @@ module.exports = {
     description: `Blog Description`,
     author: `Author Name`,
     twitterId: `TwitterID`,
-    siteUrl: `https://arabicblog.netlify.com`,
-    genre: 'Arabic Grammar Tutorials',
-    keywords: [`Arabic`, `ArabicBlog`, `Arabic Tutorials`, `Arabic Grammar`, `Arabic Grammar Tutorials`, `Learn Arabic in English`],
-    email: `admin@arabicblog.info`,
+    siteUrl: `SiteURL`,
+    genre: 'Genre of blog to be used in Google structured data',
+    keywords: [`Keyword 1`, `Keyword 2`],
+    email: `admin@domain.info`,
     paginate: `12`,
     social: [
-      'https://www.facebook.com/arabicblog/'
-    ],
-    contactSupport: 'https://www.facebook.com/arabicblog/',
-    bingId: 'B73F178C4AB143116D3FE641C6044861',
-    menuLinks: [{name: 'Tags', link: '/tags/'}]
+      'https://www.facebook.com/pagelink/',
+      'https://twitter.com/handle'
+    ], // Array of Social links to be passed in Google structured data
+    contactSupport: 'Support URL to be used in Google structured data',
+    bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site
+    menuLinks: [{name: 'Name of Menu Item', link: '/link/'}] // Array of top Navigation bar items
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

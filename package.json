@@ -1,7 +1,7 @@
 {
   "name": "gatsby-theme-blog-starter",
   "description": "Gatsby theme for blog powered by MDX and Material UI",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Kamran Ali <kamranalinitb@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.3.2",
@@ -49,7 +49,11 @@
     "react-dom": "^16.9.0"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "Gatsby Themes",
+    "Blog Theme",
+    "MDX",
+    "Material UI"
   ],
   "license": "MIT",
   "scripts": {
@@ -62,9 +66,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/aTechGuide/gatsby-theme-blog-starter"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/aTechGuide/gatsby-theme-blog-starter/issues"
   }
 }

@@ -4,6 +4,7 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
 - Pagination for blog posts
 - Tags for browsing the content
 - Subscription box (Powered by Mailchimp)
+- Google Structured Data
 - Disqus React for commenting
 - Feed
 - Google Analytics 
