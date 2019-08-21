@@ -1,3 +1,37 @@
-# Arabic Blog
+# Gatsby theme blog starter
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/21da47ec-5852-4050-8cdc-135e5eaeb94a/deploy-status)](https://app.netlify.com/sites/arabicblog/deploys)
+This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). It provides following functionality out of box
+- Pagination for blog posts
+- Tags for browsing the content
+- Subscription box (Powered by Mailchimp)
+- Disqus React for commenting
+- Feed
+- Google Analytics 
+- Sitemap
+
+
+## How to use
+- Include `gatsby-theme-blog-starter` as dependency in your blog
+- Point to directory where posts will reside
+```
+{
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    name: `posts`,
+    path: `${__dirname}/src/posts/`,
+  },
+},
+```
+- Point to directory where images will reside
+```
+{
+  resolve: `gatsby-source-filesystem`,
+  options: {
+    name: `images`,
+    path: `${__dirname}/src/images`,
+  },
+},
+```
+- Add icon under `src/images` by the name `icon.png`
+- Add .env.* providing `disqus shortname` as value for key `GATSBY_DISQUS_NAME` 
+- Create `static` folder at root of project and add `robots.txt`

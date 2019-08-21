@@ -13,11 +13,10 @@ const directivesToCspHeader = headers => headers.join(';');
 module.exports = {
   siteMetadata: {
     // Final blog https://github.com/hidjou/classsed-gatsby-blog/
-    title: `Arabic Blog`,
-    description: `Kamran Ali's Arabic Grammar Blog`,
-    author: `Kamran Ali`,
-    twitterId: `@aTechGuide`,
-    //siteUrl: `https://arabicblog.info`,
+    title: `Blog Title`,
+    description: `Blog Description`,
+    author: `Author Name`,
+    twitterId: `TwitterID`,
     siteUrl: `https://arabicblog.netlify.com`,
     genre: 'Arabic Grammar Tutorials',
     keywords: [`Arabic`, `ArabicBlog`, `Arabic Tutorials`, `Arabic Grammar`, `Arabic Grammar Tutorials`, `Learn Arabic in English`],
@@ -105,22 +104,14 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
         name: `pages`,
         path: `${__dirname}/src/pages`,
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-page-creator`,
       options: {
-        name: `posts`,
-        path: `${__dirname}/src/posts`,
+        path: `${__dirname}/src/pages`,
       },
     },
     `gatsby-transformer-sharp`, // Plugins For Image Processing
@@ -174,20 +165,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-manifest`, //<- Creates manifest file
-      options: {
-        name: "ArabicBlog.info",
-        short_name: "ArabicBlog",
-        description: "Arabic Notes",
-        start_url: "/",
-        background_color: "#673ab7",
-        theme_color: "#673ab7",
-        display: "standalone",
-        icon: "src/images/icon.png",
-      },
-    },
-    `gatsby-plugin-offline`, //<- Adds service worker; Add after gatsby-plugin-manifest
-    {
       resolve: 'gatsby-plugin-netlify',
       options: {
         headers: {
@@ -201,6 +178,5 @@ module.exports = {
         }
       }
     }
-    
   ],
 }
