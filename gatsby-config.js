@@ -16,7 +16,8 @@ module.exports = {
     ], // Array of Social links to be passed in Google structured data
     contactSupport: 'Support URL to be used in Google structured data',
     bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site
-    menuLinks: [{name: 'Name of Menu Item', link: '/link/'}] // Array of top Navigation bar items
+    menuLinks: [{name: 'Name of Menu Item', link: '/link/'}], // Array of top Navigation bar items
+    comments: 'true' // Enable/Disable comments
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

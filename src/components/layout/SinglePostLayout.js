@@ -67,7 +67,7 @@ const SinglePostLayout = ({data}) => {
             tags={post.tags}
           />
         </Grid>
-        {site.siteMetadata.comments === true ? <Grid item xs={12} className={classes.comment}>
+        {site.siteMetadata.comments === 'true' ? <Grid item xs={12} className={classes.comment}>
           { visibleComments ? 
             <DisqusComments slug={slug} pagetitle={pagetitle} id={data.mdx.id}/> 
             : <div className={classes.commentButton}> <Button {...theme.button} onClick={() => setVisibleComments(true)}> Click to Load Comments</Button> </div>
