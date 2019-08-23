@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {Grid, Button} from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import {useStaticQuery, graphql} from 'gatsby';
 
 import Subscribe from '../Subscribe';
 import Share from '../Share';
@@ -35,6 +36,17 @@ const SinglePostLayout = ({data}) => {
   const classes = useStyles();
   const [visibleComments, setVisibleComments] = useState(false);
   const theme = useTheme();
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            comments
+          }
+        }
+      }
+    `
+  )
 
   const post = data.mdx.frontmatter;
   const{pagetitle, slug} = post
@@ -55,12 +67,12 @@ const SinglePostLayout = ({data}) => {
             tags={post.tags}
           />
         </Grid>
-        <Grid item xs={12} className={classes.comment}>
+        {site.siteMetadata.comments === true ? <Grid item xs={12} className={classes.comment}>
           { visibleComments ? 
             <DisqusComments slug={slug} pagetitle={pagetitle} id={data.mdx.id}/> 
             : <div className={classes.commentButton}> <Button {...theme.button} onClick={() => setVisibleComments(true)}> Click to Load Comments</Button> </div>
           } 
-        </Grid>
+        </Grid>: null}
       </Grid> 
       {/* Left Container End */}      
     </Grid>
