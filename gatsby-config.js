@@ -84,7 +84,7 @@ module.exports = {
               }
             `,
             output: "/feed.xml",
-            title: "Arabic Blog",
+            title: "Blog Title",
             feed_url: `https://arabicblog.info/feed.xml`,
             site_url: `https://arabicblog.info/`,
           },

@@ -17,7 +17,7 @@ const IndexPage = () => {
 
   return(
     <Layout >
-      <Seo title="Arabic Blog"/>
+      <Seo title={data.site.siteMetadata.title} />
       <IndexPageGrid 
           posts={posts} 
           currentPage={1}
@@ -27,7 +27,12 @@ const IndexPage = () => {
 }
 
 const indexQuery = graphql`
-  {
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allMdx(
       sort: {fields: [frontmatter___date], order: DESC}
       limit: 2

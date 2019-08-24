@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import Img from "gatsby-image"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
@@ -114,11 +114,23 @@ const FullPost = ({data}) => {
 
   const post = data.mdx.frontmatter;
 
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  )
+
   return (
     <Card>
       <CardHeader
         // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
-        avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
+        avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt={site.siteMetadata.title} />}
         title={post.pagetitle}
         subheader={post.update_date !== post.date ? `Published: ${post.date} • Updated: ${post.update_date}` : `Published: ${post.date}`}
         titleTypographyProps={{variant: 'h1', component: 'h1'}}

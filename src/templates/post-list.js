@@ -9,16 +9,17 @@ import Seo from "../components/seo/Seo"
  * This Template is used to generate pages for Pagination
  */
 
-const postList = ({data, pageContext}) => {
+const PostList = ({data, pageContext}) => {
 
   const posts = data.allMdx.edges
+  const title = data.site.siteMetadata.title
   const {currentPage, numberOfPages} = pageContext
   
   return (
     <Layout pageTitle={`Page: ${currentPage}`}>
       <Seo 
-        title="Arabic Blog"
-        description={`Arabic Blog ${currentPage} page.`}
+        title={`${title}`}
+        description={`${title} ${currentPage} page.`}
         slug={`/page/${currentPage}`} />
       
       <IndexPageGrid 
@@ -32,6 +33,11 @@ const postList = ({data, pageContext}) => {
 
 export const postListQuery = graphql`
   query postListQuery($skip: Int!, $limit: Int!) {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allMdx (
       sort: {fields: [frontmatter___date], order: DESC}
       limit: $limit
@@ -49,4 +55,4 @@ export const postListQuery = graphql`
   }
 `
 
-export default postList;
+export default PostList;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Chip, Badge} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { navigate } from 'gatsby';
+import { navigate, useStaticQuery, graphql } from 'gatsby';
 
 import {slugify} from '../util/UtilityFunctions';
 import PageLayout from '../components/layout/PageLayout';
@@ -20,17 +20,29 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const tagsPage = ({pageContext}) => {
+const TagsPage = ({pageContext}) => {
 
   const classes = useStyles();
-
   const {tags, tagPostCounts} = pageContext;
+
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  )
+  const title = site.siteMetadata.title
 
   return (
     <Layout>
       <Seo 
-        title={`Arabic Blog Tags`}
-        description={`Arabic Blog Tags: ${tags}`}
+        title={`${title} Tags`}
+        description={`${title} Tags: ${tags}`}
         tags={[tags]}
         slug={`tags`} />
 
@@ -46,4 +58,4 @@ const tagsPage = ({pageContext}) => {
   );
 }
 
-export default tagsPage;
+export default TagsPage;

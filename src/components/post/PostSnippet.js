@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { navigate, graphql } from 'gatsby';
+import { navigate, graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,6 +37,18 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
 
   const classes = useStyles();
   const contextData = useContext(Context)
+
+  const { site } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+          }
+        }
+      }
+    `
+  )
  
   return (
     <Card className={classes.card} raised>
@@ -44,7 +56,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
         <Img fixed={fixed} draggable={false} title={pagetitle} alt={pagetitle} />
       </CardActionArea>
         <CardHeader
-        avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt="Arabic Blog" />}
+        avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt={site.siteMetadata.title} />}
         title={pagetitle}
         subheader={date}
       />

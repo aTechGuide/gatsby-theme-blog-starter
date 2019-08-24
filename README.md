@@ -36,3 +36,4 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
 - Add icon under `src/images` by the name `icon.png`
 - Add .env.* providing `disqus shortname` as value for key `GATSBY_DISQUS_NAME` 
 - Create `static` folder at root of project and add `robots.txt`
+- Create a [Shadow](https://www.gatsbyjs.org/blog/2019-07-03-announcing-stable-release-gatsby-themes/#a-brief-review-of-shadowing) of `<AboutLayout />`

@@ -42,6 +42,7 @@ const Header = () => {
       query {
         site {
           siteMetadata {
+            title
             menuLinks {
               name
               link
@@ -57,14 +58,12 @@ const Header = () => {
         <Toolbar>
           <Typography variant="h4" component='h2' className={classes.title}>
             
-            <Link className={classes.homeLink} to="/">Arabic Blog</Link>
-            {/* <AniLink className={classes.homeLink} to="/" {...theme.linkTransition}>Arabic Blog</AniLink> */}
+            <Link className={classes.homeLink} to="/">{site.siteMetadata.title}</Link>
           </Typography>
             {site.siteMetadata.menuLinks.map(link => (
               <Typography key={link.name}>
                 <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
-                {/* <AniLink  className={classes.menuLink} activeClassName={classes.activeLink} to={link.link} {...theme.linkTransition}>{link.name}</AniLink> */}
-              </Typography>              
+              </Typography>
             )) }    
           <Typography>
           <Tooltip title="Install App for Offline View">
