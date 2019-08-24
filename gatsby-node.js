@@ -21,7 +21,7 @@ exports.createPages = ({actions, graphql}) => {
   const {createPage} = actions;
 
   const templates = {
-    singlePost: require.resolve('./src/templates/single-post.js'),
+    singlePost: require.resolve('./src/templates/post.mdx'),
     tagsPage: require.resolve('./src/templates/tags-page.js'),
     tagPosts: require.resolve('./src/templates/tag-posts.js'),
     postList: require.resolve('./src/templates/post-list.js'),

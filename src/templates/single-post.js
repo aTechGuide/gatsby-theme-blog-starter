@@ -1,5 +1,4 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/Seo';
@@ -29,31 +28,5 @@ const singlepost = ({data}) => {
     </Layout>
   );
 }
-
-export const postQuery = graphql`
-  query blogPostBySlug($slug: String!) {
-    mdx(frontmatter: { slug: {eq: $slug}}) {
-      id
-      body
-      frontmatter{
-        title
-        description
-        pagetitle
-        summary
-        date(formatString: "MMM D, YYYY")
-        update_date(formatString: "MMM D, YYYY")
-        tags
-        slug
-        image {
-          childImageSharp {
-            fluid(maxWidth: 700) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    }
-  }
-`
 
 export default singlepost;
