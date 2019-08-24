@@ -63,7 +63,7 @@ const Footer = () => {
   const contextData = useContext(Context);
   const date = new Date().getFullYear();
 
-  const { site } = useStaticQuery(
+  const { site: {siteMetadata : {title}} } = useStaticQuery(
     graphql`
       query {
         site {
@@ -92,7 +92,7 @@ const Footer = () => {
         <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
       </Typography>
       <Typography variant="body1" className={classes.text}>
-        {`Copyright © ${site.siteMetadata.title} ${date}. Powered by `}
+        {`Copyright © ${title} ${date}. Powered by `}
         
         <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
         <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
