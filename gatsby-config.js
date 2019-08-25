@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts"}) => ({
   siteMetadata: {
     // Final blog https://github.com/hidjou/classsed-gatsby-blog/
     title: `Blog Title`,
@@ -26,7 +26,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-27634418-5",
+        trackingId: trackingId,
       },
     },
     {
@@ -102,7 +102,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
-        path: `posts`,
+        path: postsPath,
       },
     },
     {
@@ -169,4 +169,4 @@ module.exports = {
       },
     },
   ],
-}
+})
