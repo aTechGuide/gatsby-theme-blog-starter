@@ -1,7 +1,7 @@
 {
   "name": "gatsby-theme-blog-starter",
   "description": "Gatsby theme for blog powered by MDX and Material UI",
-  "version": "0.0.10",
+  "version": "0.0.12",
   "author": "Kamran Ali <kamranalinitb@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.3.2",
@@ -59,6 +59,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "clean": "gatsby clean",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 gatsby develop --https --port 8003",
     "serve": "gatsby serve",

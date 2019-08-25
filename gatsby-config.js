@@ -5,7 +5,7 @@ module.exports = {
     description: `Blog Description`,
     author: `Author Name`,
     twitterId: `TwitterID`,
-    siteUrl: `SiteURL`,
+    siteUrl: `https://kamranali.in`,
     genre: 'Genre of blog to be used in Google structured data',
     keywords: [`Keyword 1`, `Keyword 2`],
     email: `admin@domain.info`,
@@ -16,7 +16,7 @@ module.exports = {
     ], // Array of Social links to be passed in Google structured data
     contactSupport: 'Support URL to be used in Google structured data',
     bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site
-    menuLinks: [{name: 'Name of Menu Item', link: '/link/'}], // Array of top Navigation bar items
+    menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items
     comments: 'true' // Enable/Disable comments
   },
   plugins: [
@@ -96,6 +96,20 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/src/pages`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `posts`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `images`,
       },
     },
     {
