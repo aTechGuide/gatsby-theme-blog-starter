@@ -1,4 +1,4 @@
-module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts"}) => ({
+module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerPage = "2"}) => ({
   siteMetadata: {
     // Final blog https://github.com/hidjou/classsed-gatsby-blog/
     title: `Blog Title`,
@@ -9,7 +9,6 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts"}) => ({
     genre: 'Genre of blog to be used in Google structured data',
     keywords: [`Keyword 1`, `Keyword 2`],
     email: `admin@domain.info`,
-    paginate: `12`,
     social: [
       'https://www.facebook.com/pagelink/',
       'https://twitter.com/handle'
@@ -17,7 +16,10 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts"}) => ({
     contactSupport: 'Support URL to be used in Google structured data',
     bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site
     menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items
-    comments: 'true' // Enable/Disable comments
+    comments: 'true', // Enable/Disable comments
+    options : {
+      paginate: postsPerPage
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

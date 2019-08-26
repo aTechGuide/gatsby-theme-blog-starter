@@ -10,9 +10,8 @@ import 'typeface-markazi-text';
 
 const IndexPage = () => {
 
-  const postsPerPage = 2;
   const data = useStaticQuery(indexQuery)
-  const numberOfPages = Math.ceil(data.allMdx.totalCount / postsPerPage);
+  const numberOfPages = Math.ceil(data.allMdx.totalCount / parseInt(data.site.siteMetadata.options.paginate));
   const posts = data.allMdx.edges
 
   return(
@@ -31,6 +30,9 @@ const indexQuery = graphql`
     site {
       siteMetadata {
         title
+        options {
+          paginate
+        }
       }
     }
     allMdx(

@@ -17,7 +17,7 @@ exports.onCreateNode = ({node, actions}) => {
 }
 */
 
-exports.createPages = ({actions, graphql}) => {
+exports.createPages = ({actions, graphql}, options) => {
   const {createPage} = actions;
 
   const templates = {
@@ -56,14 +56,13 @@ exports.createPages = ({actions, graphql}) => {
       createPagePerTag(tags, createPage, templates);
 
       // Pagination
-      createPaginationPages(posts, createPage, templates);
-
+      createPaginationPages(posts, createPage, templates, parseInt(options.postsPerPage));
 
   })
 }
 
-function createPaginationPages(posts, createPage, templates) {
-  const postsPerPage = 2;
+function createPaginationPages(posts, createPage, templates, postsPerPage) {
+  
   const numberOfPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numberOfPages }).forEach((_, index) => {
     const isFirstPage = index === 0;

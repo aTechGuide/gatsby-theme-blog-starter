@@ -22,6 +22,7 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
 ## Options
 - `trackingId` => Google Analytics Tracking ID
 - `postsPath` => Name of the directory (at root of App) from where the posts should be picked
+- `postsPerPage` => Maximum number of posts displayed on each pagination page
 
 ### Default Options
 ```
@@ -29,7 +30,8 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
   resolve: `gatsby-theme-blog-starter`,
   options: {
     trackingId: "UA-11111XXX-1",
-    postsPath: "posts"
+    postsPath: "posts",
+    postsPerPage: "2"
   },
 },
 ```
