@@ -1,4 +1,11 @@
-module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerPage = "2"}) => ({
+module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerPage = "2", mailchimpURL = ""}) => {
+  
+  let showSubscriptionWidget = true
+  if (mailchimpURL === "") {
+    showSubscriptionWidget = false
+  } 
+  
+  return {
   siteMetadata: {
     // Final blog https://github.com/hidjou/classsed-gatsby-blog/
     title: `Blog Title`,
@@ -18,7 +25,9 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
     menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items
     comments: 'true', // Enable/Disable comments
     options : {
-      paginate: postsPerPage
+      paginate: postsPerPage,
+      showSubscriptionWidget,
+      mailchimpURL
     }
   },
   plugins: [
@@ -171,4 +180,5 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
       },
     },
   ],
-})
+}
+}

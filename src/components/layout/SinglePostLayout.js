@@ -42,6 +42,9 @@ const SinglePostLayout = ({data}) => {
         site {
           siteMetadata {
             comments
+            options {
+              showSubscriptionWidget
+            }
           }
         }
       }
@@ -80,9 +83,9 @@ const SinglePostLayout = ({data}) => {
     <Grid item xs={12} md={3} className={[classes.postGridItem, classes.sidebar].join(" ")} >
       {/* Right Container Start*/}
       <Grid container >
-        <Grid item xs={12} >
-          <Subscribe />
-        </Grid>
+        {
+          site.siteMetadata.options.showSubscriptionWidget === true ? <Grid item xs={12} > <Subscribe /> </Grid> : null
+        }
       </Grid>
       {/* Right Container End*/}
     </Grid>
