@@ -1,13 +1,28 @@
 import React from 'react';
 import {Card, CardContent, TextField, Typography, Button} from '@material-ui/core';
 import { useTheme } from '@material-ui/styles';
+import {useStaticQuery, graphql} from 'gatsby';
 
 const Subscribe = () => {
 
   const theme = useTheme();
+  const { site : {siteMetadata : {options : {showSubscriptionWidget, mailchimpURL}}} } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            options {
+              showSubscriptionWidget
+              mailchimpURL
+            }
+          }
+        }
+      }
+    `
+  )
 
   return (
-      <Card>
+      { showSubscriptionWidget } && <Card>
         <CardContent>
           <Typography variant='h5' component='h3' color='primary' align='center' >
             Stay in touch
@@ -15,7 +30,7 @@ const Subscribe = () => {
           <Typography variant='body1' >
             Receive E Mail notification of Latest Tutorials
           </Typography>
-          <form action="https://kamranali.us19.list-manage.com/subscribe/post?u=81033a93b0c17d2aca19ba835&amp;id=32d4ecb6e3" 
+          <form action={mailchimpURL} 
             method="post" 
             name="mc-embedded-subscribe-form" 
             target="_blank" noValidate autoComplete="off">

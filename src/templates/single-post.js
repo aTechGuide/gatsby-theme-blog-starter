@@ -9,7 +9,7 @@ import SinglePostLayout from '../components/layout/SinglePostLayout';
  * Template used by Blog Posts files under posts folder
  */
 
-const singlepost = ({data}) => {
+const Singlepost = ({data}) => {
 
   const{title, description, tags, image, slug, date, update_date} = data.mdx.frontmatter;
 
@@ -29,4 +29,4 @@ const singlepost = ({data}) => {
   );
 }
 
-export default singlepost;
+export default Singlepost;

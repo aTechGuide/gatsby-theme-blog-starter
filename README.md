@@ -13,26 +13,65 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
 
 ## How to use
 - Include `gatsby-theme-blog-starter` as dependency in your blog
-- Point to directory where posts will reside
-```
-{
-  resolve: `gatsby-source-filesystem`,
-  options: {
-    name: `posts`,
-    path: `${__dirname}/src/posts/`,
-  },
-},
-```
-- Point to directory where images will reside
-```
-{
-  resolve: `gatsby-source-filesystem`,
-  options: {
-    name: `images`,
-    path: `${__dirname}/src/images`,
-  },
-},
-```
-- Add icon under `src/images` by the name `icon.png`
+- Create `posts` directory and add posts into it
+- Create `images` directory and images into it to be used by queries directly
+- Add icon under `images` by the name `icon.png`
 - Add .env.* providing `disqus shortname` as value for key `GATSBY_DISQUS_NAME` 
 - Create `static` folder at root of project and add `robots.txt`
+
+## Options
+- `trackingId` => Google Analytics Tracking ID
+- `postsPath` => Name of the directory (at root of App) from where the posts should be picked
+- `postsPerPage` => Maximum number of posts displayed on each pagination page
+- `mailchimpURL` => Form `action` URL for MailChimp subscription form. If not provided, subscription box will not be displayed
+
+### Default Options
+```
+{
+  resolve: `gatsby-theme-blog-starter`,
+  options: {
+    trackingId: "UA-11111XXX-1",
+    postsPath: "posts",
+    postsPerPage: "2",
+    mailchimpURL: ""
+  },
+},
+```
+
+## Theme
+To override the theme of entire site. You may shadow the `theme.js` file under `example-site/src/gatsby-theme-blog-starter/theme.js`
+
+### Default Theme 
+```
+import {deepPurple, red, indigo, yellow, cyan, lightGreen} from '@material-ui/core/colors/';
+
+const theme = {
+  palette: {
+    primary: deepPurple,
+    secondary: red
+  },
+  typography: {
+    fontSize: 16,
+    h1 : {
+      fontSize: "3rem",
+      fontWeight: 500,
+      color: deepPurple[700]
+    }
+  },
+  button: {
+    color: "primary",
+    variant: "contained"
+  },
+  linkTransition: {
+    fade: "true",
+    duration: .5
+  },
+  postGridItemPadding: '16px',
+  headingColor: indigo,
+  highlightOne: yellow,
+  highlightTwo: cyan,
+  highlightThree: lightGreen
+}
+
+export default theme
+```

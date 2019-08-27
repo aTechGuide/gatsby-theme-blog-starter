@@ -1,23 +1,34 @@
-module.exports = {
+module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerPage = "2", mailchimpURL = ""}) => {
+  
+  let showSubscriptionWidget = true
+  if (mailchimpURL === "") {
+    showSubscriptionWidget = false
+  } 
+  
+  return {
   siteMetadata: {
     // Final blog https://github.com/hidjou/classsed-gatsby-blog/
     title: `Blog Title`,
     description: `Blog Description`,
     author: `Author Name`,
     twitterId: `TwitterID`,
-    siteUrl: `SiteURL`,
+    siteUrl: `https://kamranali.in`,
     genre: 'Genre of blog to be used in Google structured data',
     keywords: [`Keyword 1`, `Keyword 2`],
     email: `admin@domain.info`,
-    paginate: `12`,
     social: [
       'https://www.facebook.com/pagelink/',
       'https://twitter.com/handle'
     ], // Array of Social links to be passed in Google structured data
     contactSupport: 'Support URL to be used in Google structured data',
     bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site
-    menuLinks: [{name: 'Name of Menu Item', link: '/link/'}], // Array of top Navigation bar items
-    comments: 'true' // Enable/Disable comments
+    menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items
+    comments: 'true', // Enable/Disable comments
+    options : {
+      paginate: postsPerPage,
+      showSubscriptionWidget,
+      mailchimpURL
+    }
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -26,7 +37,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-27634418-5",
+        trackingId: trackingId,
       },
     },
     {
@@ -84,7 +95,7 @@ module.exports = {
               }
             `,
             output: "/feed.xml",
-            title: "Arabic Blog",
+            title: "Blog Title",
             feed_url: `https://arabicblog.info/feed.xml`,
             site_url: `https://arabicblog.info/`,
           },
@@ -96,6 +107,20 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/src/pages`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: postsPath,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `images`,
       },
     },
     {
@@ -155,4 +180,5 @@ module.exports = {
       },
     },
   ],
+}
 }

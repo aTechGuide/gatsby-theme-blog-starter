@@ -5,11 +5,12 @@ import {useStaticQuery, graphql} from 'gatsby';
 import {CssBaseline} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 import Footer from '../Footer';
 import Header from "../header"
 import {Provider} from '../Context';
-import theme from '../../util/theme';
+import theme from '../../theme';
 
 /**
  * This class is Parent to all the components
@@ -23,6 +24,8 @@ const useStyles = makeStyles(theme => ({
     minHeight: '100vh',
   }
 }));
+
+const muiTheme = createMuiTheme(theme)
 
 const Layout = ({ children }) => {
   const classes = useStyles();
@@ -44,7 +47,7 @@ const Layout = ({ children }) => {
 
   return (
     <Provider value={{icon}}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={muiTheme}>
         <CssBaseline />
         <div className={classes.root}>
           <Header />

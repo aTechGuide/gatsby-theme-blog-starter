@@ -10,14 +10,13 @@ import 'typeface-markazi-text';
 
 const IndexPage = () => {
 
-  const postsPerPage = 2;
   const data = useStaticQuery(indexQuery)
-  const numberOfPages = Math.ceil(data.allMdx.totalCount / postsPerPage);
+  const numberOfPages = Math.ceil(data.allMdx.totalCount / parseInt(data.site.siteMetadata.options.paginate));
   const posts = data.allMdx.edges
 
   return(
     <Layout >
-      <Seo title="Arabic Blog"/>
+      <Seo title={data.site.siteMetadata.title} />
       <IndexPageGrid 
           posts={posts} 
           currentPage={1}
@@ -27,7 +26,15 @@ const IndexPage = () => {
 }
 
 const indexQuery = graphql`
-  {
+  query {
+    site {
+      siteMetadata {
+        title
+        options {
+          paginate
+        }
+      }
+    }
     allMdx(
       sort: {fields: [frontmatter___date], order: DESC}
       limit: 2

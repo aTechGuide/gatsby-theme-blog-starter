@@ -6,17 +6,18 @@ import TagPostsLayout from '../components/layout/TagPostsLayout';
 import PageLayout from '../components/layout/PageLayout';
 import Seo from '../components/seo/Seo';
 
-const tagPosts = ({data, pageContext}) => {
+const TagPosts = ({data, pageContext}) => {
 
   const {tag} = pageContext;
   const { totalCount } = data.allMdx
+  const title = data.site.siteMetadata.title
   const pageHeader = `${totalCount} post${totalCount === 1 ?  '' : 's'} tagged with "${tag}"`
 
   return (
     <Layout >
       <Seo 
         title={`${tag} Posts`}
-        description={`Arabic Blog Posts Related to ${tag} Tag.`}
+        description={`${title} Posts Related to ${tag} Tag.`}
         tags={[tag]}
         slug={`tag/${tag}`} />
 
@@ -29,6 +30,11 @@ const tagPosts = ({data, pageContext}) => {
 
 export const tagQuery = graphql`
     query($tag: String!){
+      site {
+        siteMetadata {
+          title
+        }
+      }
       allMdx (
         sort: {fields: [frontmatter___date], order: DESC}
         filter: { frontmatter: {tags: { in: [$tag]} } }
@@ -46,4 +52,4 @@ export const tagQuery = graphql`
     }
 `
 
-export default tagPosts;
+export default TagPosts;
