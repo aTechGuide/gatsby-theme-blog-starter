@@ -21,7 +21,6 @@ exports.createPages = ({actions, graphql}, options) => {
   const {createPage} = actions;
 
   const templates = {
-    singlePost: require.resolve('./src/templates/post.mdx'),
     tagsPage: require.resolve('./src/templates/tags-page.js'),
     tagPosts: require.resolve('./src/templates/tag-posts.js'),
     postList: require.resolve('./src/templates/post-list.js'),
@@ -32,10 +31,17 @@ exports.createPages = ({actions, graphql}, options) => {
     allMdx {
       edges {
         node {
-          id
+          fileAbsolutePath
           frontmatter {
             tags
             slug
+            image {
+              childImageSharp {
+                fluid {
+                  src
+                }
+              }
+            }
           }
         }
       }
@@ -47,7 +53,7 @@ exports.createPages = ({actions, graphql}, options) => {
       const posts = res.data.allMdx.edges
 
       // Create Posts Pages
-      createPosts(posts, createPage, templates);
+      createPosts(posts, createPage);
 
       // Create Tags Page
       let tags = createTagsPage(posts, createPage, templates);
@@ -123,13 +129,13 @@ function createTagsPage(posts, createPage, templates) {
  * - We are creating a page having path = slug.
  * - We are passing slug via context
  */
-function createPosts(posts, createPage, templates) {
+function createPosts(posts, createPage) {
   posts.forEach(({ node }) => {
     createPage({
       path: node.frontmatter.slug,
-      component: templates.singlePost,
+      component: node.fileAbsolutePath,
       context: {
-        slug: node.frontmatter.slug
+        image: node.frontmatter.image
       }
     });
   });

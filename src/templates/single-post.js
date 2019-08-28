@@ -2,16 +2,15 @@ import React from 'react';
 
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/Seo';
-
 import SinglePostLayout from '../components/layout/SinglePostLayout';
 
 /**
  * Template used by Blog Posts files under posts folder
  */
 
-const Singlepost = ({data}) => {
+const Singlepost = ({ children, pageContext : {frontmatter, image}}) => {
 
-  const{title, description, tags, image, slug, date, update_date} = data.mdx.frontmatter;
+  const{title, description, tags, slug, date, update_date} = frontmatter;
 
   return (
     <Layout>
@@ -24,7 +23,10 @@ const Singlepost = ({data}) => {
         slug={slug}
         date={date}
         update_date={update_date} />
-      <SinglePostLayout data={data} />
+      
+      <SinglePostLayout frontmatter={frontmatter}>
+        {children}
+      </SinglePostLayout> 
     </Layout>
   );
 }

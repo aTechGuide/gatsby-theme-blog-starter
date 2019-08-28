@@ -3,7 +3,6 @@ import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import Img from "gatsby-image"
-import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import {slugify} from '../../util/UtilityFunctions';
 import Context from '../Context';
@@ -108,11 +107,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const FullPost = ({data}) => {
+const FullPost = ({frontmatter, children}) => {
   const classes = useStyles();
   const contextData = useContext(Context)
-
-  const post = data.mdx.frontmatter;
 
   const { site } = useStaticQuery(
     graphql`
@@ -131,19 +128,18 @@ const FullPost = ({data}) => {
       <CardHeader
         // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
         avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt={site.siteMetadata.title} />}
-        title={post.pagetitle}
-        subheader={post.update_date !== post.date ? `Published: ${post.date} • Updated: ${post.update_date}` : `Published: ${post.date}`}
+        title={frontmatter.pagetitle}
+        subheader={frontmatter.update_date !== frontmatter.date ? `Published: ${frontmatter.date} • Updated: ${frontmatter.update_date}` : `Published: ${frontmatter.date}`}
         titleTypographyProps={{variant: 'h1', component: 'h1'}}
         className={classes.header}
       />
-      <CardContent>    
-        {/* <div dangerouslySetInnerHTML={{ __html: data.mdx.html }} className={classes.postFont}/> */}
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
+      <CardContent>
+        {children}
       </CardContent>
       
       <CardActions className={classes.chiprow}>
         
-          {post.tags.map(tag => (
+          {frontmatter.tags.map(tag => (
             <Link key={tag} to={`/tag/${slugify(tag)}`}>
               <Chip size='small' color='primary' label={tag} className={classes.chip} />
             </Link>

@@ -136,6 +136,9 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
       options: {
         extensions: [`.mdx`, `.md`],
         remarkPlugins: [require("remark-attr")],
+        defaultLayouts: {
+          [postsPath]: require.resolve("./src/templates/single-post.js")
+        },
         plugins: [`gatsby-remark-images`], // <- Hack to make this plugin work properly
         gatsbyRemarkPlugins: [
           {

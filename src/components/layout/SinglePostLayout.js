@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => {
   }
 })});
 
-const SinglePostLayout = ({data}) => {
+const SinglePostLayout = ({frontmatter, children}) => {
 
   const classes = useStyles();
   const [visibleComments, setVisibleComments] = useState(false);
@@ -51,8 +51,7 @@ const SinglePostLayout = ({data}) => {
     `
   )
 
-  const post = data.mdx.frontmatter;
-  const{pagetitle, slug} = post
+  const{pagetitle, slug, tags} = frontmatter
 
   return (
     <Grid container >
@@ -61,18 +60,20 @@ const SinglePostLayout = ({data}) => {
       {/* Left Container Start */}
       <Grid container >
         <Grid item xs={12} >
-          <FullPost data={data}/>
+          <FullPost frontmatter={frontmatter}>
+            {children}
+          </FullPost>
         </Grid>
         <Grid item xs={12} className={classes.shareItem}>
           <Share
             slug={slug}
             pagetitle={pagetitle}
-            tags={post.tags}
+            tags={tags}
           />
         </Grid>
         {site.siteMetadata.comments === 'true' ? <Grid item xs={12} className={classes.comment}>
           { visibleComments ? 
-            <DisqusComments slug={slug} pagetitle={pagetitle} id={data.mdx.id}/> 
+            <DisqusComments slug={slug} pagetitle={pagetitle} id={slug}/> 
             : <div className={classes.commentButton}> <Button {...theme.button} onClick={() => setVisibleComments(true)}> Click to Load Comments</Button> </div>
           } 
         </Grid>: null}
