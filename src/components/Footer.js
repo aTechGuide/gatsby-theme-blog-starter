@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
 import Img from 'gatsby-image';
-import {Link, navigate, useStaticQuery, graphql} from 'gatsby';
+import {Link, navigate} from 'gatsby';
 
 import Context from './Context';
 
@@ -61,19 +61,6 @@ const useStyles = makeStyles(theme => ({
 const Footer = () => {
   const classes = useStyles();
   const contextData = useContext(Context);
-  const date = new Date().getFullYear();
-
-  const { site: {siteMetadata : {title}} } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `
-  )
 
   return (
     <footer className={classes.footer}>
@@ -92,7 +79,7 @@ const Footer = () => {
         <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
       </Typography>
       <Typography variant="body1" className={classes.text}>
-        {`Copyright © ${title} ${date}. Powered by `}
+        {`Powered by `}
         
         <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
         <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
