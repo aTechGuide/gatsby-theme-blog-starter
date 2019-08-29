@@ -14,13 +14,14 @@ const PostList = ({data, pageContext}) => {
   const posts = data.allMdx.edges
   const title = data.site.siteMetadata.title
   const {currentPage, numberOfPages} = pageContext
+  const slug = currentPage === 1 ? '/' : `/page/${currentPage}`
   
   return (
-    <Layout pageTitle={`Page: ${currentPage}`}>
+    <Layout>
       <Seo 
-        title={`${title}`}
+        title={title}
         description={`${title} ${currentPage} page.`}
-        slug={`/page/${currentPage}`} />
+        slug={slug} />
       
       <IndexPageGrid 
         posts={posts}
@@ -42,6 +43,7 @@ export const postListQuery = graphql`
       sort: {fields: [frontmatter___date], order: DESC}
       limit: $limit
       skip: $skip
+      filter: {frontmatter: {published: {eq: true}}}
     ) {
       edges {
         node {

@@ -28,7 +28,9 @@ exports.createPages = ({actions, graphql}, options) => {
 
   return graphql(`
   {
-    allMdx {
+    allMdx(
+      filter: {frontmatter: {published: {eq: true}}}
+    ) {
       edges {
         node {
           fileAbsolutePath
@@ -73,10 +75,8 @@ function createPaginationPages(posts, createPage, templates, postsPerPage) {
   Array.from({ length: numberOfPages }).forEach((_, index) => {
     const isFirstPage = index === 0;
     const currentPage = index + 1;
-    if (isFirstPage)
-      return;
     createPage({
-      path: `/page/${currentPage}/`,
+      path: isFirstPage === true ? `/` : `/page/${currentPage}/`,
       component: templates.postList,
       context: {
         limit: postsPerPage,
@@ -132,7 +132,7 @@ function createTagsPage(posts, createPage, templates) {
 function createPosts(posts, createPage) {
   posts.forEach(({ node }) => {
     createPage({
-      path: node.frontmatter.slug,
+      path: `${node.frontmatter.slug}/`,
       component: node.fileAbsolutePath,
       context: {
         image: node.frontmatter.image

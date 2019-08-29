@@ -73,7 +73,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
               clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
             ))}
         </div>
-        <Button href={"/" + slug} size="small" color="primary" variant='outlined'>
+        <Button href={`/${slug}/`} size="small" color="primary" variant='outlined'>
           Read More
         </Button>
       </CardActions>
