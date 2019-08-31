@@ -20,7 +20,7 @@ const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
   return (
     <Grid container justify='center' alignItems='center' direction='column'>
       <Grid item>
-        <Grid container justify='center' >
+        <Grid container justify='center' component="main">
           {posts.map(({node}) => (
             <Grid key={node.id} item className={classes.postGridItem} > 
               <PostSnippet 
@@ -40,7 +40,7 @@ const IndexPageGrid = ({posts, currentPage, numberOfPages}) => {
       <Grid item>
         <Grid container justify='center' >
           <Grid item>
-          <PaginationLinks currentPage={currentPage} numberOfPages={numberOfPages} />
+            <PaginationLinks currentPage={currentPage} numberOfPages={numberOfPages} />
           </Grid>
         </Grid>
       </Grid>

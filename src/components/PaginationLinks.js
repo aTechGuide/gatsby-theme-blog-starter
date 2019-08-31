@@ -27,7 +27,7 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
   const nextPage = '/page/' + (currentPage + 1).toString()
   
   return (
-    <Grid container alignItems="center">
+    <Grid container alignItems="center" component="nav">
       <Grid item>
         {
           isFirst ? (

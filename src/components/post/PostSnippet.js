@@ -1,12 +1,12 @@
 import React, {useContext} from 'react';
-import { navigate, graphql, useStaticQuery } from 'gatsby';
+import {graphql, useStaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
 import { makeStyles } from '@material-ui/core/styles';
-import {Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent, Chip} from '@material-ui/core';
+import {Typography, Button, CardHeader, Card, CardActionArea,CardActions,CardContent} from '@material-ui/core';
 
-import {slugify} from '../../util/UtilityFunctions';
 import Context from '../Context';
+import Tags from './Tags';
 
 const useStyles = makeStyles(theme => ({
   cardActionBottom: {
@@ -51,7 +51,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
   )
  
   return (
-    <Card className={classes.card} raised>
+    <Card className={classes.card} raised component="article" >
       <CardActionArea href={"/" + slug}>
         <Img fixed={fixed} draggable={false} title={pagetitle} alt={pagetitle} />
       </CardActionArea>
@@ -66,12 +66,9 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
           </Typography>
         </CardContent>
       
-      <CardActions className={classes.cardActionBottom}>
+      <CardActions className={classes.cardActionBottom} disableSpacing>
         <div className={classes.chipRow}>
-          {tags.map(tag => (
-            <Chip key={tag} size='small' color='primary' label={tag} className={classes.chip} 
-              clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
-            ))}
+          <Tags tags={tags}/>
         </div>
         <Button href={`/${slug}/`} size="small" color="primary" variant='outlined'>
           Read More

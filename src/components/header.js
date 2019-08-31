@@ -55,7 +55,7 @@ const Header = () => {
 
   return (
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar component="nav">
           <Typography variant="h4" component='h2' className={classes.title}>
             
             <Link className={classes.homeLink} to="/">{site.siteMetadata.title}</Link>

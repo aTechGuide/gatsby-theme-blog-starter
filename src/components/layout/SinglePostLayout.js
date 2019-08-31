@@ -58,7 +58,7 @@ const SinglePostLayout = ({frontmatter, children}) => {
           
     <Grid item xs={12} md={9} className={classes.postGridItem}>
       {/* Left Container Start */}
-      <Grid container >
+      <Grid container component="main">
         <Grid item xs={12} >
           <FullPost frontmatter={frontmatter}>
             {children}
@@ -83,7 +83,7 @@ const SinglePostLayout = ({frontmatter, children}) => {
 
     <Grid item xs={12} md={3} className={[classes.postGridItem, classes.sidebar].join(" ")} >
       {/* Right Container Start*/}
-      <Grid container >
+      <Grid container component="aside">
         {
           site.siteMetadata.options.showSubscriptionWidget === true ? <Grid item xs={12} > <Subscribe /> </Grid> : null
         }

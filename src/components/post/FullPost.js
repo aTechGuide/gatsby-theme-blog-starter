@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
-import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
+import {CardHeader, Card,CardActions,CardContent} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import {useStaticQuery, graphql, navigate} from 'gatsby';
+import {useStaticQuery, graphql} from 'gatsby';
 import Img from "gatsby-image"
 
-import {slugify} from '../../util/UtilityFunctions';
 import Context from '../Context';
+import Tags from './Tags';
 
 /**
  dt, .word{color: blue;}
@@ -21,10 +21,6 @@ dt, dd {font-weight: bold}
  */
 const useStyles = makeStyles(theme => ({
   
-  chiprow: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   chip: {
     margin: theme.spacing(1),
   },
@@ -124,7 +120,7 @@ const FullPost = ({frontmatter, children}) => {
   )
 
   return (
-    <Card>
+    <Card component="article">
       <CardHeader
         // avatar={<Avatar aria-label="Recipe" className={classes.avatar}>AB</Avatar>}
         avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt={site.siteMetadata.title} />}
@@ -137,11 +133,8 @@ const FullPost = ({frontmatter, children}) => {
         {children}
       </CardContent>
       
-      <CardActions className={classes.chiprow}>
-        {frontmatter.tags.map(tag => (
-          <Chip key={tag} size='small' color='primary' label={tag} className={classes.chip} 
-            clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
-          ))}
+      <CardActions disableSpacing >
+        <Tags tags={frontmatter.tags}/>
       </CardActions>
     </Card>
   );
