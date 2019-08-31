@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import {CardHeader, Card,CardActions,CardContent, Chip} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import {useStaticQuery, graphql, navigate} from 'gatsby';
 import Img from "gatsby-image"
 
 import {slugify} from '../../util/UtilityFunctions';
@@ -138,13 +138,10 @@ const FullPost = ({frontmatter, children}) => {
       </CardContent>
       
       <CardActions className={classes.chiprow}>
-        
-          {frontmatter.tags.map(tag => (
-            <Link key={tag} to={`/tag/${slugify(tag)}`}>
-              <Chip size='small' color='primary' label={tag} className={classes.chip} />
-            </Link>
-            ))}
-        
+        {frontmatter.tags.map(tag => (
+          <Chip key={tag} size='small' color='primary' label={tag} className={classes.chip} 
+            clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
+          ))}
       </CardActions>
     </Card>
   );
