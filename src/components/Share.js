@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid, Typography, Card, CardContent} from '@material-ui/core';
+import {Grid, Typography, Card, CardContent, useMediaQuery} from '@material-ui/core';
 import {useStaticQuery, graphql} from 'gatsby';
 
 import {
@@ -18,7 +18,17 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   postGridItem: {
     padding: theme.postGridItemPadding
-  }
+  },
+  icon: {
+    '&:hover': {
+      cursor : 'pointer'
+    }
+  },
+  button: {
+    '&:focus': {
+      outline : 'none'
+    }
+  },
 }));
 
 const Share = ({slug, pagetitle, tags }) => {
@@ -37,6 +47,8 @@ const Share = ({slug, pagetitle, tags }) => {
       }
     `
   )
+  const matches = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const iconSize = matches ? 64 : 32
 
   const postLink= site.siteMetadata.siteUrl + slug;
 
@@ -51,23 +63,23 @@ const Share = ({slug, pagetitle, tags }) => {
             </Typography>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
-            <FacebookShareButton url={postLink}  >
-              <FacebookIcon size={32} round={true} />
+            <FacebookShareButton url={postLink} className={classes.button}>
+              <FacebookIcon size={iconSize} round={true} className={classes.icon} />
             </FacebookShareButton>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
-            <TwitterShareButton url={postLink} title={pagetitle} via={site.siteMetadata.twitterId.split('@').join('')} hashtags={tags} >
-              <TwitterIcon size={32} round={true} />
+            <TwitterShareButton url={postLink} className={classes.button} title={pagetitle} via={site.siteMetadata.twitterId.split('@').join('')} hashtags={tags} >
+              <TwitterIcon size={iconSize} round={true} className={classes.icon} />
             </TwitterShareButton>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
-            <LinkedinShareButton url={postLink} title={pagetitle} >
-              <LinkedinIcon size={32} round={true} />
+            <LinkedinShareButton url={postLink} className={classes.button} title={pagetitle} >
+              <LinkedinIcon size={iconSize} round={true} className={classes.icon} />
             </LinkedinShareButton>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
-            <RedditShareButton url={postLink} className="button is-outlined is-rounded reddit" title={pagetitle} >
-              <RedditIcon size={32} round={true} />
+            <RedditShareButton url={postLink} className={classes.button} title={pagetitle} >
+              <RedditIcon size={iconSize} round={true} className={classes.icon} />
             </RedditShareButton>
           </Grid>
         </Grid>
