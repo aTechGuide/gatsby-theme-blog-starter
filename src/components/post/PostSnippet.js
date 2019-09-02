@@ -78,6 +78,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
   );
 }
 
+// For images we have 4:3 Aspect Ratio
 export const postFrontMatter = graphql`
   fragment PostFrontMatter on MdxFrontmatter {
     pagetitle
@@ -87,7 +88,7 @@ export const postFrontMatter = graphql`
     slug
     image {
       childImageSharp {
-        fixed(width: 350, height: 150) {
+        fixed(width: 350, height: 280) {
           ...GatsbyImageSharpFixed
         }
       }
