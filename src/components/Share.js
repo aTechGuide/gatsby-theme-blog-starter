@@ -50,7 +50,7 @@ const Share = ({slug, pagetitle, tags }) => {
   const matches = useMediaQuery(theme => theme.breakpoints.up('sm'));
   const iconSize = matches ? 64 : 32
 
-  const postLink= site.siteMetadata.siteUrl + slug;
+  const postLink= `${site.siteMetadata.siteUrl}/${slug}`
 
   return(
 
