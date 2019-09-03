@@ -20,7 +20,7 @@ import { useStaticQuery, graphql } from "gatsby"
  * Default values
  * - isBlogPost: false
  * - lang: en
- * = meta: []
+ * - meta: []
  */
 
  /**
@@ -183,11 +183,14 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
           name: `twitter:description`,
           content: metaDescription,
         },
-        {
-          name: `msvalidate.01`,
-          content: site.siteMetadata.bingId,
-        },
       ].concat(
+        site.siteMetadata.bingId !== ''
+          ? [{
+            name: `msvalidate.01`,
+            content: site.siteMetadata.bingId,
+          }]
+          : []
+      ).concat(
         metaImage
           ? [
               {

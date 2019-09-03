@@ -21,8 +21,8 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
       'https://twitter.com/handle'
     ], // Array of Social links to be passed in Google structured data
     contactSupport: 'Support URL to be used in Google structured data',
-    bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site
-    menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items
+    bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site. If you do NOT have one leave it as '' and we will not include it in meta tag
+    menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items. Make sure you have pages corresponsing to the value of `link`
     comments: 'true', // Enable/Disable comments
     options : {
       paginate: postsPerPage,
