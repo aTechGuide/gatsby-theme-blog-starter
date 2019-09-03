@@ -75,3 +75,14 @@ const theme = {
 
 export default theme
 ```
+
+## Footer
+
+Footer is customizable with configurations in gatsby-config.js which looks like,  
+
+```
+footerLinks: [{name: 'About', link: '/about/'}, {name: 'Terms of Use', link: '/terms-of-use/'}, {name: 'Privacy Policy', link: '/privacy-policy/'}], //<- Make sure you have pages corresponding to the value of `link`
+displayFooterMessage: true, // <- This controls the display of "Powered by Gatsby, Material UI and Netlify"
+```
+
+You may also completely shadow the `Footer.js` inside `src/components`

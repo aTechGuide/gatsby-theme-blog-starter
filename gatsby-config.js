@@ -22,7 +22,11 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
     ], // Array of Social links to be passed in Google structured data
     contactSupport: 'Support URL to be used in Google structured data',
     bingId: 'bingID', // This ID is used as metaTag to verify the ownership of site. If you do NOT have one leave it as '' and we will not include it in meta tag
-    menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items. Make sure you have pages corresponsing to the value of `link`
+    menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items. Make sure you have pages corresponding to the value of `link`
+
+    // Footer Customizations
+    footerLinks: [{name: 'About', link: '/about/'}, {name: 'Terms of Use', link: '/terms-of-use/'}, {name: 'Privacy Policy', link: '/privacy-policy/'}],
+    displayFooterMessage: true,
     comments: 'true', // Enable/Disable comments
     options : {
       paginate: postsPerPage,

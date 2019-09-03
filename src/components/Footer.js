@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {Typography} from '@material-ui/core';
 import Img from 'gatsby-image';
-import {Link, navigate} from 'gatsby';
+import {Link, navigate, useStaticQuery, graphql} from 'gatsby';
 
 import Context from './Context';
 
@@ -62,6 +62,22 @@ const Footer = () => {
   const classes = useStyles();
   const contextData = useContext(Context);
 
+  const { site: {siteMetadata : {footerLinks, displayFooterMessage}}} = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            footerLinks {
+              name
+              link
+            }
+            displayFooterMessage
+          }
+        }
+      }
+    `
+  )
+
   return (
     <footer className={classes.footer}>
       <div className={classes.logo}>
@@ -69,22 +85,23 @@ const Footer = () => {
           <Img fixed={contextData.icon.file.childImageSharp.fixed} className="App-logo" />
         </div>
       </div> 
-      <Typography>
-          <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/arabic-grammar-tutorials-in-english/">About</Link>
-      </Typography>
-      <Typography>
-        <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/terms-of-use/">Terms of Use</Link>
-      </Typography>
-      <Typography>
-        <Link className={classes.menuLink} activeClassName={classes.activeLink} to="/privacy-policy/">Privacy Policy</Link>
-      </Typography>
-      <Typography variant="body1" className={classes.text}>
+      {
+        footerLinks.map(link => (
+          <Typography key={link.name}>
+            <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
+          </Typography>
+      ))
+      }
+      {
+        displayFooterMessage ? <Typography variant="body1" className={classes.text}>
         {`Powered by `}
         
         <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
         <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
         <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
       </Typography>
+      : null
+      }
     </footer>
   );
 }
