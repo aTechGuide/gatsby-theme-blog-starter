@@ -2,10 +2,12 @@
   This file applies global CSS to all the components of this App.
 */
 
+/* General CSS*/
 a {
   text-decoration: none
 }
 
+/* CSS for Markdown */
 table {border:1px solid #e5e5e5;border-collapse:collapse}
 td,th{text-align:center;padding:.25rem .5rem;border:1px solid #e5e5e5}
 tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}
@@ -14,20 +16,7 @@ blockquote > ul {
   padding-left: 20px
 }
 
-.gatsby-highlight {
-  background-color: #1d1f21;
-  border-radius: 0.3em;
-  margin: 0.5em 0;
-  padding: 1em;
-  overflow: auto;
-}
-
-.gatsby-highlight pre[class*="language-"].line-numbers {
-  padding: 0;
-  padding-left: 2.8em;
-  overflow: initial;
-}
-
+/* CSS for logo */
 .App-logo {
   animation: App-logo-spin infinite 5s linear;
   height: 40vmin;

@@ -76,6 +76,16 @@ const theme = {
 export default theme
 ```
 
+## Header
+
+Header is customizable with configurations in gatsby-config.js which looks like,  
+
+```
+menuLinks: [{name: 'Tags', link: '/tags/'}], // Array of top Navigation bar items. Make sure you have pages corresponding to the value of `link`
+```
+
+You may also completely shadow the `header.js` inside `src/components`
+
 ## Footer
 
 Footer is customizable with configurations in gatsby-config.js which looks like,  

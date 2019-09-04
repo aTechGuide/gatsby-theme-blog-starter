@@ -154,25 +154,7 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
-              classPrefix: "language-",
-              inlineCodeMarker: null,
-              aliases:{sh: "bash", js:"javascript"},
-              showLineNumbers: false,
-              noInlineHighlight: false,
-              languageExtensions: [
-                {
-                  language: "superscript",
-                  extend: "javascript",
-                  definition: {
-                    superscript_types: /(SuperType)/,
-                  },
-                  insertBefore: {
-                    function: {
-                      superscript_keywords: /(superif|superelse)/,
-                    },
-                  },
-                },
-              ],
+              aliases:{sh: "bash", js:"javascript"}
             },
           },
         ]
