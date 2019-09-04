@@ -7,15 +7,6 @@ a {
   text-decoration: none
 }
 
-/* CSS for Markdown */
-table {border:1px solid #e5e5e5;border-collapse:collapse}
-td,th{text-align:center;padding:.25rem .5rem;border:1px solid #e5e5e5}
-tbody tr:nth-child(odd) td,tbody tr:nth-child(odd) th{background-color:#f9f9f9}
-
-blockquote > ul {
-  padding-left: 20px
-}
-
 /* CSS for logo */
 .App-logo {
   animation: App-logo-spin infinite 5s linear;

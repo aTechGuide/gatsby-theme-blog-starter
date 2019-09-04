@@ -34,6 +34,7 @@
    margin: .5em 0;
    overflow: auto;
    border-radius: 0.3em;
+   border-left: 0.5rem solid; /* Changed Added border left */
  }
  
  :not(pre) > code[class*="language-"],
