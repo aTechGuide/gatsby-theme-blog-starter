@@ -69,7 +69,7 @@ const postTheme = (theme) => ({
     },
     'blockquote' : {
       margin: 0,
-      padding: '0 1rem',
+      padding: '1rem 1rem',
       borderLeft: '0.25rem solid',
       width: 'fit-content',
       borderTopRightRadius: theme.spacing(1),
