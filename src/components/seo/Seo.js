@@ -66,8 +66,8 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
   const domain = site.siteMetadata.siteUrl
   const url = slug && slug !== '/' ? `${domain}/${slug}/` : domain
 
-  const image = metaImage && metaImage.src
-            ? `${domain}${metaImage.src}`
+  const image = metaImage
+            ? `${domain}${metaImage}`
             : null;
   
   const type = isBlogPost ? `article` : `website`

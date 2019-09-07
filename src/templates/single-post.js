@@ -18,7 +18,7 @@ const Singlepost = ({ children, pageContext : {frontmatter, image}}) => {
         title={title}
         description={description}
         tags={tags}
-        image={image.childImageSharp.fluid}
+        image={image}
         isBlogPost={true}
         slug={slug}
         date={date}

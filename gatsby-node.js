@@ -34,15 +34,12 @@ exports.createPages = ({actions, graphql}, options) => {
       edges {
         node {
           fileAbsolutePath
+          id
           frontmatter {
             tags
             slug
             image {
-              childImageSharp {
-                fluid {
-                  src
-                }
-              }
+              publicURL
             }
           }
         }
@@ -50,7 +47,10 @@ exports.createPages = ({actions, graphql}, options) => {
     }
   }
   `).then(res => {
-      if(res.errors) return Promise.reject(res.errors)
+      if(res.errors) {
+        console.log(res);
+        return Promise.reject(res.errors)
+      }
 
       const posts = res.data.allMdx.edges
 
@@ -64,12 +64,18 @@ exports.createPages = ({actions, graphql}, options) => {
       createPagePerTag(tags, createPage, templates);
 
       // Pagination
-      createPaginationPages(posts, createPage, templates, parseInt(options.postsPerPage));
+      createPaginationPages(posts, createPage, templates, options.postsPerPage);
 
   })
 }
 
 function createPaginationPages(posts, createPage, templates, postsPerPage) {
+  
+  if(postsPerPage === "undefined") {
+    postsPerPage = 2
+  } else {
+    postsPerPage = parseInt(postsPerPage)
+  }
   
   const numberOfPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numberOfPages }).forEach((_, index) => {
@@ -127,7 +133,6 @@ function createTagsPage(posts, createPage, templates) {
 /**
  * For each Node (i.e. mark down file) 
  * - We are creating a page having path = slug.
- * - We are passing slug via context
  */
 function createPosts(posts, createPage) {
   posts.forEach(({ node }) => {
@@ -135,7 +140,8 @@ function createPosts(posts, createPage) {
       path: `${node.frontmatter.slug}/`,
       component: node.fileAbsolutePath,
       context: {
-        image: node.frontmatter.image
+        tags: node.frontmatter.tags,
+        image: node.frontmatter.image.publicURL
       }
     });
   });
