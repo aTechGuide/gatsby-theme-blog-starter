@@ -157,6 +157,12 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
               aliases:{sh: "bash", js:"javascript"}
             },
           },
+          {
+            resolve: `gatsby-remark-katex`,
+            options: {
+              strict: `ignore`
+            }
+          }
         ]
       }
     },
