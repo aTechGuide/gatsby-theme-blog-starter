@@ -61,6 +61,13 @@ const postTheme = (theme) => ({
       margin: 0,
       marginTop: theme.spacing(2),
     },
+    'h4' : {
+      fontSize: "1rem",
+      fontWeight: 500,
+      color: theme.palette.secondary[700] ,
+      margin: 0,
+      marginTop: theme.spacing(2),
+    },
     'p' : {
       margin: 0
     },
