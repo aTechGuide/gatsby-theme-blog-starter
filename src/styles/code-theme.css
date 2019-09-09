@@ -69,9 +69,8 @@
      color: #96CBFE;
  }
  
- .token.class-name {
-   color: #FFFFB6;
-   text-decoration: underline;
+ .token.class-name, .token.entity {
+   color: #cddc39;
  }
  
  .token.boolean,
@@ -94,7 +93,7 @@
  .token.char,
  .token.builtin,
  .token.inserted {
-   color: #A8FF60;
+   color: #8bc34a;
  }
  
  .token.variable {
@@ -103,11 +102,6 @@
  
  .token.operator {
      color: #EDEDED;
- }
- 
- .token.entity {
-     color: #FFFFB6;
-     /* text-decoration: underline; */
  }
  
  .token.url {

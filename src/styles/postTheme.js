@@ -1,12 +1,5 @@
 const postTheme = (theme) => ({
   
-  chip: {
-    margin: theme.spacing(1),
-  },
-  card: {
-    maxWidth: '80%',
-    margin: 'auto'
-  },
   header: {
     paddingBottom: '0px'
   },
