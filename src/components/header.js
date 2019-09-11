@@ -2,8 +2,7 @@ import React from "react"
 
 import { makeStyles } from '@material-ui/core/styles';
 import {useStaticQuery, graphql, Link} from 'gatsby';
-//import AniLink from "gatsby-plugin-transition-link/AniLink";
-import {AppBar, Toolbar, Typography, Button, Tooltip} from '@material-ui/core';
+import {AppBar, Toolbar, Typography, Button, Tooltip, Slide, useScrollTrigger} from '@material-ui/core';
 import { useTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -53,8 +52,11 @@ const Header = () => {
     `
   )
 
+  const trigger = useScrollTrigger();
+
   return (
-      <AppBar position="static">
+    <Slide appear={false} direction="down" in={!trigger} >
+      <AppBar position="sticky">
         <Toolbar component="nav">
           <Typography variant="h4" component='h2' className={classes.title}>
             
@@ -76,6 +78,7 @@ const Header = () => {
           </Typography>
         </Toolbar>
       </AppBar>
+    </Slide>
   );
 }
 
