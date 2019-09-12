@@ -2,8 +2,9 @@ import React from "react"
 
 import { makeStyles } from '@material-ui/core/styles';
 import {useStaticQuery, graphql, Link} from 'gatsby';
-import {AppBar, Toolbar, Typography, Button, Tooltip, Slide, useScrollTrigger} from '@material-ui/core';
+import {AppBar, Toolbar, Typography, Button, Tooltip, Slide, useScrollTrigger, useMediaQuery} from '@material-ui/core';
 import { useTheme } from "@material-ui/styles";
+import PopupMenu from "./PopupMenu";
 
 const useStyles = makeStyles(theme => ({
   menuButton: {
@@ -36,7 +37,7 @@ const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { site } = useStaticQuery(
+  const { site : {siteMetadata : {title, menuLinks}} } = useStaticQuery(
     graphql`
       query {
         site {
@@ -54,28 +55,39 @@ const Header = () => {
 
   const trigger = useScrollTrigger();
 
+  const matches = useMediaQuery(theme => theme.breakpoints.up('md'));
+
   return (
     <Slide appear={false} direction="down" in={!trigger} >
       <AppBar position="sticky">
         <Toolbar component="nav">
-          <Typography variant="h4" component='h2' className={classes.title}>
-            
-            <Link className={classes.homeLink} to="/">{site.siteMetadata.title}</Link>
+          <Typography variant="h4" component='h2' className={classes.title}>          
+            <Link className={classes.homeLink} to="/">{title}</Link>
           </Typography>
-            {site.siteMetadata.menuLinks.map(link => (
-              <Typography key={link.name}>
-                <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
-              </Typography>
-            )) }    
+
+            {
+              matches && (
+                menuLinks.map(link => (
+                  <Typography key={link.name}>
+                    <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
+                  </Typography>))
+                )
+            }
+
           <Typography>
-          <Tooltip title="Install App for Offline View">
-            <Button 
-              {...theme.button}
-              style={{display: 'none'}}
-              id='a2hs'>
-                Install</Button>
-          </Tooltip>
+            <Tooltip title="Install App for Offline View">
+              <Button 
+                {...theme.button}
+                style={{display: 'none'}}
+                id='a2hs'>
+                  Install</Button>
+            </Tooltip>
           </Typography>
+
+          {
+            !matches && (<PopupMenu menuLinks={menuLinks}/>)
+          }
+
         </Toolbar>
       </AppBar>
     </Slide>
