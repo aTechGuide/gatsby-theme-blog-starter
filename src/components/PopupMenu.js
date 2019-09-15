@@ -32,7 +32,6 @@ const PopupMenu = ({menuLinks}) => {
     <>       
       <IconButton
         aria-label="Menu Items"
-        aria-controls="simple-menu"
         aria-haspopup="true"
         className={classes.menuToggleButton}
         onClick={handleClick}
@@ -41,7 +40,6 @@ const PopupMenu = ({menuLinks}) => {
       </IconButton>
       
       <Menu
-        id="simple-menu"
         anchorEl={anchorEl}
         anchorOrigin={{
           vertical: 'bottom',
