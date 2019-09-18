@@ -1,5 +1,7 @@
 const {slugify} = require('./src/util/UtilityFunctions')
-const path = require('path')
+const fs = require("fs");
+const path = require("path");
+const mkdirp = require("mkdirp");
 const _ = require('lodash')
 
 /*
@@ -17,7 +19,22 @@ exports.onCreateNode = ({node, actions}) => {
 }
 */
 
-exports.createPages = ({actions, graphql}, options) => {
+exports.onPreBootstrap = ({ store, reporter }, options) => {
+  const { program } = store.getState()
+  const dirs = [
+    path.join(program.directory, "posts"),
+    path.join(program.directory, "images")
+  ]
+
+  dirs.forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      reporter.log(`creating the ${dir} directory`)
+      mkdirp.sync(dir)
+    }
+  })
+}
+
+exports.createPages = ({actions, graphql, reporter}, options) => {
   const {createPage} = actions;
 
   const templates = {
@@ -48,7 +65,7 @@ exports.createPages = ({actions, graphql}, options) => {
   }
   `).then(res => {
       if(res.errors) {
-        console.log(res);
+        reporter.panic('Error loading Mdx Files', res.errors)
         return Promise.reject(res.errors)
       }
 

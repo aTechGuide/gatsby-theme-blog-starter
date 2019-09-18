@@ -22,6 +22,7 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
 ## Options
 - `trackingId` => Google Analytics Tracking ID
 - `postsPath` => Name of the directory (at root of App) from where the posts should be picked
+- `imagesPath` => Name of the directory (at root of App) from where the images should be picked
 - `postsPerPage` => Maximum number of posts displayed on each pagination page
 - `mailchimpURL` => Form `action` URL for MailChimp subscription form. If not provided, subscription box will not be displayed
 
@@ -32,6 +33,7 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
   options: {
     trackingId: "UA-11111XXX-1",
     postsPath: "posts",
+    imagesPath: "images",
     postsPerPage: "2",
     mailchimpURL: ""
   },

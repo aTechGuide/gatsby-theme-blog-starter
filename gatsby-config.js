@@ -1,4 +1,4 @@
-module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerPage = "2", mailchimpURL = ""}) => {
+module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerPage = "2", mailchimpURL = "", imagesPath = "images"}) => {
   
   let showSubscriptionWidget = true
   if (mailchimpURL === "") {
@@ -124,7 +124,7 @@ module.exports = ({ trackingId = "UA-11111XXX-1", postsPath = "posts", postsPerP
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `images`,
+        path: imagesPath,
       },
     },
     {
