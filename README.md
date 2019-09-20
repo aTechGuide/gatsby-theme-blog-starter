@@ -1,3 +1,29 @@
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="images/performance.png" />
+  </a>
+</p>
+<h1 align="center"> gatsby-theme-blog-starter </h1>
+
+<p align="center">
+  <a href="https://github.com/aTechGuide/gatsby-theme-blog-starter/blob/master/LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="gatsby-theme-blog-starter is released under the MIT license." />
+  </a>
+  <a href="https://www.npmjs.com/package/gatsby-theme-blog-starter">
+    <img src="https://img.shields.io/npm/v/gatsby-theme-blog-starter.svg" alt="Current npm package version." />
+  </a>
+  <a href="https://npmcharts.com/compare/gatsby-theme-blog-starter?minimal=true">
+    <img src="https://img.shields.io/npm/dm/gatsby-theme-blog-starter.svg?color=blue" alt="Downloads per month on npm." />
+  </a>
+  <a href="https://npmcharts.com/compare/gatsby-theme-blog-starter?minimal=true">
+    <img src="https://img.shields.io/npm/dt/gatsby-theme-blog-starter.svg?color=blue" alt="Total downloads on npm." />
+  </a>
+  <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" />
+  <a href="https://twitter.com/intent/follow?screen_name=atechguide">
+      <img src="https://img.shields.io/twitter/follow/atechguide.svg?label=Follow%20@atechguide" alt="Follow @atechguide" />
+    </a>
+</p>
+
 # Gatsby theme blog starter
 
 This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). It provides following functionality out of box
