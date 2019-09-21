@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://atech.guide">
-    <img alt="Gatsby Theme" src="images/performance.png" />
+    <img alt="Gatsby Theme" src="https://atech.guide/performance.png" />
   </a>
 </p>
 <h1 align="center"> gatsby-theme-blog-starter </h1>
@@ -24,9 +24,10 @@
     </a>
 </p>
 
-# Gatsby theme blog starter
+[Demo Site](https://atech.guide/)
 
-This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). It provides following functionality out of box
+Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). It provides following functionality out of box
+- Fully optimized for Lighthouse audit
 - Pagination for blog posts
 - Tags for browsing the content
 - Subscription box (Powered by Mailchimp)
@@ -35,7 +36,6 @@ This is a Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/g
 - Feed
 - Google Analytics 
 - Sitemap
-
 
 ## How to use
 - Include `gatsby-theme-blog-starter` as dependency in your blog
@@ -124,3 +124,25 @@ displayFooterMessage: true, // <- This controls the display of "Powered by Gatsb
 ```
 
 You may also completely shadow the `Footer.js` inside `src/components`
+
+## FrontMatter
+Frontmatter for pages powered by Mdx looks like
+
+```
+---
+title: SEO friendly Title which will be used in <title> HTML Tag
+description: SEO friendly Description which will be used in <meta name="description"> HTML Tag
+pagetitle: Title of the Post
+summary: Description of the post used in snippet in index page
+date: Published Date
+update_date: Updated Date
+tags:
+  - technology
+label:
+  - tech
+slug: seo-friendly-url
+published: true
+image: ./path-to-image-used-in-featured-snippet-and-structured-snippet.png
+---
+
+```
