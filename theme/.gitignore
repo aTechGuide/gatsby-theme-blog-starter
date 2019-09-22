@@ -52,7 +52,7 @@ typings/
 *.tgz
 
 # dotenv environment variables file
-.env*
+.env
 
 # gatsby files
 .cache/
@@ -67,7 +67,3 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
-
-
-# mine
-package-lock.json
