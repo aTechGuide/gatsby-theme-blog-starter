@@ -54,8 +54,12 @@
 
 [Demo Site](https://atech.guide/)
 
-Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). It provides following functionality out of box
+Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). 
+
+## ✨Features
+It provides following functionality out of box
 - Fully optimized for Lighthouse audit
+- Responsive
 - Pagination for blog posts
 - Tags for browsing the content
 - Subscription box (Powered by Mailchimp)
@@ -65,7 +69,7 @@ Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and
 - Google Analytics 
 - Sitemap
 
-## How to use
+## 🚀Getting Started
 - Include `gatsby-theme-blog-starter` as dependency in your blog
 - Create `posts` directory and add posts into it
 - Create `images` directory and images into it to be used by queries directly
@@ -73,7 +77,7 @@ Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and
 - Add .env.* providing `disqus shortname` as value for key `GATSBY_DISQUS_NAME` 
 - Create `static` folder at root of project and add `robots.txt`
 
-## Options
+### Options
 - `trackingId` => Google Analytics Tracking ID
 - `postsPath` => Name of the directory (at root of App) from where the posts should be picked
 - `imagesPath` => Name of the directory (at root of App) from where the images should be picked
@@ -94,7 +98,7 @@ Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and
 },
 ```
 
-## Theme
+## 📝Theme
 To override the theme of entire site. You may shadow the `theme.js` file under `example-site/src/gatsby-theme-blog-starter/theme.js`
 
 ### Default Theme 
