@@ -1,9 +1,4 @@
-<p align="center">
-  <a href="http://atech.guide">
-    <img alt="Gatsby Theme" src="https://atech.guide/performance.png" />
-  </a>
-</p>
-<h1 align="center"> gatsby-theme-blog-starter </h1>
+# gatsby-theme-blog-starter
 
 <p align="center">
   <a href="https://github.com/aTechGuide/gatsby-theme-blog-starter/blob/master/LICENSE">
@@ -24,10 +19,44 @@
     </a>
 </p>
 
+## Performance
+
+### Desktop (Home)
+
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/desktop-home-100.png" />
+  </a>
+</p>
+
+### Desktop (Blog Page)
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/desktop-page-100.png" />
+  </a>
+</p>
+
+### Mobile (Home)
+
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/mobile-home-100.png" />
+  </a>
+</p>
+
+### Mobile (Blog Page)
+
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/mobile-page-100.png" />
+  </a>
+</p>
+
 [Demo Site](https://atech.guide/)
 
 Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). It provides following functionality out of box
 - Fully optimized for Lighthouse audit
+- Responsive
 - Pagination for blog posts
 - Tags for browsing the content
 - Subscription box (Powered by Mailchimp)

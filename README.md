@@ -1,9 +1,4 @@
-<p align="center">
-  <a href="http://atech.guide">
-    <img alt="Gatsby Theme" src="https://atech.guide/performance.png" />
-  </a>
-</p>
-<h1 align="center"> gatsby-theme-blog-starter </h1>
+# gatsby-theme-blog-starter
 
 <p align="center">
   <a href="https://github.com/aTechGuide/gatsby-theme-blog-starter/blob/master/LICENSE">
@@ -22,6 +17,39 @@
   <a href="https://twitter.com/intent/follow?screen_name=atechguide">
       <img src="https://img.shields.io/twitter/follow/atechguide.svg?label=Follow%20@atechguide" alt="Follow @atechguide" />
     </a>
+</p>
+
+## Performance
+
+### Desktop (Home)
+
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/desktop-home-100.png" />
+  </a>
+</p>
+
+### Desktop (Blog Page)
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/desktop-page-100.png" />
+  </a>
+</p>
+
+### Mobile (Home)
+
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/mobile-home-100.png" />
+  </a>
+</p>
+
+### Mobile (Blog Page)
+
+<p align="center">
+  <a href="http://atech.guide">
+    <img alt="Gatsby Theme" src="https://gatsby-theme-blog-starter.netlify.com/mobile-page-100.png" />
+  </a>
 </p>
 
 [Demo Site](https://atech.guide/)
