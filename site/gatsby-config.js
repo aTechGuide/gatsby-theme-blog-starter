@@ -22,7 +22,7 @@ module.exports = {
     {
       resolve: "gatsby-theme-blog-starter",
       options: {
-        basePath: "blog",
+        basePath: "/",
         trackingId: "UA-27634418-4",
         postsPath: "posts",
         imagesPath: "images",
