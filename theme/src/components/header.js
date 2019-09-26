@@ -1,9 +1,11 @@
 import React from "react"
 
 import { makeStyles } from '@material-ui/core/styles';
-import {useStaticQuery, graphql, Link} from 'gatsby';
+import {useStaticQuery, graphql} from 'gatsby';
 import {AppBar, Toolbar, Typography, Button, Tooltip, Slide, useScrollTrigger, useMediaQuery} from '@material-ui/core';
 import { useTheme } from "@material-ui/styles";
+
+import Link from '../util/Link';
 import PopupMenu from "./PopupMenu";
 
 const useStyles = makeStyles(theme => ({
@@ -37,12 +39,15 @@ const Header = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const { site : {siteMetadata : {title, menuLinks}} } = useStaticQuery(
+  const { site : {siteMetadata : {title, menuLinks, options : {basePath}}} } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
+            options {
+              basePath
+            }
             menuLinks {
               name
               link
@@ -62,14 +67,14 @@ const Header = () => {
       <AppBar position="sticky">
         <Toolbar component="nav">
           <Typography variant="h4" component='h2' className={classes.title}>          
-            <Link className={classes.homeLink} to="/">{title}</Link>
+            <Link className={classes.homeLink} to={basePath === "/" ? "/" : `/${basePath}/`}>{title}</Link>
           </Typography>
 
             {
               matches && (
                 menuLinks.map(link => (
                   <Typography key={link.name}>
-                    <Link key={link.name} className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
+                    <Link className={classes.menuLink} activeClassName={classes.activeLink} to={link.link}>{link.name}</Link>
                   </Typography>))
                 )
             }

@@ -25,18 +25,20 @@ const TagsPage = ({pageContext}) => {
   const classes = useStyles();
   const {tags, tagPostCounts} = pageContext;
 
-  const { site } = useStaticQuery(
+  const { site: {siteMetadata : {title, options : {basePath}}} } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
+            options {
+              basePath
+            }
           }
         }
       }
     `
   )
-  const title = site.siteMetadata.title
 
   return (
     <Layout>
@@ -44,13 +46,13 @@ const TagsPage = ({pageContext}) => {
         title={`${title} Tags`}
         description={`${title} Tags: ${tags}`}
         tags={[tags]}
-        slug={`tags`} />
+        slug={basePath === "/" ? `tags` : `/${basePath}/tags`} />
 
       <PageLayout title="Tags">
         {tags.map(tag => (
             <Badge key={tag} className={classes.margin} badgeContent={tagPostCounts[tag]} color="secondary">
               <Chip size='small' color='primary' label={tag} 
-                clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
+                clickable onClick={() => navigate(basePath === "/" ? `/tag/${slugify(tag)}/` : `/${basePath}/tag/${slugify(tag)}/`) } />
             </Badge>
         ))}
       </PageLayout>

@@ -38,12 +38,15 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
   const classes = useStyles();
   const contextData = useContext(Context)
 
-  const { site } = useStaticQuery(
+  const { site: {siteMetadata: {title, options: {basePath}}} } = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
             title
+            options {
+              basePath
+            }
           }
         }
       }
@@ -56,7 +59,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
         <Img fixed={fixed} draggable={false} title={pagetitle} alt={pagetitle} />
       </CardActionArea>
         <CardHeader
-        avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt={site.siteMetadata.title} />}
+        avatar={<Img fixed={contextData.icon.file.childImageSharp.fixed} alt={title} />}
         title={pagetitle}
         subheader={date}
       />
@@ -68,7 +71,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
       
       <CardActions className={classes.cardActionBottom} disableSpacing>
         <div className={classes.chipRow}>
-          <Tags tags={tags}/>
+          <Tags tags={tags} basePath={basePath} />
         </div>
         <Button href={`/${slug}/`} size="small" color="primary" variant='outlined'>
           Read More

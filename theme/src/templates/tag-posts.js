@@ -11,6 +11,7 @@ const TagPosts = ({data, pageContext}) => {
   const {tag} = pageContext;
   const { totalCount } = data.allMdx
   const title = data.site.siteMetadata.title
+  const basePath = data.site.siteMetadata.options.basePath
   const pageHeader = `${totalCount} post${totalCount === 1 ?  '' : 's'} tagged with "${tag}"`
 
   return (
@@ -19,7 +20,7 @@ const TagPosts = ({data, pageContext}) => {
         title={`${tag} Posts`}
         description={`${title} Posts Related to ${tag} Tag.`}
         tags={[tag]}
-        slug={`tag/${tag}`} />
+        slug={basePath === "/" ? `tag/${tag}` : `/${basePath}/tag/${tag}`} />
 
       <PageLayout title={pageHeader}>
         <TagPostsLayout data={data} pageContext={pageContext}/>
@@ -33,6 +34,9 @@ export const tagQuery = graphql`
       site {
         siteMetadata {
           title
+          options {
+            basePath
+          }
         }
       }
       allMdx (

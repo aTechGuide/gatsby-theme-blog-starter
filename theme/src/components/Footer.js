@@ -62,11 +62,14 @@ const Footer = () => {
   const classes = useStyles();
   const contextData = useContext(Context);
 
-  const { site: {siteMetadata : {footerLinks, displayFooterMessage}}} = useStaticQuery(
+  const { site: {siteMetadata : {options: {basePath}, footerLinks, displayFooterMessage}}} = useStaticQuery(
     graphql`
       query {
         site {
           siteMetadata {
+            options {
+              basePath
+            }
             footerLinks {
               name
               link
@@ -81,7 +84,7 @@ const Footer = () => {
   return (
     <footer className={classes.footer}>
       <div className={classes.logo}>
-        <div className={classes.logoClick} onClick={() => navigate('/')}>
+        <div className={classes.logoClick} onClick={() => navigate(basePath === "/" ? '/' : `/${basePath}/`)}>
           <Img fixed={contextData.icon.file.childImageSharp.fixed} className="App-logo" />
         </div>
       </div> 

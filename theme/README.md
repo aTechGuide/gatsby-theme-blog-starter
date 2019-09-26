@@ -19,8 +19,11 @@
     </a>
 </p>
 
-## Performance
+Gatsby theme for creating super fast, SEO optimized blog powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). See the [Live demo](https://gatsby-theme-blog-starter.netlify.com/)
 
+[Personal Tech Blog](https://atech.guide/)
+
+## Performance
 ### Desktop (Home)
 
 <p align="center">
@@ -52,10 +55,6 @@
   </a>
 </p>
 
-[Demo Site](https://atech.guide/)
-
-Gatsby blog theme powered by [MDX](https://mdxjs.com/getting-started/gatsby) and [Material UI](https://material-ui.com/). 
-
 ## ✨Features
 It provides following functionality out of box
 - Fully optimized for Lighthouse audit
@@ -70,33 +69,75 @@ It provides following functionality out of box
 - Sitemap
 
 ## 🚀Getting Started
-- Include `gatsby-theme-blog-starter` as dependency in your blog
-- Create `posts` directory and add posts into it
-- Create `images` directory and images into it to be used by queries directly
-- Add icon under `images` by the name `icon.png`
-- Add .env.* providing `disqus shortname` as value for key `GATSBY_DISQUS_NAME` 
-- Create `static` folder at root of project and add `robots.txt`
 
-### Options
-- `trackingId` => Google Analytics Tracking ID
-- `postsPath` => Name of the directory (at root of App) from where the posts should be picked
-- `imagesPath` => Name of the directory (at root of App) from where the images should be picked
-- `postsPerPage` => Maximum number of posts displayed on each pagination page
-- `mailchimpURL` => Form `action` URL for MailChimp subscription form. If not provided, subscription box will not be displayed
+### Install
+Manually add to you site
 
-### Default Options
+`npm install --save gatsby-theme-blog-starter`
+
+### Theme options
+
+| Key              | Default value    | Description                                                                                               |
+| ---------------- | ---------------- | --------------------------------------------------------------------------------------------------------- |
+| `basePath`       | "/"              | Root url for the blog                                                                               |
+| `trackingId`     | "UA-11111XXX-1"  | Google Analytics Tracking ID                                                                               |
+| `postsPath`      | "posts"          | Name of the directory from where the posts should be picked                              |
+| `imagesPath`     | "images"         | Name of the directory from where the images should be picked                                                |
+| `postsPerPage`   | "2"              | Maximum number of posts displayed on each pagination page |
+| `mailchimpURL`   | ""               | Form `action` URL for MailChimp subscription form. If not provided, subscription box will not be displayed |
+
+### Example usage
+
+```js
+// gatsby-config.js
+module.exports = {
+  plugins: [
+        {
+      resolve: "gatsby-theme-blog-starter",
+      options: {
+        basePath: "/",
+        trackingId: "UA-11111XXX-1",
+        postsPath: "posts",
+        imagesPath: "images",
+        postsPerPage: "2",
+        mailchimpURL: ""
+      },
+    },
+  ],
+}
 ```
-{
-  resolve: `gatsby-theme-blog-starter`,
-  options: {
-    trackingId: "UA-11111XXX-1",
-    postsPath: "posts",
-    imagesPath: "images",
-    postsPerPage: "2",
-    mailchimpURL: ""
+### Additional configuration
+In addition to the theme options, there are a handful of items you can customize via the siteMetadata object in your site's gatsby-config.js
+```
+// gatsby-config.js
+module.exports = {
+  siteMetadata: {
+    title: `Blog Title`,
+    description: `Blog Description`,
+    author: `Author Name`,
+    twitterId: `@twitterHandle`,
+    siteUrl: `site domain name`,
+    genre: 'Genre', // Used for Google Structured Data
+    keywords: [`Technology Blog`], // Used for SEO and Google Structured Data
+    email: `admin@blog.com`, // Contact email Used for Google Structured Data
+    social: [
+      'https://www.facebook.com/aTechGuide/'  // Social link used in site schema for Google Structured Data
+    ],
+    contactSupport: 'https://www.site.com/support/', // Contact link used in site schema for Google Structured Data
+    bingId: '', // Support for Bing 
+    menuLinks: [{name: 'Projects', link: '/page/1'}], // Adding Menu bar links
+    footerLinks: [{name: 'Projects', link: '/page/1'}], // Adding footer links
+    displayFooterMessage: true, // Enable footer message
+    comments: 'true' // Enable disable comments
   },
-},
+}
 ```
+
+## Folder, Icon and Environment Variables
+- Create `posts` directory (name of this directory is as per options) and add posts into it
+- Create `images` directory (name of this directory is as per options) and images into it to be used by queries directly
+  - Add icon under `images` by the name `icon.png` (name has to be icon)
+- Add .env.* providing `disqus shortname` as value for key `GATSBY_DISQUS_NAME` 
 
 ## 📝Theme
 To override the theme of entire site. You may shadow the `theme.js` file under `example-site/src/gatsby-theme-blog-starter/theme.js`
@@ -121,10 +162,6 @@ const theme = {
   button: {
     color: "primary",
     variant: "contained"
-  },
-  linkTransition: {
-    fade: "true",
-    duration: .5
   },
   postGridItemPadding: '16px',
   headingColor: indigo,

@@ -11,13 +11,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Tags = ({tags}) => {
+const Tags = ({tags, basePath}) => {
   const classes = useStyles();
 
   return (
     tags.map(tag => (
       <Chip key={tag} size='small' color='primary' label={tag} className={classes.chip} 
-        clickable onClick={() => navigate(`/tag/${slugify(tag)}/`) } />
+        clickable onClick={() => navigate(basePath === "/" ? `/tag/${slugify(tag)}/` : `/${basePath}/tag/${slugify(tag)}/`) } />
       ))
   );
 }

@@ -3,23 +3,9 @@ const fs = require("fs");
 const path = require("path");
 const mkdirp = require("mkdirp");
 const _ = require('lodash')
+const withDefaults = require(`./src/util/default-options`)
 
-/*
-exports.onCreateNode = ({node, actions}) => {
-  const {createNodeField} = actions
-
-  if(node.internal.type === 'Mdx'){
-    const slugFromTitle = slugify(node.frontmatter.title)
-    createNodeField({
-      node,
-      name: 'slug',
-      value: slugFromTitle,
-    })
-  }
-}
-*/
-
-exports.onPreBootstrap = ({ store, reporter }, options) => {
+exports.onPreBootstrap = ({ store, reporter }) => {
   const { program } = store.getState()
   const dirs = [
     path.join(program.directory, "posts"),
@@ -34,7 +20,7 @@ exports.onPreBootstrap = ({ store, reporter }, options) => {
   })
 }
 
-exports.createPages = ({actions, graphql, reporter}, options) => {
+exports.createPages = async ({actions, graphql, reporter}, options) => {
   const {createPage} = actions;
 
   const templates = {
@@ -43,63 +29,59 @@ exports.createPages = ({actions, graphql, reporter}, options) => {
     postList: require.resolve('./src/templates/post-list.js'),
   }
 
-  return graphql(`
-  {
-    allMdx(
-      filter: {frontmatter: {published: {eq: true}}}
-    ) {
-      edges {
-        node {
-          fileAbsolutePath
-          id
-          frontmatter {
-            tags
-            slug
-            image {
-              publicURL
+  const result = await graphql(`
+    {
+      allMdx(
+        filter: {frontmatter: {published: {eq: true}}}
+      ) {
+        edges {
+          node {
+            fileAbsolutePath
+            id
+            frontmatter {
+              tags
+              slug
+              image {
+                publicURL
+              }
             }
           }
         }
       }
     }
+    `)
+
+  if(result.errors) {
+    reporter.panic('Error loading Mdx Files', res.errors)
+    return Promise.reject(res.errors)
   }
-  `).then(res => {
-      if(res.errors) {
-        reporter.panic('Error loading Mdx Files', res.errors)
-        return Promise.reject(res.errors)
-      }
 
-      const posts = res.data.allMdx.edges
+  const posts = result.data.allMdx.edges
+  const {basePath, postsPerPage} = withDefaults(options)
 
-      // Create Posts Pages
-      createPosts(posts, createPage);
+  // Create Posts Pages
+  createPosts(posts, createPage);
 
-      // Create Tags Page
-      let tags = createTagsPage(posts, createPage, templates);
+  // Create Tags Page
+  let tags = createTagsPage(posts, createPage, templates, basePath);
 
-      // Create Tag Posts Pages
-      createPagePerTag(tags, createPage, templates);
+  // Create Tag Posts Pages
+  createPagePerTag(tags, createPage, templates, basePath);
 
-      // Pagination
-      createPaginationPages(posts, createPage, templates, options.postsPerPage);
-
-  })
+  // Pagination
+  createPaginationPages(posts, createPage, templates, postsPerPage, basePath);
 }
 
-function createPaginationPages(posts, createPage, templates, postsPerPage) {
+function createPaginationPages(posts, createPage, templates, postsPerPage, basePath) {
   
-  if(postsPerPage === "undefined") {
-    postsPerPage = 2
-  } else {
-    postsPerPage = parseInt(postsPerPage)
-  }
+  postsPerPage = parseInt(postsPerPage)
   
   const numberOfPages = Math.ceil(posts.length / postsPerPage);
   Array.from({ length: numberOfPages }).forEach((_, index) => {
     const isFirstPage = index === 0;
     const currentPage = index + 1;
     createPage({
-      path: isFirstPage === true ? `/` : `/page/${currentPage}/`,
+      path: isFirstPage === true ? (basePath === "/" ? `/` : `/${basePath}/`) : (basePath === "/" ? `/page/${currentPage}/` : `/${basePath}/page/${currentPage}/`),
       component: templates.postList,
       context: {
         limit: postsPerPage,
@@ -111,10 +93,10 @@ function createPaginationPages(posts, createPage, templates, postsPerPage) {
   });
 }
 
-function createPagePerTag(tags, createPage, templates) {
+function createPagePerTag(tags, createPage, templates, basePath) {
   tags.forEach(tag => {
     createPage({
-      path: `/tag/${slugify(tag)}/`,
+      path: basePath === "/" ? `/tag/${slugify(tag)}/` : `/${basePath}/tag/${slugify(tag)}/`,
       component: templates.tagPosts,
       context: {
         tag
@@ -123,7 +105,7 @@ function createPagePerTag(tags, createPage, templates) {
   });
 }
 
-function createTagsPage(posts, createPage, templates) {
+function createTagsPage(posts, createPage, templates, basePath) {
   let tags = [];
   _.each(posts, edge => {
     if (_.get(edge, 'node.frontmatter.tags')) {
@@ -137,7 +119,7 @@ function createTagsPage(posts, createPage, templates) {
   // {code: 2, design: 6, ...}
   tags = _.uniq(tags);
   createPage({
-    path: '/tags/',
+    path: basePath === "/" ? '/tags/' : `/${basePath}/tags/`,
     component: templates.tagsPage,
     context: {
       tags,
