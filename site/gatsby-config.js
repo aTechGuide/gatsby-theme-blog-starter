@@ -4,7 +4,7 @@ module.exports = {
     description: `Kamran Ali's Site`,
     author: `Kamran Ali`,
     twitterId: `@aTechGuide`,
-    siteUrl: `https://atech.guide`,
+    siteUrl: `https://gatsby-theme-blog-starter.netlify.com`,
     genre: 'Technical Tutorials',
     keywords: [`Technology Blog`],
     email: `admin@atech.guide`,
