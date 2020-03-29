@@ -13,6 +13,7 @@ const PostList = ({data, pageContext}) => {
 
   const posts = data.allMdx.edges
   const title = data.site.siteMetadata.title
+  const description = data.site.siteMetadata.description
   const {currentPage, numberOfPages} = pageContext
   const slug = currentPage === 1 ? '/' : `/page/${currentPage}`
   
@@ -20,7 +21,7 @@ const PostList = ({data, pageContext}) => {
     <Layout>
       <Seo 
         title={title}
-        description={`${title} ${currentPage} page.`}
+        description={description}
         slug={slug} />
       
       <IndexPageGrid 
