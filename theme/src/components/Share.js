@@ -58,8 +58,8 @@ const Share = ({slug, pagetitle, tags }) => {
       <CardContent>    
         <Grid container alignItems='center' >
           <Grid item className={classes.postGridItem} xs={12} md={4}>
-            <Typography variant='h5'>
-              Share this Post
+            <Typography variant='h3'>
+              Share Post
             </Typography>
           </Grid>
           <Grid item className={classes.postGridItem} md={2}>
