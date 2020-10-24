@@ -1,13 +1,13 @@
 {
   "name": "gatsby-theme-blog-starter",
   "description": "Gatsby theme for blog powered by MDX and Material UI",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": "Kamran Ali <kamranalinitb@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.3.2",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.3.0",
-    "@mdx-js/mdx": "^1.6.16",
+    "@mdx-js/mdx": "^1.6.18",
     "@mdx-js/react": "^1.6.16",
     "disqus-react": "^1.0.6",
     "gatsby-cli": "^2.7.31",
@@ -34,7 +34,6 @@
     "prop-types": "^15.7.2",
     "react-helmet": "^5.2.1",
     "react-share": "^4.1.0",
-    "reactstrap": "^8.0.1",
     "remark-attr": "^0.10.0",
     "typeface-markazi-text": "1.1.4",
     "typeface-roboto": "0.0.75"
