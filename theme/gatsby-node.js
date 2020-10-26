@@ -65,7 +65,8 @@ exports.createPages = async ({actions, graphql, reporter}, options) => {
   // Create Tags Page
   let tags = createTagsPage(posts, createPage, templates, basePath);
 
-  // Create Tag Posts Pages
+  // Create Tag Posts Pages. 
+  // Remember this peice is not taking posts from above query. If we change above query make sure we update the query of `createPagePerTag`
   createPagePerTag(tags, createPage, templates, basePath);
 
   // Pagination
