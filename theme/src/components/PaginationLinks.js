@@ -76,7 +76,7 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
         {
           isLast ? (
             <Tooltip title="Next Page">
-              <IconButton href={nextPage} disabled >
+              <IconButton href={basePath === "/" ? "/" : `/${basePath}/`} disabled >
                 <ArrowForwardIos />
               </IconButton >
             </Tooltip>
