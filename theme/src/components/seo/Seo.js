@@ -64,7 +64,7 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
   const twitterId = site.siteMetadata.twitterId
 
   const domain = site.siteMetadata.siteUrl
-  const url = slug && slug !== '/' ? `${domain}/${slug}/` : domain
+  const url = slug && slug !== '/' ? `${domain}${slug}/` : domain
 
   const image = metaImage
             ? `${domain}${metaImage}`
