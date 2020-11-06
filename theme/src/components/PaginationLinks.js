@@ -36,9 +36,9 @@ const PaginationLinks = ({currentPage, numberOfPages}) => {
   const isFirst = currentPage === 1
   const isLast = currentPage === numberOfPages
   const previousPage = currentPage - 1 === 1 ? (basePath === "/" ? '/' : `/${basePath}/`) : 
-    (basePath === "/" ? '/page/' + (currentPage - 1).toString() : `/${basePath}/page/` + (currentPage - 1).toString())
+    (basePath === "/" ? `/page/${(currentPage - 1).toString()}/` : `/${basePath}/page/${(currentPage - 1).toString()}/`)
 
-  const nextPage = (basePath === "/" ? '/page/' + (currentPage + 1).toString() : `/${basePath}/page/` + (currentPage + 1).toString())
+  const nextPage = (basePath === "/" ? `/page/${(currentPage + 1).toString()}/` : `/${basePath}/page/${(currentPage + 1).toString()}/`)
   
   return (
     <Grid container alignItems="center" component="nav">

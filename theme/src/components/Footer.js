@@ -99,7 +99,7 @@ const Footer = () => {
         displayFooterMessage ? <Typography variant="body1" className={classes.text}>
         {`Powered by `}
         
-        <a className={classes.textLink} href="https://www.gatsbyjs.org/">Gatsby,</a> {' '}
+        <a className={classes.textLink} href="https://www.gatsbyjs.com">Gatsby,</a> {' '}
         <a className={classes.textLink} href="https://material-ui.com/">Material UI</a> and {' '}
         <a className={classes.textLink} href="https://www.netlify.com/">Netlify</a>
       </Typography>

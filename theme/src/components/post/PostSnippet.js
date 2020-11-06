@@ -55,7 +55,7 @@ const PostSnippet = ({pagetitle, body, date, tags, slug, fixed}) => {
  
   return (
     <Card className={classes.card} raised component="article" >
-      <CardActionArea href={"/" + slug}>
+      <CardActionArea href={`/${slug}/`}>
         <Img fixed={fixed} draggable={false} title={pagetitle} alt={pagetitle} />
       </CardActionArea>
         <CardHeader
