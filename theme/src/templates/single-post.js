@@ -3,6 +3,8 @@ import React from 'react';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/Seo';
 import SinglePostLayout from '../components/layout/SinglePostLayout';
+import { useStaticQuery, graphql } from "gatsby";
+import blogSchema from "../components/seo/BlogSchema"
 
 /**
  * Template used by Blog Posts files under posts folder
@@ -10,7 +12,32 @@ import SinglePostLayout from '../components/layout/SinglePostLayout';
 
 const Singlepost = ({ children, pageContext : {frontmatter, image}}) => {
 
-  const{title, description, tags, slug, date, update_date} = frontmatter;
+  const {title, description, tags, slug, date, update_date} = frontmatter;
+
+  const { site, file } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            siteUrl
+            author
+            genre
+            keywords
+          }
+        }
+        file(relativePath: { eq: "icon.png" }) {
+          childImageSharp {
+            fixed(width:60) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+      }
+    `
+  )
+
+  const schema = blogSchema(frontmatter, image, site, file)
 
   return (
     <Layout>
@@ -22,7 +49,8 @@ const Singlepost = ({ children, pageContext : {frontmatter, image}}) => {
         isBlogPost={true}
         slug={slug}
         date={date}
-        update_date={update_date} />
+        update_date={update_date}
+        blogSchema={schema} />
       
       <SinglePostLayout frontmatter={frontmatter}>
         {children}

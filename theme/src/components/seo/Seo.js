@@ -27,7 +27,7 @@ import { useStaticQuery, graphql } from "gatsby"
   * Always add Seo to New Page "i.e." an entry page of the App just below <Layout> Component.
   * Do NOT add Seo in other Layouts
   */
-function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, date, update_date, lang, meta }) {
+function Seo({ title, description, tags, slug, image: metaImage, isBlogPost, lang, meta, blogSchema}) {
   const { site, file } = useStaticQuery(
     graphql`
       query {
@@ -94,37 +94,6 @@ function Seo({ title, description, tags, image: metaImage, isBlogPost, slug, dat
       site.siteMetadata.social.join(",")
     ]
   }
-
-  const blogSchema = { 
-    "@context": "http://schema.org", 
-    "@type": "BlogPosting",
-    "headline": pageTitle,
-    "image": image,
-    "editor": site.siteMetadata.author, 
-    "genre": site.siteMetadata.genre, 
-    "keywords": keywords, 
-    "url": url,
-    "datePublished": date,
-    "dateCreated": date,
-    "dateModified": update_date !== date ? update_date : date,
-    "description": metaDescription,
-    "author": {
-       "@type": "Person",
-       "name": site.siteMetadata.author
-     },
-     "publisher": {
-       "@type": "Organization",
-       "name": site.siteMetadata.title,
-       "logo": {
-         "@type": "ImageObject",
-         "url": `${domain}${file.childImageSharp.fixed.src}`
-       }
-     },
-     "mainEntityOfPage": {
-       "@type": "WebPage",
-       "@id": url
-     }
-    }
 
   const schema = isBlogPost ? blogSchema : siteSchema
 
