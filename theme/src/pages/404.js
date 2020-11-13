@@ -25,7 +25,8 @@ const NotFoundPage = () => {
       <Seo 
         title="Oops, Something went wrong"
         description="Invalid URL"
-        slug="/404"  />
+        keywords={["404", "Url Not Found"]}
+        slug="404"  />
 
       <PageLayout>
 

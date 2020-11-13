@@ -9,7 +9,7 @@ const blogSchema = (frontmatter, image, site, file) => {
     "image": `${site.siteMetadata.siteUrl}${image}`,
     "editor": site.siteMetadata.author, 
     "genre": site.siteMetadata.genre, 
-    "keywords": frontmatter.tags.concat(site.siteMetadata.keywords), 
+    "keywords": frontmatter.keywords, 
     "url": url,
     "datePublished": frontmatter.date,
     "dateCreated": frontmatter.date,

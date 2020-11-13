@@ -18,7 +18,7 @@ module.exports = themeOptions => {
       twitterId: `TwitterID`,
       siteUrl: `https://kamranali.in`,
       genre: 'Genre of blog to be used in Google structured data',
-      keywords: [`Keyword 1`, `Keyword 2`],
+      keywords: [`Keyword 1`],
       email: `admin@domain.info`,
       social: [
         'https://www.facebook.com/pagelink/',

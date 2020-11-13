@@ -89,6 +89,7 @@ export const postFrontMatter = graphql`
     date(formatString: "MMM D, YYYY")
     tags
     slug
+    keywords
     image {
       childImageSharp {
         fixed(width: 350, height: 280) {

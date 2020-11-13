@@ -14,8 +14,9 @@ const PostList = ({data, pageContext}) => {
   const posts = data.allMdx.edges
   const title = data.site.siteMetadata.title
   const description = data.site.siteMetadata.description
+  const keywords = data.site.siteMetadata.keywords
   const {currentPage, numberOfPages} = pageContext
-  const slug = currentPage === 1 ? '/' : `/page/${currentPage}`
+  const slug = currentPage === 1 ? '' : `page/${currentPage}`
   const fullTitle = currentPage === 1 ? title : ` ${title} [page ${currentPage}]`
   const fullDescription = currentPage === 1 ? description : ` ${description} [page ${currentPage}]`
   
@@ -24,6 +25,7 @@ const PostList = ({data, pageContext}) => {
       <Seo 
         title={fullTitle}
         description={fullDescription}
+        keywords={keywords}
         slug={slug} />
       
       <IndexPageGrid 
@@ -41,6 +43,7 @@ export const postListQuery = graphql`
       siteMetadata {
         title
         description
+        keywords
       }
     }
     allMdx (

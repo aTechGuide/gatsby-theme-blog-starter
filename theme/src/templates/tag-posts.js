@@ -19,12 +19,12 @@ const TagPosts = ({data, pageContext}) => {
       <Seo 
         title={`${tag} Posts`}
         description={`${title} Posts Related to ${tag} Tag.`}
-        tags={[tag]}
-        slug={basePath === "/" ? `tag/${tag}` : `/${basePath}/tag/${tag}`} />
+        keywords={[tag]}
+        slug={basePath === "/" ? `tag/${tag}` : `${basePath}/tag/${tag}`} />
 
       <PageLayout title={pageHeader}>
         <TagPostsLayout data={data} pageContext={pageContext}/>
-      </PageLayout> 
+      </PageLayout>
     </Layout>
   );
 }

@@ -1,7 +1,7 @@
 {
   "name": "gatsby-theme-blog-starter",
   "description": "Gatsby theme for blog powered by MDX and Material UI",
-  "version": "1.2.12",
+  "version": "2.0.1",
   "author": "Kamran Ali <kamranalinitb@gmail.com>",
   "dependencies": {
     "@material-ui/core": "^4.3.2",

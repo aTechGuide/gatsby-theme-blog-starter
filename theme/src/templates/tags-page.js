@@ -45,8 +45,8 @@ const TagsPage = ({pageContext}) => {
       <Seo 
         title={`${title} Tags`}
         description={`${title} Tags: ${tags}`}
-        tags={[tags]}
-        slug={basePath === "/" ? `tags` : `/${basePath}/tags`} />
+        keywords={[tags]}
+        slug={basePath === "/" ? `tags` : `${basePath}/tags`} />
 
       <PageLayout title="Tags">
         {tags.map(tag => (

@@ -7,15 +7,13 @@ import { useStaticQuery, graphql } from "gatsby"
  * Page should provide following props
  * - title
  * - description
- * - tags (Array of keywords inserted in page. If provided, prepended to default keywords)
+ * - keywords (Array of keywords inserted in page.)
  * - slug (because its used in canonocal links)
  * 
  * Blog should provide page props + following
  * - image: Pass either fluid Or fixed
  *   - Blogs pass fluid
  * - isBlogPost
- * - date
- * - update_date
  * 
  * Default values
  * - isBlogPost: false
@@ -27,7 +25,7 @@ import { useStaticQuery, graphql } from "gatsby"
   * Always add Seo to New Page "i.e." an entry page of the App just below <Layout> Component.
   * Do NOT add Seo in other Layouts
   */
-function Seo({ title, description, tags, slug, image: metaImage, isBlogPost, lang, meta, blogSchema}) {
+function Seo({ title, description, keywords, slug, image: metaImage, isBlogPost, lang, meta, blogSchema}) {
   const { site, file } = useStaticQuery(
     graphql`
       query {
@@ -38,7 +36,6 @@ function Seo({ title, description, tags, slug, image: metaImage, isBlogPost, lan
             twitterId
             siteUrl
             genre
-            keywords
             author
             email
             social
@@ -59,12 +56,10 @@ function Seo({ title, description, tags, slug, image: metaImage, isBlogPost, lan
 
   const pageTitle = title || site.siteMetadata.title
   const metaDescription = description || site.siteMetadata.description
-
-  const keywords = tags ? tags.concat(site.siteMetadata.keywords) : site.siteMetadata.keywords.join(",")
   const twitterId = site.siteMetadata.twitterId
 
   const domain = site.siteMetadata.siteUrl
-  const url = slug && slug !== '/' ? `${domain}${slug}/` : domain
+  const url = slug && slug !== '/' ? `${domain}/${slug}/` : domain
 
   const image = metaImage
             ? `${domain}${metaImage}`

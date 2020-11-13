@@ -12,7 +12,7 @@ import blogSchema from "../components/seo/BlogSchema"
 
 const Singlepost = ({ children, pageContext : {frontmatter, image}}) => {
 
-  const {title, description, tags, slug, date, update_date} = frontmatter;
+  const {title, description, keywords, slug} = frontmatter;
 
   const { site, file } = useStaticQuery(
     graphql`
@@ -23,7 +23,6 @@ const Singlepost = ({ children, pageContext : {frontmatter, image}}) => {
             siteUrl
             author
             genre
-            keywords
           }
         }
         file(relativePath: { eq: "icon.png" }) {
@@ -44,12 +43,10 @@ const Singlepost = ({ children, pageContext : {frontmatter, image}}) => {
       <Seo 
         title={title}
         description={description}
-        tags={tags}
+        keywords={keywords}
+        slug={slug}
         image={image}
         isBlogPost={true}
-        slug={slug}
-        date={date}
-        update_date={update_date}
         blogSchema={schema} />
       
       <SinglePostLayout frontmatter={frontmatter}>
